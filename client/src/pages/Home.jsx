@@ -14,7 +14,6 @@ const Home = () => {
       <Banner />
       <CreateCard />
       <FAQ />
-      <Footer />
     </div>
   );
 };
