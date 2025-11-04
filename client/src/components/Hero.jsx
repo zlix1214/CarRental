@@ -10,13 +10,16 @@ const Hero = () => {
   return (
     <div className=" min-h-screen flex flex-col items-center justify-center gap-4 text-center">
       <img src={assets.main_car} alt="car" className="" />
-      <h1 className="text-3xl md:text-8xl text-white">Luxury cars on Rent.</h1>
+      <h1 className="text-3xl md:text-8xl text-white">Drive in Style.</h1>
 
       <form
-        className={`${gs.glassCard}  flex flex-col md:flex-row gap-4 justify-center items-start md:items-center p-6`}
+        className={`${gs.glassCard}  flex flex-col md:flex-row gap-4 justify-center md:items-center p-6`}
       >
         {/* Pickup Location */}
         <div className="flex flex-col gap-1">
+          <p className="text-sm text-gray-200">
+            {pickupLocation || "Please select a location"}
+          </p>
           <select
             required
             value={pickupLocation}
@@ -30,10 +33,6 @@ const Hero = () => {
               </option>
             ))}
           </select>
-
-          <p className="text-sm text-gray-200">
-            {pickupLocation || "Please select a location"}
-          </p>
         </div>
 
         {/* Pickup Date */}
@@ -63,7 +62,9 @@ const Hero = () => {
           />
         </div>
 
-        <button className="px-6 py-2 rounded-md text-white cursor-pointer md:w-32">
+        <button
+          className={`${gs.glassCard} px-6 py-2 text-white self-stretch cursor-pointer md:w-32`}
+        >
           Search
         </button>
       </form>

@@ -11,7 +11,7 @@ const FeaturedSection = () => {
     <div className="flex flex-col items-center py-24 px-6 md:px-16 lg:px-24 xl:px-32">
       <h1 className="text-white text-3xl md:text-7xl">Featured Cars</h1>
       <div
-        className={`${gs.glassCard} grid grid-cols-1 sm:grid-cols-2 gap-8 mt-18 p-5 w-full`}
+        className={`${gs.glassCard} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-18 p-5 w-full`}
       >
         {dummyCarData.slice(0, 6).map((car) => (
           <div key={car._id}>
