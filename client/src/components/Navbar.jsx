@@ -9,7 +9,7 @@ const Navbar = ({ setShowLogin }) => {
 
   return (
     <div
-      className={`${gs.glassNav}  fixed left-0 right-0 text-gray-200 m-5 rounded-2xl z-1`}
+      className={`${gs.glassNav} fixed right-0 left-0 text-gray-200 rounded-2xl z-1`}
     >
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}

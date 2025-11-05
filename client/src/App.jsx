@@ -7,26 +7,25 @@ import CarDetails from "./pages/CarDetails";
 import MyBookings from "./pages/MyBookings";
 import Cars from "./pages/Cars";
 import Footer from "./components/Footer";
+import Layout from "./pages/owner/Layout";
+import AddCar from "./pages/owner/AddCar";
+import DashBoard from "./pages/owner/DashBoard";
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   const isOwnerPath = useLocation().pathname.startsWith("/owner");
   return (
     <>
-      {/* <IOSGlassUIDemo /> */}
-      <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 z-0">
-        {/* 動態背景裝飾 */}
-        <div className="absolute inset-0 overflow-hidden -z-1">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-          <div className="absolute top-40 right-20 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
-          <div className="absolute -bottom-20 left-40 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-2000"></div>
-        </div>
-        {!isOwnerPath && <Navbar setShowLogin={setShowLogin} />}
-
+      {!isOwnerPath && <Navbar setShowLogin={setShowLogin} />}
+      <div className="pt-16">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/car-details/:id" element={<CarDetails />} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/my-bookings" element={<MyBookings />} />
+          <Route path="/owner" element={<Layout />}>
+            <Route index element={<DashBoard />} />
+            <Route path="add-car" element={<AddCar />} />
+          </Route>
         </Routes>
         <Footer />
       </div>
