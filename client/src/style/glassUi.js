@@ -14,7 +14,7 @@ export const gs = {
 
   // button
   glassButton:
-    "backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 rounded-xl px-6 py-3 transition-all duration-300 active:scale-95",
+    "backdrop-blur-md bg-white/20 hover:bg-white/30 border border-white/30 rounded-xl transition-all duration-300 active:scale-95",
 
   // input
   glassInput:

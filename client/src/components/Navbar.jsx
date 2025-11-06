@@ -8,9 +8,7 @@ const Navbar = ({ setShowLogin }) => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className={`${gs.glassNav} fixed right-0 left-0 text-gray-200 rounded-2xl z-1`}
-    >
+    <div className={`${gs.glassNav} fixed right-0 left-0 text-gray-200 z-1`}>
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link to="/">
@@ -18,21 +16,21 @@ const Navbar = ({ setShowLogin }) => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden sm:flex items-center gap-8">
+        <div className="hidden sm:flex items-center gap-4 md:gap-8 lg:gap-12 text-sm md:text-base lg:text-xl">
           <Link to="/">Home</Link>
           <Link to="/cars">Cars</Link>
           <Link to="/my-bookings">My bookings</Link>
 
           <button
             onClick={() => navigate("/owner")}
-            className={`${gs.glassButton} text-white  cursor-pointer`}
+            className={`p-2 cursor-pointer`}
           >
             Dashboard
           </button>
 
           <button
             onClick={() => setShowLogin(true)}
-            className={`${gs.glassButton} px-6 py-2 text-white cursor-pointer`}
+            className={`${gs.glassButton} px-2 py-1 md:px-3 md:py-2 cursor-pointer`}
           >
             Login
           </button>

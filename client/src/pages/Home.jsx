@@ -4,11 +4,10 @@ import FeaturedSection from "../components/FeaturedSection";
 import Banner from "../components/Banner";
 import CreateCard from "../components/Testimonial";
 import FAQ from "../components/FAQ";
-import Footer from "../components/Footer";
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col">
       <Hero />
       <FeaturedSection />
       <Banner />
