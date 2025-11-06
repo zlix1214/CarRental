@@ -1,7 +1,16 @@
-TODO:
-CSS rebuild
-/*
+<----------TODO----------->
+
+<-Idea->
+{
+addCar 時候的預覽卡片
+首次List car條款確認畫面
+}
+
+<-CSS rebuild->
+{
 Hero.jsx, SearchForm.jsx done
+NavBar.jsx not finish
+}
 
 
-*/
+
