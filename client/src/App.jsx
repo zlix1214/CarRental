@@ -10,13 +10,21 @@ import Footer from "./components/Footer";
 import Layout from "./pages/owner/Layout";
 import AddCar from "./pages/owner/AddCar";
 import DashBoard from "./pages/owner/DashBoard";
+import ManageCars from "./pages/owner/ManageCars";
+import ManageBookings from "./pages/owner/ManageBookings";
+import Login from "./components/Login";
+
+//TODO addCar 時候的預覽卡片
+//TODO 首次List car的 條款確認畫面
+
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   const isOwnerPath = useLocation().pathname.startsWith("/owner");
   return (
     <>
-      {!isOwnerPath && <Navbar setShowLogin={setShowLogin} />}
-      <div className="pt-16">
+      {showLogin && <Login setShowLogin={setShowLogin} />}
+      <Navbar />
+      <div className="pt-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/car-details/:id" element={<CarDetails />} />
@@ -25,6 +33,8 @@ const App = () => {
           <Route path="/owner" element={<Layout />}>
             <Route index element={<DashBoard />} />
             <Route path="add-car" element={<AddCar />} />
+            <Route path="manage-cars" element={<ManageCars />} />
+            <Route path="manage-bookings" element={<ManageBookings />} />
           </Route>
         </Routes>
         <Footer />

@@ -5,18 +5,18 @@
   font-family: "Outfit", sans-serif;
 }
 body {
-  background: linear-gradient(
-    45deg,
-    #feda75 0%,
-    #fa7e1e 25%,
-    #d62976 50%,
-    #962fbf 75%,
-    #4f5bd5 100%
-  );
+  background: linear-gradient(135deg, #d1d1d1, #242424, #2e2e2e, #cccccc);
 }
 
 /* 
 
-background: linear-gradient(135deg, #d1d1d1, #242424, #2e2e2e, #cccccc);
 
+background: linear-gradient(
+  45deg,
+  #feda75 0%,
+  #fa7e1e 25%,
+  #d62976 50%,
+  #962fbf 75%,
+  #4f5bd5 100%
+);
  */
