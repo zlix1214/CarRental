@@ -8,7 +8,7 @@ const FeaturedSection = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center mt-16 px-6 md:px-16 lg:px-24 xl:px-32 ">
+    <div className="flex flex-col items-center mt-16 px-6 md:px-16 lg:px-24 xl:px-32 mt-80 ">
       <h1 className="text-center text-white text-5xl md:text-7xl">
         Featured Cars
       </h1>

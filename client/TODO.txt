@@ -14,8 +14,8 @@ HomePage[
     FeaturedSection.jsx, Carcard.jsx //done
     Banner.jsx //done
     Testimonial.jsx //done
-    FAQ.jsx//pending
-    Footer.jsx //pender
+    FAQ.jsx//done
+    Footer.jsx //done
 ],
 CarPage[].
 MyBookingPage[],

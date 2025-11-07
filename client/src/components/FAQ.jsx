@@ -44,16 +44,16 @@ const FAQ = () => {
   };
 
   return (
-    <div className="flex flex-col items-center px-4 py-12">
+    <div className="flex flex-col items-center px-4 py-12 mt-80 w-full">
       {/* title */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 w-3/4">
-        <h2 className="text-4xl sm:text-5xl font-medium text-gray-200">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 max-w-4xl w-full">
+        <h2 className="text-4xl sm:text-5xl font-medium text-gray-200 text-center sm:text-left">
           Frequently Asked Questions
         </h2>
 
         <button
           onClick={toggleExpandAll}
-          className={`${gs.glass} px-4 py-2 text-sm font-medium text-gray-200 rounded-2xl cursor-pointer`}
+          className={`${gs.glass} px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl cursor-pointer`}
         >
           {expandAll ? "Collapse All" : "Expand All"}
         </button>
@@ -83,7 +83,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
         className={`${gs.glassCard} w-full py-5 px-6 flex justify-between items-center text-left `}
         onClick={onClick}
       >
-        <span className="text-lg font-medium text-gray-200 pr-4">
+        <span className="text-sm sm:text-base lg:text-lg font-medium text-gray-200 pr-4">
           {item.question}
         </span>
 
