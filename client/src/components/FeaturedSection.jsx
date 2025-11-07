@@ -8,15 +8,15 @@ const FeaturedSection = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center py-24 px-6 md:px-16 lg:px-24 xl:px-32">
-      <h1 className="text-white text-3xl md:text-7xl">Featured Cars</h1>
+    <div className="flex flex-col items-center mt-16 px-6 md:px-16 lg:px-24 xl:px-32 ">
+      <h1 className="text-center text-white text-5xl md:text-7xl">
+        Featured Cars
+      </h1>
       <div
-        className={`${gs.glassCard} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-18 p-5 w-full`}
+        className={`${gs.glassCard} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 md:mt-12 lg:mt-16 p-5 w-full`}
       >
         {dummyCarData.slice(0, 6).map((car) => (
-          <div key={car._id}>
-            <CarCard car={car} />
-          </div>
+          <CarCard key={car._id} car={car} />
         ))}
       </div>
 
@@ -25,7 +25,7 @@ const FeaturedSection = () => {
           navigate("/cars");
           scrollTo(0, 0);
         }}
-        className={`${gs.glassButton} flex items-center justify-center gap-2 px-6 py-2 rounded-md mt-18 text-white cursor-pointer`}
+        className={`${gs.glassButton} p-3 md:p-5 mt-18 w-auto text-sm sm:text-base md:text-xl lg:text-2xl text-white cursor-pointer`}
       >
         Explore all cars
       </button>

@@ -8,8 +8,24 @@ addCar 時候的預覽卡片
 
 <-CSS rebuild->
 {
-Hero.jsx, SearchForm.jsx done
-NavBar.jsx not finish
+HomePage[    
+    Hero.jsx, SearchForm.jsx //done
+    NavBar.jsx //done
+    FeaturedSection.jsx, Carcard.jsx //done
+    Banner.jsx //done
+    Testimonial.jsx //done
+    FAQ.jsx//pending
+    Footer.jsx //pender
+],
+CarPage[].
+MyBookingPage[],
+DashboardPage[
+    DashBoard.jsx //pending
+    AddCar.jsx //pending
+    ManageCar.jsx //pending
+    ManageBooking.jsx //pending
+].
+Login.jsx //pending
 }
 
 

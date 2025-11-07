@@ -4,21 +4,21 @@ import { assets } from "../assets/assets.js";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col gap-4 md:flex-row md:items-start items-center justify-between px-8 pt-10 w-auto">
-      <div className="text-white">
-        <h2 className="text-3xl font-medium">Do you own a Luxury Car?</h2>
-        <p className="mt-2">
-          Monetize your vehicle effortlessly by listing it on CarRental.
+    <div className="flex flex-col gap-12 lg:flex-row  md:justify-center items-center px-8 mt-80">
+      <div className="text-white flex flex-col items-center lg:items-start">
+        <h2 className="text-4xl sm:text-5xl font-medium text-center lg:text-left">
+          Do you own a Luxury Car?
+        </h2>
+        <p className="mt-2 text-base sm:text-xl text-center lg:text-left max-w-130">
+          Monetize your vehicle effortlessly by listing it on CarRental. We take
+          care of insurance, driver vertification and secure payments - so you
+          can earn passive income, stress free.
         </p>
-        <p className="max-w-130">
-          We take care of insurance, driver vertification and secure payments -
-          so you can earn passive income, stress free.
-        </p>
-        <button className={`${gs.glassButton} px-6 py-2 text-sm mt-4`}>
+        <button className={`${gs.glassButton} px-6 py-2 text-basic mt-4 w-1/2`}>
           List your car
         </button>
       </div>
-      <img src={assets.banner_car_image} alt="" className="max-h-45" />
+      <img src={assets.banner_car_image} alt="" className="max-h-60" />
     </div>
   );
 };

@@ -44,10 +44,10 @@ const FAQ = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
+    <div className="flex flex-col items-center px-4 py-12">
       {/* title */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-        <h2 className="text-3xl font-bold text-gray-200">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 w-3/4">
+        <h2 className="text-4xl sm:text-5xl font-medium text-gray-200">
           Frequently Asked Questions
         </h2>
 

@@ -51,8 +51,8 @@ const Navbar = ({ setShowLogin }) => {
           <Link to="/cars" onClick={() => setOpen(false)}>
             Cars
           </Link>
-          <Link to="/about" onClick={() => setOpen(false)}>
-            About
+          <Link to="/my-bookings" onClick={() => setOpen(false)}>
+            My Bookings
           </Link>
 
           <button
@@ -70,7 +70,7 @@ const Navbar = ({ setShowLogin }) => {
               setShowLogin(true);
               setOpen(false);
             }}
-            className={`${gs.glassButton}`}
+            className={`${gs.glassButton} p-1.5 w-1/2 self-center`}
           >
             Login
           </button>
