@@ -17,14 +17,15 @@ HomePage[
     FAQ.jsx//done
     Footer.jsx //done
 ],
-CarPage[].
-MyBookingPage[],
+CarDetailsPage[],//pending
+CarPage[], //done
+MyBookingPage[], //done
 DashboardPage[
-    DashBoard.jsx //pending
+    DashBoard.jsx //done
     AddCar.jsx //pending
     ManageCar.jsx //pending
     ManageBooking.jsx //pending
-].
+],
 Login.jsx //pending
 }
 

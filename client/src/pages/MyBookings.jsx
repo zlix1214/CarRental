@@ -35,18 +35,16 @@ const MyBookings = () => {
 
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-16 max-w-7xl mx-auto">
-      {/* 簡潔標題 */}
+      {/* header */}
       <div className="mb-12 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-white mb-3 tracking-tight">
+        <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold text-white mb-3 tracking-tight">
           My Bookings
         </h1>
-        <div className="w-24 h-1 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 mx-auto rounded-full"></div>
       </div>
 
       {/* 訂單卡片 - 交錯排版 */}
       <div className="space-y-8">
         {dummyMyBookingsData.map((booking, index) => {
-          // 從 booking.car 取得車輛資訊
           const car = booking.car;
           const days = calculateDays(booking.pickupDate, booking.returnDate);
           const isEven = index % 2 === 0;
@@ -64,20 +62,20 @@ const MyBookings = () => {
               <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
                 {/* 圖片區塊 - 偶數在左，奇數在右 */}
                 <div
-                  className={`md:col-span-2 relative ${
-                    !isEven && "md:order-2"
+                  className={`md:col-span-2  relative ${
+                    isEven ? "" : "md:order-2"
                   }`}
                 >
-                  <div className="relative h-64 md:h-full">
+                  <div className="relative">
                     <img
                       src={car.image}
                       alt={`${car.brand} ${car.model}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-75  object-cover"
                     />
                     {/* 狀態標籤 */}
                     <div className="absolute top-6 right-6">
                       <div
-                        className={`bg-gradient-to-r px-5 py-2 rounded-full text-white font-bold text-sm shadow-lg .glow}`}
+                        className={`bg-white px-5 py-2 rounded-full text-black font-bold text-sm shadow-lg .glow}`}
                       >
                         {booking.status}
                       </div>
@@ -85,12 +83,12 @@ const MyBookings = () => {
 
                     {/* 價格標籤 */}
                     <div className="absolute bottom-6 left-6">
-                      <div className="bg-black/50 backdrop-blur-sm px-5 py-3 rounded-2xl border border-white/20">
+                      <div className="bg-black/50 backdrop-blur-sm px-3 sm:px-5 py-1 sm:py-3 rounded-2xl border border-white/20">
                         <p className="text-gray-300 text-xs mb-1">
                           Total Price
                         </p>
-                        <p className="text-white text-2xl font-bold">
-                          NT$ {booking.price.toLocaleString()}
+                        <p className="text-white sm:text-xl md:text-2xl font-bold">
+                          $ {booking.price.toLocaleString()}
                         </p>
                       </div>
                     </div>
@@ -98,11 +96,13 @@ const MyBookings = () => {
                 </div>
 
                 {/* 資訊區塊 */}
-                <div className={`md:col-span-3 p-8 ${!isEven && "md:order-1"}`}>
+                <div
+                  className={`md:col-span-3 px-8  ${!isEven && "md:order-1"}`}
+                >
                   {/* 訂單編號 */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <Hash className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-400 text-sm font-mono">
+                  <div className="flex items-center gap-2 my-4">
+                    <Hash className="w-4 h-4 text-gray-200" />
+                    <span className="text-gray-100 text-sm font-mono">
                       {orderNumber}
                     </span>
                   </div>
@@ -127,18 +127,18 @@ const MyBookings = () => {
                   {/* 租車時間 */}
                   <div className={`${gs.glassCard} p-5 rounded-2xl mb-4`}>
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
-                        <Calendar className="w-6 h-6 text-white" />
+                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                        <Calendar className="w-6 h-6 text-black" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-gray-400 text-sm mb-2">
+                        <p className="text-gray-200 text-sm mb-2">
                           Rental Period ({days} {days === 1 ? "day" : "days"})
                         </p>
                         <div className="flex items-center gap-3 text-white">
                           <span className="font-semibold">
                             {formatDate(booking.pickupDate)}
                           </span>
-                          <div className="flex-1 h-px bg-gradient-to-r from-purple-400 to-pink-400"></div>
+                          <div className="flex-1 h-px bg-white hidden sm:block"></div>
                           <span className="font-semibold">
                             {formatDate(booking.returnDate)}
                           </span>
@@ -148,7 +148,7 @@ const MyBookings = () => {
                   </div>
 
                   {/* 訂單成立時間 */}
-                  <div className="flex items-center gap-2 text-gray-400 text-sm">
+                  <div className="flex items-center gap-2 text-gray-200 text-base mb-2">
                     <Clock className="w-4 h-4" />
                     <span>Booked on {formatCreatedAt(booking.createdAt)}</span>
                   </div>

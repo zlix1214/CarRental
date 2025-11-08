@@ -147,7 +147,7 @@ const Dashboard = () => {
       isPositive: true,
     },
     {
-      title: "Total Bookings",
+      title: "Bookings",
       value: data.totalBookings,
       icon: assets.listIconColored,
       IconComponent: Calendar,
@@ -199,63 +199,51 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 px-4 pt-10 md:px-10 flex-1">
+    <div className="min-h-screen bg-transparent px-4 pt-10 md:px-10 flex-1">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">Dashboard</h1>
-          <p className="text-slate-600">
+          <h1 className="text-4xl sm:text-6xl font-bold text-slate-200 mb-2">
+            Dashboard
+          </h1>
+          <p className="text-slate-200 text-sm sm:text-base lg:text-lg">
             Welcome back! Here's what's happening with your rentals.
           </p>
         </div>
 
         {/* Stats Cards Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
           {dashboardCards.map((card, index) => {
             const Icon = card.IconComponent;
             return (
               <div
                 key={index}
-                className="group relative overflow-hidden bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="group relative overflow-hidden bg-white rounded-2xl border border-slate-200 p-2 sm:p-4 lg:p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Background Gradient Effect */}
                 <div
                   className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${card.color} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity`}
                 />
 
-                <div className="relative">
+                <div className="relative flex items-center justify-between">
                   {/* Icon */}
                   <div
-                    className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${card.color} mb-4`}
+                    className={` p-2 sm:p-3 rounded-xl bg-gradient-to-br ${card.color} `}
                   >
-                    <Icon className="w-6 h-6 text-white" />
+                    <Icon className="w-2 sm:w-3 md:w-4 lg:w-5 xl:w-6 h-2 sm:h-3 md:h-4 lg:h-5 xl:h-6 text-white " />
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-sm font-medium text-slate-600 mb-1">
-                    {card.title}
-                  </h3>
 
                   {/* Value */}
                   <div className="flex items-end justify-between">
-                    <p className="text-3xl font-bold text-slate-900">
+                    <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900">
                       {card.value}
                     </p>
-
-                    {/* Change Indicator */}
-                    <div
-                      className={`flex items-center gap-1 text-xs font-semibold ${
-                        card.isPositive ? "text-emerald-600" : "text-red-600"
-                      }`}
-                    >
-                      {card.isPositive ? (
-                        <ArrowUpRight className="w-4 h-4" />
-                      ) : (
-                        <ArrowDownRight className="w-4 h-4" />
-                      )}
-                      <span>{card.change}</span>
-                    </div>
                   </div>
+
+                  {/* Title */}
+                  <h3 className="text-xs font-medium text-slate-600 mb-1">
+                    {card.title}
+                  </h3>
                 </div>
               </div>
             );
@@ -267,10 +255,10 @@ const Dashboard = () => {
           <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-900">
                   Recent Bookings
                 </h2>
-                <p className="text-sm text-slate-500 mt-1">
+                <p className="text-xs sm:text-sm text-slate-500 mt-1">
                   Latest customer bookings
                 </p>
               </div>
@@ -283,7 +271,7 @@ const Dashboard = () => {
               {data.recentBookings.map((booking, index) => (
                 <div
                   key={index}
-                  className="group flex items-center justify-between p-4 rounded-xl hover:bg-slate-50 transition-all border border-transparent hover:border-slate-200"
+                  className="group flex items-center justify-between p-0 sm:p-1 md:p-2 lg:p-3 xl:p-4 hover:bg-slate-50 transition-all border border-transparent hover:border-slate-200 border-t-gray-300"
                 >
                   <div className="flex items-center gap-4">
                     {/* Car Icon */}
@@ -293,10 +281,10 @@ const Dashboard = () => {
 
                     {/* Booking Info */}
                     <div>
-                      <p className="font-semibold text-slate-900">
+                      <p className="font-semibold text-xs sm:text-base md:text-xl lg:text-2xl  text-slate-900">
                         {booking.car.brand} {booking.car.model}
                       </p>
-                      <p className="text-sm text-slate-500 flex items-center gap-1.5 mt-0.5">
+                      <p className="text-xs sm:text-sm lg:text-lg text-slate-500 flex items-center gap-1.5 mt-0.5">
                         <Calendar className="w-3.5 h-3.5" />
                         {booking.createdAt.split("T")[0]}
                       </p>
@@ -306,14 +294,14 @@ const Dashboard = () => {
                   {/* Price & Status */}
                   <div className="flex items-center gap-3">
                     <div className="text-right">
-                      <p className="font-bold text-slate-900">
+                      <p className="text-xs text-slate-500">Total</p>
+                      <p className="font-bold text-slate-900 text-xs md:text-base lg:text-lg xl:text-2xl">
                         {currency}
                         {booking.price}
                       </p>
-                      <p className="text-xs text-slate-500">Total</p>
                     </div>
                     <span
-                      className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${getStatusColor(
+                      className={`px-1.5 sm:px-3 py-1.5 rounded-full text-xs font-semibold border ${getStatusColor(
                         booking.status
                       )}`}
                     >
@@ -327,20 +315,7 @@ const Dashboard = () => {
 
           {/* Monthly Revenue Card */}
           <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-6 shadow-xl">
-            {/* Background Pattern */}
-            <div
-              className="absolute inset-0 opacity-5"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }}
-            />
-
             <div className="relative">
-              {/* Icon */}
-              <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 mb-4">
-                <TrendingUp className="w-6 h-6 text-white" />
-              </div>
-
               {/* Title */}
               <h2 className="text-lg font-bold text-white mb-1">
                 Monthly Revenue
@@ -355,27 +330,21 @@ const Dashboard = () => {
                   {currency}
                   {data.monthlyRevenue.toLocaleString()}
                 </p>
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1 px-2 py-1 bg-emerald-500/20 rounded-full">
-                    <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-xs font-semibold text-emerald-400">
-                      +32%
-                    </span>
-                  </div>
-                  <span className="text-xs text-slate-400">vs last month</span>
-                </div>
+                <div className="flex items-center gap-2"></div>
               </div>
 
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
                 <div>
-                  <p className="text-xs text-slate-400 mb-1">
+                  <p className="text-sm lg:text-base text-slate-400 mb-1">
                     Avg. per booking
                   </p>
                   <p className="text-lg font-bold text-white">{currency}292</p>
                 </div>
                 <div>
-                  <p className="text-xs text-slate-400 mb-1">Total bookings</p>
+                  <p className="text-sm lg:text-base text-slate-400 mb-1">
+                    Total bookings
+                  </p>
                   <p className="text-lg font-bold text-white">
                     {data.totalBookings}
                   </p>
