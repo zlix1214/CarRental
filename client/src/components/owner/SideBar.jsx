@@ -14,7 +14,7 @@ const Sidebar = () => {
   };
   return (
     <div
-      className={`${gs.glass} relative min-h-screen md:flex flex-col items-center pt-8 px-1 max-w-13 md:max-w-60 w-full text-sm `}
+      className={`${gs.glass} relative min-h-screen md:flex flex-col items-center pt-10 sm:pt-16 px-1 max-w-13 md:max-w-60 w-full text-sm `}
     >
       <div className="group relative">
         <label htmlFor="image">
@@ -26,7 +26,7 @@ const Sidebar = () => {
                   "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=300"
             }
             alt=""
-            className="h-9 md:h-14 w-9 md:w-14 rounded-full mx-auto"
+            className="h-9 md:h-16 w-9 md:w-16 rounded-full mx-auto"
           />
           <input
             type="file"
@@ -43,10 +43,10 @@ const Sidebar = () => {
       </div>
       {image && (
         <button
-          className="absolute top-0 right-0 flex p-2 gap-1 bg-primary/10 text-primary cursor-pointer"
+          className="absolute top-2 right-0 flex p-2 gap-1 bg-white cursor-pointer"
           onClick={updateImage}
         >
-          Save <img src={assets.check_icon} width={13} alt="" />
+          Save
         </button>
       )}
       <p className="mt-2 text-base max-md:hidden">{user?.name}</p>
@@ -56,7 +56,7 @@ const Sidebar = () => {
           <NavLink
             key={index}
             to={link.path}
-            className={`relative flex items-center gap-2 w-full py-3 pl-4 first:mt-6 ${gs.glass} 
+            className={`relative flex items-center gap-2 w-full py-3 pl-3 first:mt-6 ${gs.glass} 
             `}
           >
             <img

@@ -8,7 +8,7 @@ const FeaturedSection = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center mt-16 px-6 md:px-16 lg:px-24 xl:px-32 mt-80 ">
+    <div className="flex flex-col items-center px-6 md:px-16 lg:px-24 xl:px-32 mt-80 ">
       <h1 className="text-center text-white text-5xl md:text-7xl">
         Featured Cars
       </h1>
@@ -25,7 +25,7 @@ const FeaturedSection = () => {
           navigate("/cars");
           scrollTo(0, 0);
         }}
-        className={`${gs.glassButton} p-3 md:p-5 mt-18 w-auto text-sm sm:text-base md:text-xl lg:text-2xl text-white cursor-pointer`}
+        className={`bg-white/10 p-3 md:p-5 mt-18 w-auto text-sm sm:text-base md:text-xl lg:text-2xl text-white cursor-pointer shadow-2xl rounded-2xl`}
       >
         Explore all cars
       </button>

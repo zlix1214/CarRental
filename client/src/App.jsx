@@ -20,7 +20,7 @@ const App = () => {
   return (
     <>
       {showLogin && <Login setShowLogin={setShowLogin} />}
-      <Navbar />
+      <Navbar setShowLogin={setShowLogin} />
       <div className="pt-12">
         <Routes>
           <Route path="/" element={<Home />} />

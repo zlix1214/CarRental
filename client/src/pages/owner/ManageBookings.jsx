@@ -78,14 +78,14 @@ const ManageBookings = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 px-4 pt-10 md:px-10 w-full">
+    <div className="min-h-screen px-4 pt-10 md:px-10 w-full">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">
+          <h1 className="text-4xl font-bold text-slate-200 mb-2">
             Manage Bookings
           </h1>
-          <p className="text-slate-600">
+          <p className="text-slate-200">
             Review and manage customer reservations
           </p>
         </div>
@@ -93,7 +93,7 @@ const ManageBookings = () => {
         {/* Filters & Search Bar */}
         <div className="mb-6 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
           {/* Filter Buttons */}
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilterStatus("all")}
               className={`px-4 py-3 rounded-xl font-medium text-sm transition-all ${
@@ -144,15 +144,15 @@ const ManageBookings = () => {
           {filteredBookings.map((booking, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-2xl border-2 border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-white rounded-2xl  overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="flex flex-col sm:flex-row">
+              <div className="flex flex-col sm:flex-row h-full">
                 {/* Car Image */}
                 <div className="relative sm:w-40">
                   <img
                     src={booking.car.image}
                     alt={`${booking.car.brand} ${booking.car.model}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="h-50 sm:h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
 
                   {/* Status Badge on Image */}
@@ -219,11 +219,9 @@ const ManageBookings = () => {
                         value={booking.status}
                         className="w-full appearance-none px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors font-medium text-slate-700 cursor-pointer"
                       >
-                        <option value="pending">
-                          ⏰ Pending - Change Status
-                        </option>
-                        <option value="confirmed">✅ Confirm Booking</option>
-                        <option value="cancelled">❌ Cancel Booking</option>
+                        <option value="pending">Pending - Change Status</option>
+                        <option value="confirmed">Confirm Booking</option>
+                        <option value="cancelled">Cancel Booking</option>
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
                     </div>
@@ -236,8 +234,8 @@ const ManageBookings = () => {
                       }`}
                     >
                       {booking.status === "confirmed"
-                        ? "✅ Booking Confirmed"
-                        : "❌ Booking Cancelled"}
+                        ? "Booking Confirmed"
+                        : "Booking Cancelled"}
                     </div>
                   )}
                 </div>

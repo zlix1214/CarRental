@@ -8,7 +8,7 @@ const Navbar = ({ setShowLogin }) => {
   const navigate = useNavigate();
 
   return (
-    <div className={`${gs.glassNav} fixed right-0 left-0 text-gray-200 z-1`}>
+    <div className={`${gs.glassDark} fixed right-0 left-0 text-gray-200 z-1`}>
       <div className="flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link to="/">

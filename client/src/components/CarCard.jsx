@@ -1,6 +1,7 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
+import { gs } from "../style/glassUi";
 
 const CarCard = ({ car }) => {
   const specs = [
@@ -39,7 +40,7 @@ const CarCard = ({ car }) => {
         scrollTo(0, 0);
       }}
       className="group relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-500
-      hover:shadow-2xl hover:-translate-y-2"
+      hover:shadow-2xl hover:-translate-y-2 shadow-black/90"
     >
       {/* Large Image Section - 60% height */}
       <div className="relative h-45 sm:h-55 lg:h-65 xl:h-75 overflow-hidden">
@@ -94,11 +95,11 @@ const CarCard = ({ car }) => {
           {specs.map((spec, index) => (
             <div
               key={index}
-              className={`flex items-center lg:justify-between p-3 bg-slate-50 rounded-xl
+              className={`${gs.glassDark} flex items-center lg:justify-between p-3 rounded-xl
               }`}
             >
-              <img src={spec.icon} alt="" className="h-5 w-5 mb-1 opacity-60" />
-              <div className="text-xs md:text-sm font-semibold text-slate-900 truncate w-full text-center">
+              <img src={spec.icon} alt="" className="h-5 w-5 mb-1" />
+              <div className="text-xs md:text-sm font-semibold text-slate-200 truncate w-full text-center">
                 {spec.value}
               </div>
             </div>

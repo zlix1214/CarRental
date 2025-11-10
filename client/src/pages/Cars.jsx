@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { assets, dummyCarData } from "../assets/assets";
 import CarCard from "../components/CarCard";
 import { Search } from "lucide-react";
+import { gs } from "../style/glassUi";
 
 const Cars = () => {
   const [input, setInput] = useState("");
@@ -66,7 +67,7 @@ const Cars = () => {
       </div>
 
       {/* Cars Grid Section */}
-      <div className="px-4 md:px-8 lg:px-16 pb-16">
+      <div className={`${gs.glassCard} w-fit mx-auto p-4 md:p-8 lg:p-16 pb-16`}>
         <div className="max-w-7xl mx-auto">
           {/* Results Header */}
           <div className="flex items-center justify-between mb-4 md:mb-8">

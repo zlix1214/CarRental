@@ -53,7 +53,7 @@ const FAQ = () => {
 
         <button
           onClick={toggleExpandAll}
-          className={`${gs.glass} px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl cursor-pointer`}
+          className={`bg-white/10 px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-xl shadow-black/50 cursor-pointer`}
         >
           {expandAll ? "Collapse All" : "Expand All"}
         </button>
@@ -80,7 +80,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
     <div className={`${!isLast ? "" : "rounded-b-2xl"}`}>
       {/* questions */}
       <button
-        className={`${gs.glassCard} w-full py-5 px-6 flex justify-between items-center text-left `}
+        className={`w-full py-5 px-6 flex justify-between items-center text-left shadow-xl shadow-black/30 `}
         onClick={onClick}
       >
         <span className="text-sm sm:text-base lg:text-lg font-medium text-gray-200 pr-4">

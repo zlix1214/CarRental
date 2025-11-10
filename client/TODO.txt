@@ -7,27 +7,7 @@ addCar 時候的預覽卡片
 }
 
 <-CSS rebuild->
-{
-HomePage[    
-    Hero.jsx, SearchForm.jsx //done
-    NavBar.jsx //done
-    FeaturedSection.jsx, Carcard.jsx //done
-    Banner.jsx //done
-    Testimonial.jsx //done
-    FAQ.jsx//done
-    Footer.jsx //done
-],
-CarDetailsPage[],//pending
-CarPage[], //done
-MyBookingPage[], //done
-DashboardPage[
-    DashBoard.jsx //done
-    AddCar.jsx //pending
-    ManageCar.jsx //pending
-    ManageBooking.jsx //pending
-],
-Login.jsx //pending
-}
+
 
 
 

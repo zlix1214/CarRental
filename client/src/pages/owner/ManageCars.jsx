@@ -116,14 +116,14 @@ const ManageCars = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 px-4 pt-10 md:px-10 w-full">
+    <div className="min-h-screen px-4 pt-10 md:px-10 w-full">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">
+          <h1 className="text-4xl font-bold text-slate-200 mb-2">
             Manage Cars
           </h1>
-          <p className="text-slate-600">
+          <p className="text-slate-200">
             View, edit, and manage your vehicle listings
           </p>
         </div>
@@ -131,10 +131,10 @@ const ManageCars = () => {
         {/* Filters & Search Bar */}
         <div className="mb-6 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
           {/* Filter Buttons */}
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilterStatus("all")}
-              className={`px-4 py-3 rounded-xl font-medium text-sm transition-all ${
+              className={`px-4 py-3 rounded-xl font-medium text-xs transition-all ${
                 filterStatus === "all"
                   ? "bg-slate-900 text-white shadow-lg"
                   : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
@@ -170,7 +170,7 @@ const ManageCars = () => {
           {filteredCars.map((car, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-2xl border-2 border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
               {/* Image Section */}
               <div className="relative h-48 overflow-hidden bg-slate-100">

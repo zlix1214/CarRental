@@ -61,7 +61,7 @@ const Testimonial = () => {
         {testimonialData.map((item, index) => (
           <div
             key={index}
-            className="p-6 flex flex-col items-center rounded-2xl bg-white/10 backdrop-blur-md w-full max-w-md"
+            className={`p-6 flex flex-col items-center rounded-2xl bg-white/10 backdrop-blur-md w-full max-w-md shadow-xl shadow-black/60`}
           >
             <img
               src={item.avatar}

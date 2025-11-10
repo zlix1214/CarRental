@@ -9,7 +9,7 @@ const SearchForm = () => {
   const navigate = useNavigate();
   return (
     <form
-      className={`${gs.glassCard} flex flex-col md:flex-row gap-4 p-6 md:w-auto`}
+      className={`bg-white/10 flex flex-col md:flex-row gap-4 p-6 md:w-auto shadow-xl rounded-2xl shadow-black/60`}
     >
       {/* Pickup Location */}
       <div className="flex flex-col gap-1 flex-1">

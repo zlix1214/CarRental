@@ -14,7 +14,9 @@ const Banner = () => {
           care of insurance, driver vertification and secure payments - so you
           can earn passive income, stress free.
         </p>
-        <button className={`${gs.glassButton} px-6 py-2 text-basic mt-4 w-1/2`}>
+        <button
+          className={`bg-white/10 px-6 py-3 text-basic mt-4 w-1/2 shadow-2xl rounded-2xl`}
+        >
           List your car
         </button>
       </div>

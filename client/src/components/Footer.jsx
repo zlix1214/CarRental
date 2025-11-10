@@ -2,7 +2,7 @@ import { assets } from "../assets/assets";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col items-center justify-center p-20 text-white/70 mt-90">
+    <footer className="flex flex-col items-center justify-center p-20 text-white/70 mt-10 ">
       <img src={assets.logo} alt="" />
       <p className="mt-4 text-center">
         Copyright © 2025 <a href="https://prebuiltui.com">PrebuiltUI</a>. All

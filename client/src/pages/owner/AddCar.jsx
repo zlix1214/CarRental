@@ -40,10 +40,10 @@ const AddCar = () => {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">
+          <h1 className="text-4xl md:text-6xl font-semibold text-slate-300 mb-2">
             List Your Car
           </h1>
-          <p className="text-slate-600">
+          <p className="text-slate-200">
             Fill in the details below to add your car to the platform
           </p>
         </div>
@@ -51,14 +51,7 @@ const AddCar = () => {
         <div className="space-y-8 grid-cols-1 md">
           {/* Image Upload Section - Hero Style */}
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 md:p-12">
-            <div
-              className="absolute inset-0 opacity-5"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              }}
-            />
-
-            <div className="relative flex flex-col md:flex-row items-center gap-8">
+            <div className="relative flex flex-col lg:flex-row items-center gap-8">
               <label
                 htmlFor="car-image"
                 className="relative group cursor-pointer"
@@ -83,9 +76,9 @@ const AddCar = () => {
                       </button>
                     </div>
                   ) : (
-                    <div className="w-64 h-40 flex flex-col items-center justify-center bg-white/5 backdrop-blur-sm border-2 border-dashed border-white/20 rounded-2xl group-hover:border-white/40 transition-all">
-                      <Upload className="w-12 h-12 text-white/60 mb-3 group-hover:text-white/80 transition-colors" />
-                      <p className="text-white/80 text-sm font-medium">
+                    <div className="w-45 h-30 sm:w-64 sm:h-40 flex flex-col items-center justify-center bg-white/5 backdrop-blur-sm border-2 border-dashed border-white/20 rounded-2xl group-hover:border-white/40 transition-all">
+                      <Upload className="w-8 sm:w-12 h-8 sm:h-12 text-white/60 mb-3 group-hover:text-white/80 transition-colors" />
+                      <p className="text-white/80 text-xs sm:text-sm font-medium">
                         Click to upload
                       </p>
                       <p className="text-white/50 text-xs mt-1">
@@ -103,22 +96,22 @@ const AddCar = () => {
                 />
               </label>
 
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl font-bold text-white mb-2">
+              <div className="flex-1 text-center lg:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
                   Upload Car Image
                 </h3>
                 <p className="text-slate-300 text-sm mb-4">
                   A high-quality image helps attract more renters. Make sure the
                   car is well-lit and clearly visible.
                 </p>
-                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                  <span className="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
+                <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                  <span className="hidden sm:block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
                     Front view recommended
                   </span>
-                  <span className="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
+                  <span className="hidden sm:block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
                     Clean background
                   </span>
-                  <span className="px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
+                  <span className="hidden sm:block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
                     High resolution
                   </span>
                 </div>
@@ -133,7 +126,7 @@ const AddCar = () => {
                 <Car className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-900">
                   Basic Information
                 </h2>
                 <p className="text-sm text-slate-500">
@@ -151,7 +144,7 @@ const AddCar = () => {
                   type="text"
                   placeholder="e.g. BMW, Mercedes, Audi..."
                   required
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
                   value={car.brand}
                   onChange={(e) => setCar({ ...car, brand: e.target.value })}
                 />
@@ -164,7 +157,7 @@ const AddCar = () => {
                   type="text"
                   placeholder="e.g. X5, E-Class, M4..."
                   required
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
                   value={car.model}
                   onChange={(e) => setCar({ ...car, model: e.target.value })}
                 />
@@ -179,7 +172,7 @@ const AddCar = () => {
                 <DollarSign className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-900">
                   Pricing & Details
                 </h2>
                 <p className="text-sm text-slate-500">
@@ -198,7 +191,7 @@ const AddCar = () => {
                   type="number"
                   placeholder="2025"
                   required
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
                   value={car.year}
                   onChange={(e) => setCar({ ...car, year: e.target.value })}
                 />
@@ -212,7 +205,7 @@ const AddCar = () => {
                   type="number"
                   placeholder="100"
                   required
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
                   value={car.pricePerDay}
                   onChange={(e) =>
                     setCar({ ...car, pricePerDay: e.target.value })
@@ -227,7 +220,7 @@ const AddCar = () => {
                 <select
                   onChange={(e) => setCar({ ...car, category: e.target.value })}
                   value={car.category}
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
                 >
                   <option value="">Select a category</option>
                   <option value="Sedan">Sedan</option>
@@ -245,7 +238,7 @@ const AddCar = () => {
                 <Settings className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-900">
                   Specifications
                 </h2>
                 <p className="text-sm text-slate-500">
@@ -265,7 +258,7 @@ const AddCar = () => {
                     setCar({ ...car, transmission: e.target.value })
                   }
                   value={car.transmission}
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
                 >
                   <option value="">Select transmission</option>
                   <option value="Automatic">Automatic</option>
@@ -283,7 +276,7 @@ const AddCar = () => {
                     setCar({ ...car, fuel_type: e.target.value })
                   }
                   value={car.fuel_type}
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
                 >
                   <option value="">Select fuel type</option>
                   <option value="Gas">Gas</option>
@@ -302,7 +295,7 @@ const AddCar = () => {
                   type="number"
                   placeholder="4"
                   required
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
                   value={car.seating_capacity}
                   onChange={(e) =>
                     setCar({ ...car, seating_capacity: e.target.value })
@@ -319,7 +312,7 @@ const AddCar = () => {
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-slate-900">
+                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-900">
                   Location & Description
                 </h2>
                 <p className="text-sm text-slate-500">
@@ -337,7 +330,7 @@ const AddCar = () => {
                 <select
                   onChange={(e) => setCar({ ...car, location: e.target.value })}
                   value={car.location}
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
                 >
                   <option value="">Select a location</option>
                   <option value="New York">New York</option>
@@ -356,7 +349,7 @@ const AddCar = () => {
                   rows={5}
                   placeholder="e.g. A luxurious SUV with a spacious interior and a powerful engine. Perfect for family trips or business travel. Features include leather seats, sunroof, and advanced safety systems."
                   required
-                  className="px-4 py-3 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors resize-none"
+                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors resize-none"
                   value={car.description}
                   onChange={(e) =>
                     setCar({ ...car, description: e.target.value })
@@ -371,10 +364,10 @@ const AddCar = () => {
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-end">
+          <div className="flex justify-center md:justify-end">
             <button
               onClick={onSubmitHandler}
-              className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 flex items-center gap-3"
+              className="group relative overflow-hidden px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 flex items-center gap-3"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity" />
               <Check className="w-5 h-5 relative z-10" />
