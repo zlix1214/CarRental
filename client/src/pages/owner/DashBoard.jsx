@@ -197,7 +197,7 @@ const Dashboard = () => {
           </div>
 
           {/* Monthly Revenue Card */}
-          <div className="relative overflow-hidden rounded-2xl p-6 shadow-2xl">
+          <div className="relative overflow-hidden rounded-2xl p-6 shadow-2xl bg-gradient-to-br from-[#1a1a1a] to-[#7a0101]">
             <div className="relative">
               {/* Title */}
               <h2 className="text-lg font-bold text-white mb-1">

@@ -53,9 +53,7 @@ const MyBookings = () => {
           return (
             <div
               key={index}
-              className={`${
-                gs.glass
-              } rounded-3xl overflow-hidden group hover:scale-[1.01] transition-all duration-300 ${
+              className={` bg-gradient-to-br from-[#2a2a2a] to-[#df0a0a] shadow-2xl rounded-3xl overflow-hidden group hover:scale-[1.01] transition-all duration-300 ${
                 isEven ? "md:mr-12" : "md:ml-12"
               }`}
             >

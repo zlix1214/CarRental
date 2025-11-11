@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <div className=" border-b border-white/20">
+    <div>
       <div className="flex">
         <SideBar />
         <Outlet />

@@ -74,7 +74,7 @@ const CarCard = ({ car }) => {
       </div>
 
       {/* Info Section - 40% height, clean white background */}
-      <div className="relative bg-black p-6 space-y-4">
+      <div className="relative bg-gradient-to-b from-[#000000] to-[#910b0b] p-6 space-y-4">
         {/* Car Name & Tags */}
         <div>
           <h3 className="text-2xl font-bold text-white mb-2">

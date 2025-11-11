@@ -50,7 +50,7 @@ const AddCar = () => {
 
         <div className="space-y-8 grid-cols-1 md">
           {/* Image Upload Section - Hero Style */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 md:p-12">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1a1a1a] to-[#7a0101] p-8 md:p-12">
             <div className="relative flex flex-col lg:flex-row items-center gap-8">
               <label
                 htmlFor="car-image"
@@ -120,16 +120,16 @@ const AddCar = () => {
           </div>
 
           {/* Basic Information */}
-          <div className="bg-white rounded-3xl shadow-lg border border-slate-200 p-6 md:p-8">
+          <div className="bg-white/10 rounded-3xl p-6 md:p-8 shadow-2xl">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl">
                 <Car className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-900">
+                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
                   Basic Information
                 </h2>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-slate-300">
                   Enter your car's basic details
                 </p>
               </div>
@@ -137,27 +137,27 @@ const AddCar = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2">
                   Brand
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. BMW, Mercedes, Audi..."
                   required
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="px-3 py-2 bg-white/20 rounded-xl outline-none"
                   value={car.brand}
                   onChange={(e) => setCar({ ...car, brand: e.target.value })}
                 />
               </div>
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2">
                   Model
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. X5, E-Class, M4..."
                   required
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="bg-white/20 px-3 py-2 rounded-xl outline-none"
                   value={car.model}
                   onChange={(e) => setCar({ ...car, model: e.target.value })}
                 />
@@ -166,16 +166,16 @@ const AddCar = () => {
           </div>
 
           {/* Pricing & Details */}
-          <div className="bg-white rounded-3xl shadow-lg border border-slate-200 p-6 md:p-8">
+          <div className="bg-white/10 rounded-3xl shadow-2xl p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl">
                 <DollarSign className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-900">
+                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
                   Pricing & Details
                 </h2>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-slate-300">
                   Set your rental price and car details
                 </p>
               </div>
@@ -183,7 +183,7 @@ const AddCar = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   Year
                 </label>
@@ -191,13 +191,13 @@ const AddCar = () => {
                   type="number"
                   placeholder="2025"
                   required
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="bg-white/20 px-3 py-2 rounded-xl outline-none"
                   value={car.year}
                   onChange={(e) => setCar({ ...car, year: e.target.value })}
                 />
               </div>
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <DollarSign className="w-4 h-4" />
                   Daily Price ({currency})
                 </label>
@@ -205,7 +205,7 @@ const AddCar = () => {
                   type="number"
                   placeholder="100"
                   required
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="bg-white/20 px-3 py-2 rounded-xl outline-none focus:border-blue-500 transition-colors"
                   value={car.pricePerDay}
                   onChange={(e) =>
                     setCar({ ...car, pricePerDay: e.target.value })
@@ -213,14 +213,14 @@ const AddCar = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Car className="w-4 h-4" />
                   Category
                 </label>
                 <select
                   onChange={(e) => setCar({ ...car, category: e.target.value })}
                   value={car.category}
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
+                  className="px-3 py-2 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white/20"
                 >
                   <option value="">Select a category</option>
                   <option value="Sedan">Sedan</option>
@@ -232,16 +232,16 @@ const AddCar = () => {
           </div>
 
           {/* Specifications */}
-          <div className="bg-white rounded-3xl shadow-lg border border-slate-200 p-6 md:p-8">
+          <div className="bg-white/10 rounded-3xl shadow-2xl p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl">
                 <Settings className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-900">
+                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
                   Specifications
                 </h2>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-slate-300">
                   Technical details and features
                 </p>
               </div>
@@ -249,7 +249,7 @@ const AddCar = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Settings className="w-4 h-4" />
                   Transmission
                 </label>
@@ -258,7 +258,7 @@ const AddCar = () => {
                     setCar({ ...car, transmission: e.target.value })
                   }
                   value={car.transmission}
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
+                  className="px-3 py-2 rounded-xl outline-none bg-white/20"
                 >
                   <option value="">Select transmission</option>
                   <option value="Automatic">Automatic</option>
@@ -267,7 +267,7 @@ const AddCar = () => {
                 </select>
               </div>
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Fuel className="w-4 h-4" />
                   Fuel Type
                 </label>
@@ -276,7 +276,7 @@ const AddCar = () => {
                     setCar({ ...car, fuel_type: e.target.value })
                   }
                   value={car.fuel_type}
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
+                  className="px-3 py-2 rounded-xl outline-none bg-white/20"
                 >
                   <option value="">Select fuel type</option>
                   <option value="Gas">Gas</option>
@@ -287,7 +287,7 @@ const AddCar = () => {
                 </select>
               </div>
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Users className="w-4 h-4" />
                   Seating Capacity
                 </label>
@@ -295,7 +295,7 @@ const AddCar = () => {
                   type="number"
                   placeholder="4"
                   required
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                  className="px-3 py-2 bg-white/20 rounded-xl outline-none"
                   value={car.seating_capacity}
                   onChange={(e) =>
                     setCar({ ...car, seating_capacity: e.target.value })
@@ -306,16 +306,16 @@ const AddCar = () => {
           </div>
 
           {/* Location & Description */}
-          <div className="bg-white rounded-3xl shadow-lg border border-slate-200 p-6 md:p-8">
+          <div className="bg-white/10 rounded-3xl shadow-2xl p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl">
                 <MapPin className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-900">
+                <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
                   Location & Description
                 </h2>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-slate-300">
                   Where is your car and what makes it special?
                 </p>
               </div>
@@ -323,14 +323,14 @@ const AddCar = () => {
 
             <div className="space-y-6">
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
                   Location
                 </label>
                 <select
                   onChange={(e) => setCar({ ...car, location: e.target.value })}
                   value={car.location}
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white"
+                  className="px-3 py-2 rounded-xl outline-none bg-white/20"
                 >
                   <option value="">Select a location</option>
                   <option value="New York">New York</option>
@@ -341,7 +341,7 @@ const AddCar = () => {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <FileText className="w-4 h-4" />
                   Description
                 </label>
@@ -349,13 +349,13 @@ const AddCar = () => {
                   rows={5}
                   placeholder="e.g. A luxurious SUV with a spacious interior and a powerful engine. Perfect for family trips or business travel. Features include leather seats, sunroof, and advanced safety systems."
                   required
-                  className="px-3 py-2 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors resize-none"
+                  className="bg-white/20 px-3 py-2 rounded-xl outline-none resize-none"
                   value={car.description}
                   onChange={(e) =>
                     setCar({ ...car, description: e.target.value })
                   }
                 ></textarea>
-                <p className="text-xs text-slate-500 mt-2">
+                <p className="text-sm text-slate-300 mt-2">
                   Tip: Highlight unique features, recent maintenance, and why
                   renters should choose your car
                 </p>
@@ -367,9 +367,8 @@ const AddCar = () => {
           <div className="flex justify-center md:justify-end">
             <button
               onClick={onSubmitHandler}
-              className="group relative overflow-hidden px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 flex items-center gap-3"
+              className="group relative overflow-hidden px-4 py-3 bg-white/20 text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 flex items-center gap-3"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity" />
               <Check className="w-5 h-5 relative z-10" />
               <span className="relative z-10">List Your Car</span>
             </button>

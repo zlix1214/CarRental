@@ -14,7 +14,7 @@ const Sidebar = () => {
   };
   return (
     <div
-      className={`${gs.glass} relative min-h-screen md:flex flex-col items-center pt-10 sm:pt-16 px-1 max-w-13 md:max-w-60 w-full text-sm `}
+      className={`bg-white/10 relative h-fit md:flex flex-col items-center py-10 sm:py-16 px-3 max-w-13 md:max-w-60 w-full text-sm rounded-2xl shadow-2xl `}
     >
       <div className="group relative">
         <label htmlFor="image">
@@ -51,12 +51,12 @@ const Sidebar = () => {
       )}
       <p className="mt-2 text-base max-md:hidden">{user?.name}</p>
 
-      <div className="w-full flex flex-col gap-1">
+      <div className="w-full flex flex-col gap-1.5">
         {ownerMenuLinks.map((link, index) => (
           <NavLink
             key={index}
             to={link.path}
-            className={`relative flex items-center gap-2 w-full py-3 pl-3 first:mt-6 ${gs.glass} 
+            className={`relative flex items-center gap-2 w-full py-3 pl-3 first:mt-6 bg-white/10 shadow-2xl rounded-xl text-white 
             `}
           >
             <img

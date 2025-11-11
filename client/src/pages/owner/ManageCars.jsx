@@ -1,93 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import { assets, dummyCarData } from "../../assets/assets";
-
-// const ManageCars = () => {
-//   const [cars, setCars] = useState([]);
-//   const currency = import.meta.env.VITE_CRUUENCY;
-//   const fetchOwnerCars = async () => {
-//     setCars(dummyCarData);
-//   };
-
-//   useEffect(() => {
-//     fetchOwnerCars();
-//   }, []);
-
-//   return (
-//     <div className="px-4 pt-10 md:px-10 w-full">
-//       <div className="max-w-3xl w-full rounded-md overflow-hidden border border-borderColor mt-6">
-//         <table className="w-full border-collapse text-left text-sm text-gray-600">
-//           <thead className="text-gray-500">
-//             <tr>
-//               <th className="p-3 font-medium">Car</th>
-//               <th className="p-3 font-medium max-md:hidden">Category</th>
-//               <th className="p-3 font-medium">Price</th>
-//               <th className="p-3 font-medium max-md:hidden">Status</th>
-//               <th className="p-3 font-medium">Actions</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {cars.map((car, index) => (
-//               <tr key={index} className="border-t border-borderColor">
-//                 <td className="p-3 flex items-center gap-3">
-//                   <img
-//                     src={car.image}
-//                     alt=""
-//                     className="h-12 w-12 aspect-square rounded-md object-cover"
-//                   />
-//                   <div className="max-md:hidden">
-//                     <p className="font-medium">
-//                       {car.brand} {car.model}
-//                     </p>
-//                     <p className="text-xs text-gray-500">
-//                       {car.seating_capacity} • {car.transmission}
-//                     </p>
-//                   </div>
-//                 </td>
-
-//                 <td className="p-3 max-md:hidden">{car.category}</td>
-//                 <td className="p-3">
-//                   {currency}
-//                   {car.pricePerDay}/day
-//                 </td>
-
-//                 <td className="p-3 max-md:hidden">
-//                   <span
-//                     className={`px-3 py-1 rounded-full text-xs ${
-//                       car.isAvaliable
-//                         ? "bg-green-100 text-green-500"
-//                         : "bg-red-100 text-red-500"
-//                     }`}
-//                   >
-//                     {car.isAvaliable ? "Available" : "Unavailable"}
-//                   </span>
-//                 </td>
-
-//                 <td className="flex items-center p-3">
-//                   <img
-//                     src={
-//                       car.isAvaliable ? assets.eye_close_icon : assets.eye_icon
-//                     }
-//                     alt=""
-//                     className="cursor-pointer"
-//                   />
-
-//                   <img
-//                     src={assets.delete_icon}
-//                     alt=""
-//                     className="cursor-pointer"
-//                   />
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ManageCars;
-
 import React, { useEffect, useState } from "react";
 import { assets, dummyCarData } from "../../assets/assets";
 import { Eye, EyeOff, Trash2, Edit, Search, Car } from "lucide-react";
@@ -170,10 +80,10 @@ const ManageCars = () => {
           {filteredCars.map((car, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-black/20 rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 hover:-translate-y-1"
             >
               {/* Image Section */}
-              <div className="relative h-48 overflow-hidden bg-slate-100">
+              <div className="relative h-48 overflow-hidden">
                 <img
                   src={car.image}
                   alt={`${car.brand} ${car.model}`}
@@ -207,7 +117,7 @@ const ManageCars = () => {
               <div className="p-5">
                 {/* Car Name */}
                 <div className="mb-3">
-                  <h3 className="text-xl font-bold text-slate-900 mb-1">
+                  <h3 className="text-xl font-bold text-slate-200 mb-1">
                     {car.brand} {car.model}
                   </h3>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -217,17 +127,17 @@ const ManageCars = () => {
                     <span className="px-2 py-1 bg-blue-50 text-blue-600 rounded-lg text-xs font-medium">
                       {car.year}
                     </span>
-                    <span className="text-xs text-slate-500">
+                    <span className="text-xs text-slate-300">
                       {car.seating_capacity} seats
                     </span>
-                    <span className="text-xs text-slate-500">
+                    <span className="text-xs text-slate-300">
                       {car.transmission}
                     </span>
                   </div>
                 </div>
 
                 {/* Specs */}
-                <div className="mb-4 flex items-center gap-3 text-sm text-slate-600">
+                <div className="mb-4 flex items-center gap-3 text-sm text-slate-300">
                   <div className="flex items-center gap-1">
                     <Car className="w-4 h-4" />
                     <span>{car.fuel_type}</span>

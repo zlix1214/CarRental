@@ -144,7 +144,7 @@ const ManageBookings = () => {
           {filteredBookings.map((booking, index) => (
             <div
               key={index}
-              className="group relative bg-white rounded-2xl  overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="bg-white/10 group relative rounded-2xl  overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
               <div className="flex flex-col sm:flex-row h-full">
                 {/* Car Image */}
@@ -173,10 +173,10 @@ const ManageBookings = () => {
                 <div className="flex-1 p-5">
                   {/* Car Info */}
                   <div className="mb-4">
-                    <h3 className="text-xl font-bold text-slate-900 mb-1">
+                    <h3 className="text-xl font-bold text-slate-200 mb-1">
                       {booking.car.brand} {booking.car.model}
                     </h3>
-                    <p className="text-sm text-slate-600">
+                    <p className="text-sm text-slate-300">
                       Booked by{" "}
                       <span className="font-medium">
                         {booking.customerName}
@@ -186,23 +186,23 @@ const ManageBookings = () => {
 
                   {/* Booking Details */}
                   <div className="space-y-2 mb-4">
-                    <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <Calendar className="w-4 h-4 text-slate-400" />
+                    <div className="flex items-center gap-2 text-sm text-slate-300">
+                      <Calendar className="w-4 h-4 text-slate-300" />
                       <span>
                         {booking.pickupDate.split("T")[0]} →{" "}
                         {booking.returnDate.split("T")[0]}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <DollarSign className="w-4 h-4 text-slate-400" />
-                      <span className="font-semibold text-slate-900">
+                      <DollarSign className="w-4 h-4 text-slate-300" />
+                      <span className="font-semibold text-slate-200">
                         {currency}
                         {booking.price}
                       </span>
-                      <span className="text-slate-500">total</span>
+                      <span className="text-slate-300">total</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-slate-600">
-                      <CreditCard className="w-4 h-4 text-slate-400" />
+                      <CreditCard className="w-4 h-4 text-slate-300" />
                       <span className="px-2 py-0.5 bg-slate-100 text-slate-700 rounded-md text-xs font-medium">
                         Offline Payment
                       </span>
@@ -210,34 +210,20 @@ const ManageBookings = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  {booking.status === "pending" ? (
-                    <div className="relative">
-                      <select
-                        onChange={(e) =>
-                          changeBookingStatus(booking._id, e.target.value)
-                        }
-                        value={booking.status}
-                        className="w-full appearance-none px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors font-medium text-slate-700 cursor-pointer"
-                      >
-                        <option value="pending">Pending - Change Status</option>
-                        <option value="confirmed">Confirm Booking</option>
-                        <option value="cancelled">Cancel Booking</option>
-                      </select>
-                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
-                    </div>
-                  ) : (
-                    <div
-                      className={`px-4 py-2.5 rounded-xl text-sm font-semibold text-center ${
-                        booking.status === "confirmed"
-                          ? "bg-emerald-50 text-emerald-700 border-2 border-emerald-200"
-                          : "bg-red-50 text-red-700 border-2 border-red-200"
-                      }`}
+                  <div className="relative">
+                    <select
+                      onChange={(e) =>
+                        changeBookingStatus(booking._id, e.target.value)
+                      }
+                      value={booking.status}
+                      className="w-full appearance-none px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-xl outline-none font-medium text-slate-700 cursor-pointer"
                     >
-                      {booking.status === "confirmed"
-                        ? "Booking Confirmed"
-                        : "Booking Cancelled"}
-                    </div>
-                  )}
+                      <option value="pending">Pending - Change Status</option>
+                      <option value="confirmed">Confirm Booking</option>
+                      <option value="cancelled">Cancel Booking</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
+                  </div>
                 </div>
               </div>
             </div>
