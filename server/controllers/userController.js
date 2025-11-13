@@ -2,13 +2,16 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const generateToken = async (userId) => {
-  const payload = userId;
-  return jwt.sign(payload, process.env.JWT_SECRET);
+const generateToken = (userId) => {
+  return jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
 };
 
 export const registerUser = async (req, res) => {
   try {
+    console.log("Headers:", req.headers);
+    console.log("Content-Type:", req.headers["content-type"]);
     console.log("req.body:", req.body);
     const { name, email, password } = req.body;
     if (!name || !email || !password || password.length < 8) {
@@ -51,6 +54,16 @@ export const loginUser = async (req, res) => {
     res.json({ sucess: true, token });
   } catch (error) {
     console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export const getUserData = async (req, res) => {
+  try {
+    const { user } = req;
+    res.json({ success: true, user });
+  } catch (error) {
+    console.log(error.message);
     res.json({ success: false, message: error.message });
   }
 };
