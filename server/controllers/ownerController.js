@@ -2,6 +2,7 @@ import imagekit from "../configs/imageKit.js";
 import User from "../models/User.js";
 import fs from "fs";
 import Car from "../models/Car.js";
+import { log } from "console";
 
 export const changeRoleToOwner = async (req, res) => {
   try {
@@ -44,6 +45,58 @@ export const addCar = async (req, res) => {
     });
 
     res.json({ success: true, message: "Car added" });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export const getOwnerCars = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const cars = await Car.find({ owner: _id });
+    res.json({ success: true, cars });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export const toggleCarAvailability = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const { carId } = req.body;
+    const car = await Car.findById(carId);
+
+    if (car.owner.toString() !== _id.toString()) {
+      return res.json({ success: false, message: "not authorized" });
+    }
+
+    car.isAvaliable = !car.isAvaliable;
+    await car.save();
+
+    res.json({ success: true, message: "Availability toggled" });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export const deleteCar = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const { carId } = req.body;
+    const car = await Car.findById(carId);
+
+    if (car.owner.toString() !== _id.toString()) {
+      return res.json({ success: false, message: "not authorized" });
+    }
+
+    car.owner = null;
+    car.isAvaliable = false;
+    await car.save();
+
+    res.json({ success: true, message: "car removed" });
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
