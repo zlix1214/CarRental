@@ -2,7 +2,7 @@ import imagekit from "../configs/imageKit.js";
 import User from "../models/User.js";
 import fs from "fs";
 import Car from "../models/Car.js";
-import { log } from "console";
+import Booking from "../models/Booking.js";
 
 export const changeRoleToOwner = async (req, res) => {
   try {
@@ -105,6 +105,36 @@ export const deleteCar = async (req, res) => {
 
 export const getDashboardData = async (req, res) => {
   try {
+    const { _id, role } = req.user;
+
+    if (role !== "owner") {
+      return res.json({ success: false, message: "unauthorized" });
+    }
+
+    const cars = await Car.find({ owner: _id });
+    const pendingBookings = await Booking.find({
+      owner: _id,
+      status: "pending",
+    });
+    const completedBookings = await Booking.find({
+      owner: _id,
+      status: "confirmed",
+    });
+
+    const monthlyRevenue = changeBookingStatus
+      .slice()
+      .filter((booking) => booking.status === "confirmed")
+      .reduce((acc, booking) => acc + booking.price, 0);
+
+    const dashboardData = {
+      totalCars: cars.length,
+      totalBookings: changeBookingStatus.length,
+      pendingBookings: pendingBookings.length,
+      recentBookings: changeBookingStatus.slice(0, 3),
+      monthlyRevenue,
+    };
+
+    res.json({ success: true, dashboardData });
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });

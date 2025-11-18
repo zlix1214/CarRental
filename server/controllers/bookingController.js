@@ -32,3 +32,89 @@ export const checkAvailabilityOfCar = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+export const createBooking = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const { car, pickupDate, returnDate } = req.body;
+
+    const isAvailable = checkAvailability(car, pickupDate, returnDate);
+    if (!isAvailable) {
+      return res.json({ success: false, message: "Car is not available" });
+    }
+
+    const carData = await Car.findById(car);
+
+    const picked = new Date(pickupDate);
+    const returned = new Date(returnDate);
+    const noOfDays = Math.ceil((returned - picked) / (1000 * 60 * 60 * 24));
+    const price = noOfDays * carData.pricePerDay;
+
+    await Booking.create({
+      car,
+      owner: carData.owner,
+      user: _id,
+      pickupDate,
+      returnDate,
+      price,
+    });
+
+    res.json({ success: true, message: "Booking Created" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export const getUserBookings = async (req, res) => {
+  try {
+    const { _id } = req.user;
+
+    const Bookings = (await Booking.find({ user: _id }).populate("car")).sort({
+      createdAt: -1,
+    });
+
+    res.json({ success: true, Bookings });
+  } catch (error) {
+    console.log(error);
+    res.json({ sucess: false, message: error.message });
+  }
+};
+
+export const getOwnerBookings = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    if (req.user.role !== "owner") {
+      return res.json({ success: false, message: "Unauthorized" });
+    }
+    const bookings = await Booking.find({ owner: _id })
+      .populate("car user")
+      .select("-user.password")
+      .sort({ createdAt: -1 });
+
+    res.json({ success: true, bookings });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export const changeBookingStatus = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const { bookingId, status } = req.body;
+
+    const booking = await Booking.findById(bookingId);
+    if (booking.owner.toString() !== _id.toString()) {
+      return res.json({ success: false, message: "Unauthorized" });
+    }
+
+    booking.status = status;
+    await booking.save();
+
+    res.json({ success: true, message: "status updated" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
