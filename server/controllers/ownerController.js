@@ -130,11 +130,44 @@ export const getDashboardData = async (req, res) => {
       totalCars: cars.length,
       totalBookings: changeBookingStatus.length,
       pendingBookings: pendingBookings.length,
+      completedBookings: completedBookings.length,
       recentBookings: changeBookingStatus.slice(0, 3),
       monthlyRevenue,
     };
 
     res.json({ success: true, dashboardData });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export const updateUserImage = async (req, res) => {
+  try {
+    const { _id } = req.user;
+
+    const imageFile = req.file;
+
+    const fileBuffer = fs.readFileSync(imageFile.path);
+    const response = await imagekit.upload({
+      file: fileBuffer,
+      fileName: imageFile.originalname,
+      folder: "/users",
+    });
+
+    const optimizedImageUrl = imagekit.url({
+      path: response.filePath,
+      transformation: [
+        { width: "400" },
+        { quality: "auto" },
+        { format: "webp" },
+      ],
+    });
+
+    const image = optimizedImageUrl;
+
+    await User.findByIdAndUpdate(_id, { image });
+    res.json({ success: true, message: "Image Updated" });
   } catch (error) {
     console.log(error.message);
     res.json({ success: false, message: error.message });
