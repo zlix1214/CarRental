@@ -1,15 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { assets, dummyCarData } from "../../assets/assets";
 import { Eye, EyeOff, Trash2, Edit, Search, Car } from "lucide-react";
+import { useAppContext } from "../../context/AppContext";
 
 const ManageCars = () => {
+  const { currency, axios } = useAppContext();
+
   const [cars, setCars] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
-  const currency = import.meta.env.VITE_CURRENCY;
 
   const fetchOwnerCars = async () => {
-    setCars(dummyCarData);
+    try {
+      const { data } = await axios.get("/api/owner/cars");
+      if (data.success) {
+        setCars(data.cars);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const toggleAvailability = async (carId) => {
+    try {
+      const { data } = await axios.post("/api/owner/toggle-car", { carId });
+      if (data.success) {
+        toast.success(data.message);
+        fetchOwnerCars();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const deleteCar = async (carId) => {
+    try {
+      const Confirm = window.confirm(
+        "Are you sure you want to delete this car?"
+      );
+
+      if (!confirm) return null;
+
+      const { data } = await axios.post("/api/owner/delete-car", { carId });
+      if (data.success) {
+        toast.success(data.message);
+        fetchOwnerCars();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
@@ -147,7 +192,7 @@ const ManageCars = () => {
                 {/* Actions */}
                 <div className="flex gap-2">
                   <button
-                    onClick={() => console.log("Toggle visibility", car._id)}
+                    onClick={() => toggleAvailability(car._id)}
                     className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all ${
                       car.isAvaliable
                         ? "bg-slate-100 text-slate-700 hover:bg-slate-200"
@@ -167,15 +212,12 @@ const ManageCars = () => {
                     )}
                   </button>
 
-                  <button
-                    onClick={() => console.log("Edit", car._id)}
-                    className="px-4 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-xl transition-colors"
-                  >
+                  <button className="px-4 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-xl transition-colors">
                     <Edit className="w-4 h-4" />
                   </button>
 
                   <button
-                    onClick={() => console.log("Delete", car._id)}
+                    onClick={() => deleteCar(car._id)}
                     className="px-4 py-2.5 bg-red-50 text-red-600 hover:bg-red-100 rounded-xl transition-colors"
                   >
                     <Trash2 className="w-4 h-4" />

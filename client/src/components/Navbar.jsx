@@ -2,10 +2,28 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets.js";
 import { gs } from "../style/glassUi.js";
+import { useAppContext } from "../context/AppContext.jsx";
+import toast from "react-hot-toast";
 
-const Navbar = ({ setShowLogin }) => {
+const Navbar = () => {
+  const { setShowLogin, user, logout, isOwner, axios, setIsOwner } =
+    useAppContext();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  const changeRole = async () => {
+    try {
+      const { data } = await axios.post("api/owner/change-role");
+      if (data.success) {
+        setIsOwner(true);
+        toast.success(data.message);
+      } else {
+        toast.error(error.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className={`${gs.glassDark} fixed right-0 left-0 text-gray-200 z-1`}>
@@ -29,10 +47,10 @@ const Navbar = ({ setShowLogin }) => {
           </button>
 
           <button
-            onClick={() => setShowLogin(true)}
+            onClick={() => (user ? logout() : setShowLogin(true))}
             className={`${gs.glassButton} px-2 py-1 md:px-3 md:py-2 cursor-pointer`}
           >
-            Login
+            {user ? "Logout" : "Login"}
           </button>
         </div>
 
@@ -57,8 +75,7 @@ const Navbar = ({ setShowLogin }) => {
 
           <button
             onClick={() => {
-              navigate("/owner");
-              setOpen(false);
+              isOwner ? navigate("/owner") : changeRole();
             }}
             className="text-left"
           >
@@ -67,12 +84,11 @@ const Navbar = ({ setShowLogin }) => {
 
           <button
             onClick={() => {
-              setShowLogin(true);
-              setOpen(false);
+              user ? logout() : setShowLogin(true);
             }}
             className={`${gs.glassButton} p-1.5 w-1/2 self-center`}
           >
-            Login
+            {user ? "Logout" : "Login"}
           </button>
         </div>
       )}

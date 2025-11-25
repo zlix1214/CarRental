@@ -13,9 +13,12 @@ import {
   X,
 } from "lucide-react";
 import { assets } from "../../assets/assets";
+import { useAppContext } from "../../context/AppContext";
+import { toast } from "react-hot-toast";
 
 const AddCar = () => {
-  const currency = "$";
+  const { axios, currency } = useAppContext();
+
   const [image, setImage] = useState(null);
   const [car, setCar] = useState({
     brand: "",
@@ -30,9 +33,41 @@ const AddCar = () => {
     description: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", car);
+    if (isLoading) return null;
+    setIsLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("image", image);
+      formData.append("carData", JSON.stringify(car));
+      const { data } = await axios.post("/api/owner/add-car", formData);
+
+      if (data.success) {
+        toast.success(data.message);
+        setImage(null);
+        setCar({
+          brand: "",
+          model: "",
+          year: 0,
+          pricePerDay: 0,
+          category: "",
+          transmission: "",
+          fuel_type: "",
+          seating_capacity: 0,
+          location: "",
+          description: "",
+        });
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -370,7 +405,9 @@ const AddCar = () => {
               className="group relative overflow-hidden px-4 py-3 bg-white/20 text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 flex items-center gap-3"
             >
               <Check className="w-5 h-5 relative z-10" />
-              <span className="relative z-10">List Your Car</span>
+              <span className="relative z-10">
+                {isLoading ? "Listing..." : "List Your Car"}
+              </span>
             </button>
           </div>
         </div>

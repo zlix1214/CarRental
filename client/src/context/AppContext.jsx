@@ -23,7 +23,7 @@ export const AppProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const { data } = await axios.get("/api/user/date");
+      const { data } = await axios.get("/api/user/data");
       if (data.success) {
         setUser(data.user);
         setIsOwner(data.user.role === "owner");

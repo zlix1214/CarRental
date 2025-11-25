@@ -11,9 +11,10 @@ import {
   ArrowDownRight,
 } from "lucide-react";
 import { gs } from "../../style/glassUi.js";
+import { useAppContext } from "../../context/AppContext.jsx";
 
 const Dashboard = () => {
-  const currency = "$";
+  const { currency, axios, isOwner } = useAppContext();
 
   const [data, setData] = useState({
     totalCars: 0,
@@ -71,8 +72,21 @@ const Dashboard = () => {
     },
   ];
 
+  const fetchDashboardData = async () => {
+    try {
+      const { data } = await axios.get("/api/owner/dashboard");
+      if (data.success) {
+        setData(data.dashboardData);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   useEffect(() => {
-    setData(dummyDashboardData);
+    fetchDashboardData();
   }, []);
 
   const getStatusColor = (status) => {

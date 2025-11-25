@@ -1,12 +1,48 @@
 import React from "react";
+import { useAppContext } from "../context/AppContext";
+import { toast } from "react-hot-toast";
 
-const Login = ({ setShowLogin }) => {
+const Login = () => {
+  const { setShowLogin, axios, setToken, navigate, setUser, setIsOwner } =
+    useAppContext();
+
   const [state, setState] = React.useState("login");
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
+
+  const onSubmitHandler = async (event) => {
+    try {
+      event.preventDefault();
+      const { data } = await axios.post(`/api/user/${state}`, {
+        name,
+        email,
+        password,
+      });
+      if (data.success) {
+        // 先設置 token 到 localStorage 和 axios headers
+        localStorage.setItem("token", data.token);
+        axios.defaults.headers.common["Authorization"] = `${data.token}`;
+
+        // 然後更新 state
+        setToken(data.token);
+
+        // 手動獲取用戶數據
+        const userData = await axios.get("/api/user/data");
+        if (userData.data.success) {
+          setUser(userData.data.user);
+          setIsOwner(userData.data.user.role === "owner");
+        }
+
+        setShowLogin(false);
+        navigate("/");
+        toast.success("Login successful!");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
