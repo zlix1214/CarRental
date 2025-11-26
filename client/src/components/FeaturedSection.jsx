@@ -1,11 +1,12 @@
 import React from "react";
-import { dummyCarData, assets } from "../assets/assets";
 import CarCard from "./CarCard";
 import { useNavigate } from "react-router-dom";
 import { gs } from "../style/glassUi";
+import { useAppContext } from "../context/AppContext";
 
 const FeaturedSection = () => {
   const navigate = useNavigate();
+  const { cars } = useAppContext();
 
   return (
     <div className="flex flex-col items-center px-6 md:px-16 lg:px-24 xl:px-32 mt-80 ">
@@ -15,7 +16,7 @@ const FeaturedSection = () => {
       <div
         className={`${gs.glassCard} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 md:mt-12 lg:mt-16 p-5 w-full`}
       >
-        {dummyCarData.slice(0, 6).map((car) => (
+        {cars.slice(0, 6).map((car) => (
           <CarCard key={car._id} car={car} />
         ))}
       </div>

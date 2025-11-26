@@ -18,7 +18,7 @@ export const AppProvider = ({ children }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [pickupDate, setPickupDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
-
+  const [isInitialized, setIsInitialized] = useState(false); // 新增:追蹤初始化狀態
   const [cars, setCars] = useState([]);
 
   const fetchUser = async () => {
@@ -28,10 +28,16 @@ export const AppProvider = ({ children }) => {
         setUser(data.user);
         setIsOwner(data.user.role === "owner");
       } else {
-        navigate("/");
+        // 如果獲取用戶失敗,清除 token
+        logout();
       }
     } catch (error) {
-      toast.error(error.message);
+      console.error("Error fetching user:", error);
+      toast.error(error.response?.data?.message || error.message);
+      // 如果是授權錯誤,清除 token
+      if (error.response?.status === 401) {
+        logout();
+      }
     }
   };
 
@@ -40,7 +46,7 @@ export const AppProvider = ({ children }) => {
       const { data } = await axios.get("/api/user/cars");
       data.success ? setCars(data.cars) : toast.error(data.message);
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
@@ -49,21 +55,32 @@ export const AppProvider = ({ children }) => {
     setToken(null);
     setUser(null);
     setIsOwner(false);
-    axios.defaults.headers.common["Authorization"] = "";
-    toast.success("You have been log out");
+    delete axios.defaults.headers.common["Authorization"];
+    toast.success("You have been logged out");
+    navigate("/");
   };
 
+  // 合併初始化邏輯到一個 useEffect
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setToken(token);
-  }, []);
+    const initializeAuth = async () => {
+      const storedToken = localStorage.getItem("token");
 
-  useEffect(() => {
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = `${token}`;
-      fetchUser();
-    }
-  }, [token]);
+      if (storedToken) {
+        // 先設置 axios header
+        axios.defaults.headers.common["Authorization"] = `${storedToken}`;
+        // 再設置 token state
+        setToken(storedToken);
+        // 獲取用戶資料
+        await fetchUser();
+        await fetchCars();
+      }
+
+      // 標記初始化完成
+      setIsInitialized(true);
+    };
+
+    initializeAuth();
+  }, []); // 只在組件掛載時執行一次
 
   const value = {
     navigate,
@@ -86,6 +103,7 @@ export const AppProvider = ({ children }) => {
     setPickupDate,
     returnDate,
     setReturnDate,
+    isInitialized, // 新增:供其他組件使用
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

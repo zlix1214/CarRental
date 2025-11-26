@@ -3,12 +3,21 @@ import { assets, dummyCarData } from "../assets/assets";
 import CarCard from "../components/CarCard";
 import { Search } from "lucide-react";
 import { gs } from "../style/glassUi";
+import { useSearchParams } from "react-router-dom";
+import { useAppContext } from "../context/AppContext";
 
 const Cars = () => {
+  const [searchParams] = useSearchParams();
+  const pickupLocation = searchParams.get("pickupLocation");
+  const pickupDate = searchParams.get("pickupDate");
+  const returnDate = searchParams.get("returnDate");
+
+  const { axios, cars } = useAppContext();
+
   const [input, setInput] = useState("");
   const [showFilters, setShowFilters] = useState(false);
 
-  const filteredCars = dummyCarData.filter((car) => {
+  const filteredCars = cars.filter((car) => {
     const keyword = input.toLowerCase();
     return (
       car.brand?.toLowerCase().includes(keyword) ||

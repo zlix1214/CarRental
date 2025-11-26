@@ -9,40 +9,62 @@ import {
   Search,
   ChevronDown,
 } from "lucide-react";
-import { dummyMyBookingsData } from "../../assets/assets";
+import { useAppContext } from "../../context/AppContext";
 
 const ManageBookings = () => {
-  const currency = "$";
+  const { token, isInitialized } = useAppContext();
   const [bookings, setBookings] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
 
   const fetchOwnerBookings = async () => {
-    setBookings(dummyMyBookingsData);
+    try {
+      // 確保 token 存在才發送請求
+      if (!token) {
+        console.log("Token not ready yet");
+        return;
+      }
+
+      console.log(
+        "Fetching cars with token:",
+        token ? "Token exists" : "No token"
+      );
+      console.log("axios headers", axios.defaults.headers.common);
+
+      const { data } = await axios.get("/api/bookings/owner");
+      data.success ? setBookings(data.bookings) : toast.error(data.message);
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const changeBookingStatus = async (bookingId, status) => {
     try {
-      // Simulate API call
-      console.log("Changing booking status:", bookingId, status);
+      const { data } = await axios.post("/api/bookings/change-status", {
+        bookingId,
+        status,
+      });
 
+      if (data.success) {
+        toast.success(data.message);
+        fetchOwnerBookings();
+      } else {
+        toast.error(data.message);
+      }
       // Update local state
       setBookings((prev) =>
         prev.map((booking) =>
           booking._id === bookingId ? { ...booking, status } : booking
         )
       );
-
-      // In real app: toast.success("Status updated successfully");
     } catch (error) {
-      console.error("Error updating status:", error);
-      // In real app: toast.error(error.message);
+      toast.error(error.message);
     }
   };
 
   useEffect(() => {
-    fetchOwnerBookings();
-  }, []);
+    if (isInitialized && token) fetchOwnerBookings();
+  }, [isInitialized, token]);
 
   const filteredBookings = bookings.filter((booking) => {
     const matchesFilter =

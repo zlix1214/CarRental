@@ -2,16 +2,30 @@ import React, { useEffect, useState } from "react";
 import { assets, dummyCarData } from "../../assets/assets";
 import { Eye, EyeOff, Trash2, Edit, Search, Car } from "lucide-react";
 import { useAppContext } from "../../context/AppContext";
+import { toast } from "react-hot-toast";
 
 const ManageCars = () => {
-  const { currency, axios } = useAppContext();
+  const { currency, axios, isOwner, token, isInitialized } = useAppContext(); // 加入 isInitialized
 
   const [cars, setCars] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
+  const [isLoading, setIsLoading] = useState(true); // 加入載入狀態
 
   const fetchOwnerCars = async () => {
     try {
+      // 確保 token 存在才發送請求
+      if (!token) {
+        console.log("Token not ready yet");
+        return;
+      }
+
+      console.log(
+        "Fetching cars with token:",
+        token ? "Token exists" : "No token"
+      );
+      console.log("axios headers", axios.defaults.headers.common);
+
       const { data } = await axios.get("/api/owner/cars");
       if (data.success) {
         setCars(data.cars);
@@ -19,7 +33,10 @@ const ManageCars = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      console.error("Error fetching cars:", error);
+      toast.error(error.response?.data?.message || error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -33,13 +50,13 @@ const ManageCars = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
   const deleteCar = async (carId) => {
     try {
-      const Confirm = window.confirm(
+      const confirm = window.confirm(
         "Are you sure you want to delete this car?"
       );
 
@@ -53,13 +70,19 @@ const ManageCars = () => {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     }
   };
 
+  // 關鍵修改:等待初始化完成且 token 存在後才執行 fetch
   useEffect(() => {
-    fetchOwnerCars();
-  }, []);
+    if (isInitialized && token) {
+      fetchOwnerCars();
+    } else if (isInitialized && !token) {
+      // 如果初始化完成但沒有 token,停止載入
+      setIsLoading(false);
+    }
+  }, [isInitialized, token]); // 監聽 isInitialized 和 token
 
   const filteredCars = cars.filter((car) => {
     const matchesFilter =
@@ -69,6 +92,18 @@ const ManageCars = () => {
 
     return matchesFilter;
   });
+
+  // 載入中狀態
+  if (isLoading) {
+    return (
+      <div className="min-h-screen px-4 pt-10 md:px-10 w-full flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-slate-300 border-t-slate-900 mb-4"></div>
+          <p className="text-slate-600">Loading your cars...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen px-4 pt-10 md:px-10 w-full">
@@ -234,10 +269,10 @@ const ManageCars = () => {
             <div className="inline-flex p-6 rounded-full bg-slate-100 mb-4">
               <Car className="w-12 h-12 text-slate-400" />
             </div>
-            <h3 className="text-xl font-semibold text-slate-900 mb-2">
+            <h3 className="text-xl font-semibold text-slate-200 mb-2">
               No cars found
             </h3>
-            <p className="text-slate-600">
+            <p className="text-slate-300">
               {searchTerm || filterStatus !== "all"
                 ? "Try adjusting your search or filters"
                 : "Start by adding your first vehicle"}

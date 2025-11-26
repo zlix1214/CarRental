@@ -36,6 +36,10 @@ const AddCar = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const onSubmitHandler = async (e) => {
+    if (!token || !isInitialized) {
+      toast.error("Please login first");
+      return;
+    }
     e.preventDefault();
     if (isLoading) return null;
     setIsLoading(true);

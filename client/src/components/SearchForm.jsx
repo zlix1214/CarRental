@@ -3,12 +3,26 @@ import { gs } from "../style/glassUi";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { cityList } from "../assets/assets";
+import { useAppContext } from "../context/AppContext";
 
 const SearchForm = () => {
   const [pickupLocation, setPickupLocation] = useState("");
-  const navigate = useNavigate();
+  const { pickupDate, setPickupDate, returnDate, setReturnDate, navigate } =
+    useAppContext();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(
+      "/cars?pickupLocation=" +
+        pickupLocation +
+        "&pickupDate=" +
+        pickupDate +
+        "&returnDate=" +
+        returnDate
+    );
+  };
   return (
     <form
+      onSubmit={handleSearch}
       className={`bg-white/10 flex flex-col md:flex-row gap-4 p-6 md:w-auto shadow-xl rounded-2xl shadow-black/60`}
     >
       {/* Pickup Location */}
@@ -40,6 +54,8 @@ const SearchForm = () => {
           id="pickup-date"
           type="date"
           required
+          onChange={(e) => setPickupDate(e.target.value)}
+          value={pickupDate}
           min={new Date().toISOString().split("T")[0]}
           className={`${gs.glassInput} text-gray-200`}
         />
@@ -54,6 +70,8 @@ const SearchForm = () => {
           id="return-date"
           type="date"
           required
+          onChange={(e) => setReturnDate(e.target.value)}
+          value={returnDate}
           className={`${gs.glassInput} text-gray-200`}
         />
       </div>
