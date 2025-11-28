@@ -19,11 +19,28 @@ const Cars = () => {
 
   const filteredCars = cars.filter((car) => {
     const keyword = input.toLowerCase();
-    return (
+
+    // 品牌型號搜尋
+    const matchKeyword =
       car.brand?.toLowerCase().includes(keyword) ||
       car.model?.toLowerCase().includes(keyword) ||
-      car.type?.toLowerCase().includes(keyword)
-    );
+      car.type?.toLowerCase().includes(keyword);
+
+    // 地點搜尋
+    const matchLocation = pickupLocation
+      ? car.location?.toLowerCase() === pickupLocation.toLowerCase()
+      : true;
+
+    // 日期搜尋
+    const matchDate =
+      pickupDate && returnDate
+        ? !(
+            new Date(returnDate) < new Date(car.availableFrom) ||
+            new Date(pickupDate) > new Date(car.availableTo)
+          )
+        : true;
+
+    return matchKeyword && matchLocation && matchDate;
   });
 
   return (

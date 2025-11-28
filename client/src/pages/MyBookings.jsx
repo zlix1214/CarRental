@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar, MapPin, Clock, Hash } from "lucide-react";
 import { dummyMyBookingsData } from "../assets/assets";
 import { gs } from "../style/glassUi";
+import { useAppContext } from "../context/AppContext";
+import { toast } from "react-hot-toast";
 
 const MyBookings = () => {
+  const { axios, currency, user } = useAppContext();
+  const [bookings, setBookings] = useState([]);
+
   // 計算租車天數的函數
   const calculateDays = (start, end) => {
     const startDate = new Date(start);
@@ -33,6 +38,23 @@ const MyBookings = () => {
       .replace(/\//g, "-");
   };
 
+  const fetchBookings = async () => {
+    try {
+      const { data } = await axios.get("/api/bookings/user");
+      if (data.success) {
+        setBookings(data.Bookings);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    user && fetchBookings();
+  }, [user]);
+
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-16 max-w-7xl mx-auto">
       {/* header */}
@@ -44,7 +66,7 @@ const MyBookings = () => {
 
       {/* 訂單卡片 - 交錯排版 */}
       <div className="space-y-8">
-        {dummyMyBookingsData.map((booking, index) => {
+        {bookings.map((booking, index) => {
           const car = booking.car;
           const days = calculateDays(booking.pickupDate, booking.returnDate);
           const isEven = index % 2 === 0;
@@ -158,7 +180,7 @@ const MyBookings = () => {
       </div>
 
       {/* 空狀態 */}
-      {dummyMyBookingsData.length === 0 && (
+      {bookings.length === 0 && (
         <div className={`${gs.glass} p-16 rounded-3xl text-center`}>
           <div className="w-24 h-24 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full mx-auto mb-6 flex items-center justify-center opacity-50">
             <Calendar className="w-12 h-12 text-white" />
