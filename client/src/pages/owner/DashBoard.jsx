@@ -12,9 +12,10 @@ import {
 } from "lucide-react";
 import { gs } from "../../style/glassUi.js";
 import { useAppContext } from "../../context/AppContext.jsx";
+import { toast } from "react-hot-toast";
 
 const Dashboard = () => {
-  const { currency, axios, isOwner } = useAppContext();
+  const { currency, axios, isOwner, isInitialized } = useAppContext();
 
   const [data, setData] = useState({
     totalCars: 0,
@@ -86,8 +87,10 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    fetchDashboardData();
-  }, []);
+    if (isInitialized) {
+      fetchDashboardData();
+    }
+  }, [isInitialized]);
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -232,12 +235,6 @@ const Dashboard = () => {
 
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
-                <div>
-                  <p className="text-sm lg:text-base text-slate-200 mb-1">
-                    Avg. per booking
-                  </p>
-                  <p className="text-lg font-bold text-white">{currency}292</p>
-                </div>
                 <div>
                   <p className="text-sm lg:text-base text-slate-200 mb-1">
                     Total bookings

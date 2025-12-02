@@ -17,7 +17,7 @@ ownerRouter.post("/change-role", protect, changeRoleToOwner);
 ownerRouter.post("/add-Car", upload.single("image"), protect, addCar);
 ownerRouter.get("/cars", protect, getOwnerCars);
 ownerRouter.post("/delete-car", protect, deleteCar);
-ownerRouter.get("/toggle-car", protect, toggleCarAvailability);
+ownerRouter.post("/toggle-car", protect, toggleCarAvailability);
 ownerRouter.get("/dashboard", protect, getDashboardData);
 ownerRouter.post(
   "/update-image",

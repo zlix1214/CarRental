@@ -18,12 +18,19 @@ import { useAppContext } from "../context/AppContext";
 import { toast } from "react-hot-toast";
 
 const CarDetails = () => {
-  const { cars, axios, pickupDate, setPickupDate, returnDate, setReturnDate } =
-    useAppContext();
+  const {
+    cars,
+    axios,
+    pickupDate,
+    setPickupDate,
+    returnDate,
+    setReturnDate,
+    currency,
+  } = useAppContext();
   const { id } = useParams();
   const navigate = useNavigate();
   const [car, setCar] = useState(null);
-  const currency = import.meta.env.VITE_CURRENCY;
+  const [totalPrice, setToatalPrice] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +54,21 @@ const CarDetails = () => {
   useEffect(() => {
     setCar(cars.find((car) => car._id === id));
   }, [cars, id]);
+
+  useEffect(() => {
+    if (!car || !pickupDate || !returnDate) {
+      setToatalPrice(0);
+      return;
+    }
+
+    const start = new Date(pickupDate);
+    const end = new Date(returnDate);
+    const diff = end - start;
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    const price = days * car.pricePerDay;
+
+    setToatalPrice(price);
+  }, [pickupDate, returnDate, car]);
 
   if (!car) {
     return (
@@ -208,8 +230,10 @@ const CarDetails = () => {
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-slate-100">Total est.</div>
+
                     <div className="text-xl font-bold text-white">
-                      {currency}450
+                      {currency}
+                      {totalPrice}
                     </div>
                   </div>
                 </div>

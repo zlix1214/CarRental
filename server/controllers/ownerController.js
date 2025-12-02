@@ -107,9 +107,9 @@ export const getDashboardData = async (req, res) => {
   try {
     const { _id, role } = req.user;
 
-    if (role !== "owner") {
-      return res.json({ success: false, message: "unauthorized" });
-    }
+    // if (role !== "owner") {
+    //   return res.json({ success: false, message: "unauthorized" });
+    // }
 
     const cars = await Car.find({ owner: _id });
     const pendingBookings = await Booking.find({
@@ -121,17 +121,21 @@ export const getDashboardData = async (req, res) => {
       status: "confirmed",
     });
 
-    const monthlyRevenue = changeBookingStatus
+    const allBookings = await Booking.find({ owner: _id }).sort({
+      createdAt: -1,
+    });
+
+    const monthlyRevenue = allBookings
       .slice()
       .filter((booking) => booking.status === "confirmed")
       .reduce((acc, booking) => acc + booking.price, 0);
 
     const dashboardData = {
       totalCars: cars.length,
-      totalBookings: changeBookingStatus.length,
+      totalBookings: allBookings.length,
       pendingBookings: pendingBookings.length,
       completedBookings: completedBookings.length,
-      recentBookings: changeBookingStatus.slice(0, 3),
+      recentBookings: allBookings.slice(0, 3),
       monthlyRevenue,
     };
 

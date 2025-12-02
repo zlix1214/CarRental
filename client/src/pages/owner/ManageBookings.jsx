@@ -10,12 +10,15 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useAppContext } from "../../context/AppContext";
+import { toast } from "react-hot-toast";
 
 const ManageBookings = () => {
   const { token, isInitialized } = useAppContext();
   const [bookings, setBookings] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
+
+  const { axios, currency } = useAppContext();
 
   const fetchOwnerBookings = async () => {
     try {
