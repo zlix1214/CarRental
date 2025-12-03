@@ -72,9 +72,8 @@ export const AppProvider = ({ children }) => {
         setToken(storedToken);
         // 獲取用戶資料
         await fetchUser();
-        await fetchCars();
       }
-
+      await fetchCars();
       // 標記初始化完成
       setIsInitialized(true);
     };

@@ -262,9 +262,13 @@ const AddCar = () => {
                   className="px-3 py-2 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white/20"
                 >
                   <option value="">Select a category</option>
-                  <option value="Sedan">Sedan</option>
-                  <option value="SUV">SUV</option>
-                  <option value="Van">Van</option>
+                  <option value="Sedan">Economy</option>
+                  <option value="Sedan">Compact</option>
+                  <option value="Sedan">Midsize</option>
+                  <option value="Sedan">SUV</option>
+                  <option value="Sedan">Luxury</option>
+                  <option value="Sedan">Sport</option>
+                  <option value="Sedan">Van</option>
                 </select>
               </div>
             </div>
@@ -318,11 +322,10 @@ const AddCar = () => {
                   className="px-3 py-2 rounded-xl outline-none bg-white/20"
                 >
                   <option value="">Select fuel type</option>
-                  <option value="Gas">Gas</option>
+                  <option value="Gasoline">Gasoline</option>
                   <option value="Diesel">Diesel</option>
-                  <option value="Petrol">Petrol</option>
-                  <option value="Electric">Electric</option>
                   <option value="Hybrid">Hybrid</option>
+                  <option value="Electric">Electric</option>
                 </select>
               </div>
               <div className="flex flex-col">
@@ -372,10 +375,16 @@ const AddCar = () => {
                   className="px-3 py-2 rounded-xl outline-none bg-white/20"
                 >
                   <option value="">Select a location</option>
-                  <option value="New York">New York</option>
-                  <option value="Los Angeles">Los Angeles</option>
-                  <option value="Houston">Houston</option>
-                  <option value="Chicago">Chicago</option>
+                  <option value="Taipei">Taipei</option>
+                  <option value="New Taipei">New Taipei</option>
+                  <option value="Taoyuan">Taoyuan</option>
+                  <option value="Hsinchu">Hsinchu</option>
+                  <option value="Taichung">Taichung</option>
+                  <option value="Tainan">Tainan</option>
+                  <option value="Kaohsiung">Kaohsiung</option>
+                  <option value="Keelung">Keelung</option>
+                  <option value="Yilan">Yilan</option>
+                  <option value="Hualien">Hualien</option>
                 </select>
               </div>
 

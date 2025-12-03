@@ -1,0 +1,27 @@
+{
+  "navbar": {
+    "home": "Home",
+    "car": "Cars",
+    "booking": "My Bookings",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "hero": {},
+  "searchForm": {},
+  "featuredSection": {},
+  "banner": {},
+  "testimonial": {},
+  "faq": {},
+  "footer": {},
+  "carPage": {},
+  "carCard": {},
+  "carDetail": {},
+  "userBooking": {},
+  "sidebar": {},
+  "dashboard": {},
+  "addCar": {},
+  "manageCar": {},
+  "manageBooking": {},
+  "loginPage": {}
+}

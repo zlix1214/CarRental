@@ -1,0 +1,27 @@
+{
+  "navbar": {
+    "home": "主頁",
+    "car": "車款",
+    "booking": "我的訂單",
+    "dashboard": "管理中心",
+    "login": "登錄",
+    "logout": "登出"
+  },
+  "hero": {},
+  "searchForm": {},
+  "featuredSection": {},
+  "banner": {},
+  "testimonial": {},
+  "faq": {},
+  "footer": {},
+  "carPage": {},
+  "carCard": {},
+  "carDetail": {},
+  "userBooking": {},
+  "sidebar": {},
+  "dashboard": {},
+  "addCar": {},
+  "manageCar": {},
+  "manageBooking": {},
+  "loginPage": {}
+}

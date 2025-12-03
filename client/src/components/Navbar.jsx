@@ -4,8 +4,11 @@ import { assets } from "../assets/assets.js";
 import { gs } from "../style/glassUi.js";
 import { useAppContext } from "../context/AppContext.jsx";
 import toast from "react-hot-toast";
+import LanguageSwitcher from "./LanguageSwitcher.jsx";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const { setShowLogin, user, logout, isOwner, axios, setIsOwner } =
     useAppContext();
   const [open, setOpen] = useState(false);
@@ -35,22 +38,22 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden sm:flex items-center gap-4 md:gap-8 lg:gap-12 text-sm md:text-base lg:text-xl">
-          <Link to="/">Home</Link>
-          <Link to="/cars">Cars</Link>
-          <Link to="/my-bookings">My bookings</Link>
+          <Link to="/">{t("navbar.home")}</Link>
+          <Link to="/cars">{t("navbar.car")}</Link>
+          <Link to="/my-bookings">{t("navbar.booking")}</Link>
 
           <button
             onClick={() => navigate("/owner")}
             className={`p-2 cursor-pointer`}
           >
-            Dashboard
+            {t("navbar.dashboard")}
           </button>
-
+          <LanguageSwitcher />
           <button
             onClick={() => (user ? logout() : setShowLogin(true))}
             className={`${gs.glassButton} px-2 py-1 md:px-3 md:py-2 cursor-pointer`}
           >
-            {user ? "Logout" : "Login"}
+            {user ? `${t("navbar.logout")}` : `${t("navbar.login")}`}
           </button>
         </div>
 
@@ -81,7 +84,7 @@ const Navbar = () => {
           >
             Dashboard
           </button>
-
+          <LanguageSwitcher />
           <button
             onClick={() => {
               user ? logout() : setShowLogin(true);
