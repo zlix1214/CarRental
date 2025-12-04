@@ -7,15 +7,99 @@
     "login": "Login",
     "logout": "Logout"
   },
-  "hero": {},
-  "searchForm": {},
-  "featuredSection": {},
-  "banner": {},
-  "testimonial": {},
-  "faq": {},
+  "hero": {
+    "title": "Drive in style."
+  },
+  "searchForm": {
+    "placeholderLocation": "select a location",
+    "pickupLocation": "Pickup Location",
+    "pickupDate": "Pick-up Date",
+    "returnDate": "Return Date",
+    "search": "Search"
+  },
+  "featuredSection": {
+    "title": "Featured Cars",
+    "expandButton": "Expand All"
+  },
+  "banner": {
+    "title": "Do you own a Luxury Car?",
+    "content": " Monetize your vehicle effortlessly by listing it on CarRental. We take care of insurance, driver vertification and secure payments - so you can earn passive income, stress free.",
+    "button": "List your car"
+  },
+  "testimonial": {
+    "title": " What our Customer Say..",
+    "content": "See what people who’ve used CarRental have to say — and why they keep coming back.",
+    "review": {
+      "name1": "Gary Sun",
+      "role1": "Developer",
+      "text1": "I've been using this service for over a year, and the experience has been consistently excellent.",
+      "name2": "JayLoveJapan",
+      "role2": "landlord",
+      "text2": "Very smooth process and professional support. Would recommend to others for sure.",
+      "name3": "Jonathan Lin",
+      "role3": "Lawyer",
+      "text3": "Solid platform with great reliability. Looking forward to future improvements."
+    }
+  },
+  "faq": {
+    "title": "About This App",
+    "button1": "Expand All",
+    "button2": "Collapse All",
+    "question1": "What tech stack does this project use?",
+    "answer1": "This project is built with the MERN stack, including React, Node.js, Express, and MongoDB. It also uses Tailwind CSS for styling and integrates i18n for multilingual support.",
+    "question2": "What was the most challenging part of this project?",
+    "answer2": "The hardest part was integrating multiple features—such as authentication, access control, data handling, and UI state synchronization. Each one isn't too complicated on its own, but getting everything to work smoothly together takes a lot of fine-tuning.",
+    "question3": "Does the project store any personal data?",
+    "answer3": "Only necessary information is stored, such as account details and booking records. All sensitive data is encrypted and never shared with third parties.",
+    "question4": "How is the project deployed?",
+    "answer4": "The frontend is deployed on Vercel, and the backend is hosted on Render. Both services automatically redeploy when changes are pushed to the repository."
+  },
   "footer": {},
   "carPage": {},
-  "carCard": {},
+  "carCard": {
+    "availableNow": "Available Now",
+    "labelSeats": "Seats",
+    "labelFuel": "Fuel",
+    "labelType": "Transmission",
+    "labelLocation": "Location",
+    "perDay": "per day",
+
+    "fuel": {
+      "Gasoline": "Gasoline",
+      "Diesel": "Diesel",
+      "Hybrid": "Hybrid",
+      "Electric": "Electric"
+    },
+
+    "transmission": {
+      "Automatic": "Automatic",
+      "Manual": "Manual",
+      "Semi-Automatic": "Semi-Automatic"
+    },
+
+    "category": {
+      "Economy": "Economy",
+      "Compact": "Compact",
+      "Midsize": "Midsize",
+      "SUV": "SUV",
+      "Luxury": "Luxury",
+      "Van": "Van",
+      "Sport": "Sport"
+    },
+
+    "location": {
+      "Taipei": "Taipei",
+      "New Taipei": "New Taipei",
+      "Taoyuan": "Taoyuan",
+      "Hsinchu": "Hsinchu",
+      "Taichung": "Taichung",
+      "Tainan": "Tainan",
+      "Kaohsiung": "Kaohsiung",
+      "Keelung": "Keelung",
+      "Yilan": "Yilan",
+      "Hualien": "Hualien"
+    }
+  },
   "carDetail": {},
   "userBooking": {},
   "sidebar": {},

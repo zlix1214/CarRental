@@ -1,33 +1,34 @@
 import React from "react";
 import { gs } from "../style/glassUi";
+import { useTranslation } from "react-i18next";
 
 const testimonialData = [
   {
     id: 1,
-    name: "Donald Jackman",
-    role: "Graphic Designer",
+    nameKey: "testimonial.review.name1",
+    roleKey: "testimonial.review.role1",
+    textKey: "testimonial.review.text1",
     avatar:
       "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
     rating: 5,
-    text: "I've been using this service for over a year, and the experience has been consistently excellent.",
   },
   {
     id: 2,
-    name: "Richard Nelson",
-    role: "Content Creator",
+    nameKey: "testimonial.review.name2",
+    roleKey: "testimonial.review.role2",
+    textKey: "testimonial.review.text2",
     avatar:
       "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
     rating: 4,
-    text: "Very smooth process and professional support. Would recommend to others for sure.",
   },
   {
     id: 3,
-    name: "James Washington",
-    role: "Co-founder",
+    nameKey: "testimonial.review.name3",
+    roleKey: "testimonial.review.role3",
+    textKey: "testimonial.review.text3",
     avatar:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop",
     rating: 4,
-    text: "Solid platform with great reliability. Looking forward to future improvements.",
   },
 ];
 
@@ -45,15 +46,15 @@ const RatingStars = ({ rating }) => (
 );
 
 const Testimonial = () => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center gap-5 px-8 mt-80">
       <div className="flex flex-col items-center text-center gap-1">
         <h1 className=" text-4xl sm:text-5xl text-white font-medium">
-          What our Customer Say
+          {t("testimonial.title")}
         </h1>
         <p className="text-gray-200 text-base sm:text-xl max-w-130">
-          Discover why discerning travelers choose StayVenture for their luxury
-          accommodations around the world.
+          {t("testimonial.content")}
         </p>
       </div>
 
@@ -68,10 +69,10 @@ const Testimonial = () => {
               alt="avatar"
               className="h-20 w-20 rounded-full"
             />
-            <h3 className="text-white text-lg font-bold">{item.name}</h3>
-            <div className="text-sm text-gray-200 mt-1">{item.role}</div>
+            <h3 className="text-white text-lg font-bold">{t(item.nameKey)}</h3>
+            <div className="text-sm text-gray-200 mt-1"> {t(item.roleKey)}</div>
             <RatingStars rating={item.rating} />
-            <p className="text-gray-300 mt-2 text-center">{item.text}</p>
+            <p className="text-gray-300 mt-2 text-center">{t(item.textKey)}</p>
           </div>
         ))}
       </div>

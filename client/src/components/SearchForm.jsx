@@ -1,14 +1,16 @@
 import React from "react";
 import { gs } from "../style/glassUi";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { cityList } from "../assets/assets";
 import { useAppContext } from "../context/AppContext";
+import { useTranslation } from "react-i18next";
 
 const SearchForm = () => {
+  const { t } = useTranslation();
   const [pickupLocation, setPickupLocation] = useState("");
   const { pickupDate, setPickupDate, returnDate, setReturnDate, navigate } =
     useAppContext();
+
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(
@@ -20,6 +22,7 @@ const SearchForm = () => {
         returnDate
     );
   };
+
   return (
     <form
       onSubmit={handleSearch}
@@ -28,15 +31,16 @@ const SearchForm = () => {
       {/* Pickup Location */}
       <div className="flex flex-col gap-1 flex-1">
         <p className="text-sm text-gray-200">
-          {pickupLocation || "select a location"}
+          {pickupLocation || t("searchForm.placeholderLocation")}
         </p>
+
         <select
           required
           value={pickupLocation}
           onChange={(e) => setPickupLocation(e.target.value)}
           className={`${gs.glassInput} text-gray-200`}
         >
-          <option value="">Pickup Location</option>
+          <option value="">{t("searchForm.pickupLocation")}</option>
           {cityList.map((city) => (
             <option key={city} value={city} className="text-gray-600">
               {city}
@@ -48,8 +52,9 @@ const SearchForm = () => {
       {/* Pickup Date */}
       <div className="flex flex-col gap-1 flex-1">
         <label htmlFor="pickup-date" className="text-sm text-gray-200">
-          Pick-up Date
+          {t("searchForm.pickupDate")}
         </label>
+
         <input
           id="pickup-date"
           type="date"
@@ -64,8 +69,9 @@ const SearchForm = () => {
       {/* Return Date */}
       <div className="flex flex-col gap-1 flex-1">
         <label htmlFor="return-date" className="text-sm text-gray-200">
-          Return Date
+          {t("searchForm.returnDate")}
         </label>
+
         <input
           id="return-date"
           type="date"
@@ -80,7 +86,7 @@ const SearchForm = () => {
       <button
         className={`${gs.glassButton} px-3 py-2 mt-4 md:mt-0 text-white self-stretch cursor-pointer`}
       >
-        Search
+        {t("searchForm.search")}
       </button>
     </form>
   );

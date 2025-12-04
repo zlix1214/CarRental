@@ -228,7 +228,7 @@ const AddCar = () => {
                 </label>
                 <input
                   type="number"
-                  placeholder="2025"
+                  placeholder=""
                   required
                   className="bg-white/20 px-3 py-2 rounded-xl outline-none"
                   value={car.year}
@@ -242,7 +242,7 @@ const AddCar = () => {
                 </label>
                 <input
                   type="number"
-                  placeholder="100"
+                  placeholder=""
                   required
                   className="bg-white/20 px-3 py-2 rounded-xl outline-none focus:border-blue-500 transition-colors"
                   value={car.pricePerDay}
@@ -262,13 +262,13 @@ const AddCar = () => {
                   className="px-3 py-2 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white/20"
                 >
                   <option value="">Select a category</option>
-                  <option value="Sedan">Economy</option>
-                  <option value="Sedan">Compact</option>
-                  <option value="Sedan">Midsize</option>
-                  <option value="Sedan">SUV</option>
-                  <option value="Sedan">Luxury</option>
-                  <option value="Sedan">Sport</option>
-                  <option value="Sedan">Van</option>
+                  <option value="Economy">Economy</option>
+                  <option value="Compact">Compact</option>
+                  <option value="Midsize">Midsize</option>
+                  <option value="SUV">SUV</option>
+                  <option value="Luxury">Luxury</option>
+                  <option value="Sport">Sport</option>
+                  <option value="Van">Van</option>
                 </select>
               </div>
             </div>

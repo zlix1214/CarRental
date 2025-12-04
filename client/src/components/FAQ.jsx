@@ -1,34 +1,33 @@
 import React, { useState } from "react";
 import { gs } from "../style/glassUi";
+import { useTranslation } from "react-i18next";
 
 const faqData = [
   {
     id: 1,
-    question: "What is Tailwind CSS?",
-    answer:
-      "Tailwind CSS is a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup.",
+    question: "faq.question1",
+    answer: "faq.answer1",
   },
   {
     id: 2,
-    question: "What's new in Tailwind CSS v4.0?",
-    answer:
-      "Tailwind CSS v4.0 introduces lightning-fast build times, simplified configuration, improved developer experience, and enhanced customization options.",
+    question: "faq.question2",
+    answer: "faq.answer2",
   },
   {
     id: 3,
-    question: "How do I install Tailwind CSS?",
-    answer:
-      "You can install Tailwind CSS via npm by running 'npm install -D tailwindcss' and then initializing it with 'npx tailwindcss init'.",
+    question: "faq.question3",
+    answer: "faq.answer3",
   },
   {
     id: 4,
-    question: "Is Tailwind CSS compatible with React?",
-    answer:
-      "Yes, Tailwind CSS works perfectly with React and other JavaScript frameworks. You can use Tailwind's utility classes directly in your JSX elements.",
+    question: "faq.question4",
+    answer: "faq.answer4",
   },
 ];
 
 const FAQ = () => {
+  const { t } = useTranslation();
+
   const [openId, setOpenId] = useState(null);
   const [expandAll, setExpandAll] = useState(false);
 
@@ -48,14 +47,14 @@ const FAQ = () => {
       {/* title */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 max-w-4xl w-full">
         <h2 className="text-4xl sm:text-5xl font-medium text-gray-200 text-center sm:text-left">
-          Frequently Asked Questions
+          {t("faq.title")}
         </h2>
 
         <button
           onClick={toggleExpandAll}
           className={`bg-white/10 px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-xl shadow-black/50 cursor-pointer`}
         >
-          {expandAll ? "Collapse All" : "Expand All"}
+          {expandAll ? `${t("faq.button2")}` : `${t("faq.button1")}`}
         </button>
       </div>
 
@@ -76,6 +75,8 @@ const FAQ = () => {
 };
 
 const FAQItem = ({ item, isOpen, onClick, isLast }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={`${!isLast ? "" : "rounded-b-2xl"}`}>
       {/* questions */}
@@ -84,7 +85,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
         onClick={onClick}
       >
         <span className="text-sm sm:text-base lg:text-lg font-medium text-gray-200 pr-4">
-          {item.question}
+          {t(item.question)}
         </span>
 
         {/* expand/collapse */}
@@ -106,7 +107,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
         }}
       >
         <div className="px-6 py-5 text-gray-100 leading-relaxed">
-          {item.answer}
+          {t(item.answer)}
         </div>
       </div>
     </div>

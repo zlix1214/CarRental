@@ -7,15 +7,99 @@
     "login": "登錄",
     "logout": "登出"
   },
-  "hero": {},
-  "searchForm": {},
-  "featuredSection": {},
-  "banner": {},
-  "testimonial": {},
-  "faq": {},
+  "hero": {
+    "title": "享受每一段旅程"
+  },
+  "searchForm": {
+    "placeholderLocation": "選擇地點",
+    "pickupLocation": "取車地點",
+    "pickupDate": "取車日期",
+    "returnDate": "還車日期",
+    "search": "搜尋"
+  },
+  "featuredSection": {
+    "title": "精選車款",
+    "expandButton": "展開全部"
+  },
+  "banner": {
+    "title": "你有車車嗎？",
+    "content": "把車放到 CarRental 上就能輕鬆賺錢。保險、駕駛驗證、付款流程都由我們處理，你只需要坐著收被動收入。",
+    "button": "刊登車輛"
+  },
+  "testimonial": {
+    "title": "客戶怎麼說",
+    "content": "看看用過 CarRental 的人怎麼評價，以及為什麼他們會持續選擇我們。",
+    "review": {
+      "name1": "GS孫卓",
+      "role1": "軟體工程師",
+      "text1": "我已經透過 CarRental 租車一年多了，服務一直非常優秀。",
+      "name2": "曾紹恩",
+      "role2": "地主",
+      "text2": "預訂流程很順暢，客服也很專業。強烈推薦 CarRental！",
+      "name3": "o0我不是林岳穎0o",
+      "role3": "律師",
+      "text3": "平台可靠，車款選擇豐富。我會繼續使用 CarRental 來安排我的行程。"
+    }
+  },
+  "faq": {
+    "title": "關於此專案",
+    "button1": "展開全部",
+    "button2": "收起全部",
+    "question1": "這個專案使用了哪些技術？",
+    "answer1": "這個專案主要採用 MERN 技術，包括 React、Node.js、Express 和 MongoDB。樣式使用 Tailwind CSS，並整合 i18n 做多語系切換。",
+    "question2": "這個專案最困難的部分是什麼？",
+    "answer2": "最大的挑戰是把多個功能整合在一起，像是登入、權限、資料存取、UI 狀態同步等等。每個都不難，但要全部順順地運作需要花不少時間調整。",
+    "question3": "專案會儲存使用者的個人資料嗎？",
+    "answer3": "只會儲存必要的資訊，例如帳號資料或預訂記錄。所有敏感資料都有使用加密處理，也不會對外分享。",
+    "question4": "這個專案是怎麼部署的？",
+    "answer4": "前端部署在 Vercel，後端則使用 Render。只要 push 更新，兩邊都會自動重新部署。"
+  },
   "footer": {},
   "carPage": {},
-  "carCard": {},
+  "carCard": {
+    "availableNow": "可立即租用",
+    "labelSeats": "座位",
+    "labelFuel": "燃料",
+    "labelType": "變速箱",
+    "labelLocation": "地點",
+    "perDay": "每日",
+
+    "fuel": {
+      "Gasoline": "汽油",
+      "Diesel": "柴油",
+      "Hybrid": "油電混合",
+      "Electric": "電動"
+    },
+
+    "transmission": {
+      "Automatic": "自排",
+      "Manual": "手排",
+      "Semi-Automatic": "半自排"
+    },
+
+    "category": {
+      "Economy": "經濟型",
+      "Compact": "小型車",
+      "Midsize": "中型車",
+      "SUV": "休旅車",
+      "Luxury": "豪華車",
+      "Van": "廂型車",
+      "Sport": "跑車/超跑"
+    },
+
+    "location": {
+      "Taipei": "台北",
+      "New Taipei": "新北",
+      "Taoyuan": "桃園",
+      "Hsinchu": "新竹",
+      "Taichung": "台中",
+      "Tainan": "台南",
+      "Kaohsiung": "高雄",
+      "Keelung": "基隆",
+      "Yilan": "宜蘭",
+      "Hualien": "花蓮"
+    }
+  },
   "carDetail": {},
   "userBooking": {},
   "sidebar": {},
