@@ -16,6 +16,7 @@ import Loader from "../components/Loader";
 import { gs } from "../style/glassUi";
 import { useAppContext } from "../context/AppContext";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const CarDetails = () => {
   const {
@@ -27,6 +28,7 @@ const CarDetails = () => {
     setReturnDate,
     currency,
   } = useAppContext();
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [car, setCar] = useState(null);
@@ -79,20 +81,20 @@ const CarDetails = () => {
   }
 
   const features = [
-    "360 Camera",
-    "Bluetooth",
-    "GPS Navigation",
-    "Heated Seats",
-    "Rear View Mirror",
-    "Parking Sensors",
-    "Sunroof",
-    "Premium Sound System",
+    t("carDetail.features.360Camera"),
+    t("carDetail.features.bluetooth"),
+    t("carDetail.features.gpsNavigation"),
+    t("carDetail.features.heatedSeats"),
+    t("carDetail.features.rearViewMirror"),
+    t("carDetail.features.parkingSensors"),
+    t("carDetail.features.sunroof"),
+    t("carDetail.features.premiumSoundSystem"),
   ];
 
   const specs = [
     {
       icon: <Users className="w-4 h-4 sm:w-5 sm:h-5" />,
-      text: `${car.seating_capacity} Seats`,
+      text: `${car.seating_capacity} ${t("carDetail.specs.seats")}`,
     },
     { icon: <Fuel className="w-5 h-5 sm:w-5 sm:h-5" />, text: car.fuel_type },
     {
@@ -111,7 +113,7 @@ const CarDetails = () => {
           className="flex items-center gap-2 mb-4 text-slate-200 hover:text-slate-900 transition-colors group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-          <span className="font-medium">Back to all cars</span>
+          <span className="font-medium">{t("carDetail.backButton")}</span>
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -164,9 +166,9 @@ const CarDetails = () => {
             {/* Description */}
             <div className="rounded-2xl p-6 shadow-lg shadow-black/60">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-2">
-                About This Car
+                {t("carDetail.aboutThisCar")}
               </h2>
-              <p className="text-slate-200 leading-relaxed text-sm sm:text-base">
+              <p className="text-slate-200 leading-relaxed text-sm sm:text-base whitespace-pre-line">
                 {car.description}
               </p>
             </div>
@@ -174,7 +176,7 @@ const CarDetails = () => {
             {/* Features */}
             <div className="rounded-2xl p-6 shadow-lg shadow-black/60">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-4">
-                Features & Amenities
+                {t("carDetail.featuresAmenities")}
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {features.map((feature, idx) => (
@@ -201,12 +203,10 @@ const CarDetails = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-slate-200 mb-2">
-                    Protected Rental
+                    {t("carDetail.protectedRental")}
                   </h3>
                   <p className="text-slate-200 text-sm">
-                    Your booking is protected with comprehensive insurance
-                    coverage. Drive with peace of mind knowing you're fully
-                    covered.
+                    {t("carDetail.protectedRentalDesc")}
                   </p>
                 </div>
               </div>
@@ -225,11 +225,13 @@ const CarDetails = () => {
                       {car.pricePerDay}
                     </div>
                     <div className="text-sm text-slate-200 font-medium mt-1">
-                      per day
+                      {t("carDetail.booking.perDay")}
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm text-slate-100">Total est.</div>
+                    <div className="text-sm text-slate-100">
+                      {t("carDetail.booking.totalEst")}
+                    </div>
 
                     <div className="text-xl font-bold text-white">
                       {currency}
@@ -247,7 +249,7 @@ const CarDetails = () => {
                     className="block text-sm font-semibold text-slate-100 mb-2"
                   >
                     <Calendar className="w-4 h-4 inline mr-1.5" />
-                    Pickup Date
+                    {t("carDetail.booking.pickupDate")}
                   </label>
                   <input
                     type="date"
@@ -266,7 +268,7 @@ const CarDetails = () => {
                     className="block text-sm font-semibold text-slate-100 mb-2"
                   >
                     <Calendar className="w-4 h-4 inline mr-1.5" />
-                    Return Date
+                    {t("carDetail.booking.returnDate")}
                   </label>
                   <input
                     type="date"
@@ -285,26 +287,30 @@ const CarDetails = () => {
                 onClick={handleSubmit}
                 className="w-full bg-red-500/60 text-white font-bold shadow-lg shadow-black/80 py-4 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all mb-4"
               >
-                Book Now
+                {t("carDetail.booking.bookNow")}
               </button>
 
               <p className="text-center text-sm text-slate-200">
-                No credit card required to reserve
+                {t("carDetail.booking.noCreditCard")}
               </p>
 
               {/* Benefits */}
               <div className="mt-6 pt-6 border-t border-slate-200 space-y-3">
                 <div className="flex items-center gap-3 text-sm text-slate-200">
                   <Check className="w-5 h-5 text-white flex-shrink-0" />
-                  <span>Free cancellation up to 24h before</span>
+                  <span>
+                    {t("carDetail.booking.benefits.freeCancellation")}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-slate-200">
                   <Check className="w-5 h-5 text-white flex-shrink-0" />
-                  <span>Instant confirmation</span>
+                  <span>
+                    {t("carDetail.booking.benefits.instantConfirmation")}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-slate-200">
                   <Check className="w-5 h-5 text-white flex-shrink-0" />
-                  <span>24/7 customer support</span>
+                  <span>{t("carDetail.booking.benefits.support247")}</span>
                 </div>
               </div>
             </div>

@@ -4,8 +4,10 @@ import { dummyMyBookingsData } from "../assets/assets";
 import { gs } from "../style/glassUi";
 import { useAppContext } from "../context/AppContext";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const MyBookings = () => {
+  const { t } = useTranslation();
   const { axios, currency, user } = useAppContext();
   const [bookings, setBookings] = useState([]);
 
@@ -60,7 +62,7 @@ const MyBookings = () => {
       {/* header */}
       <div className="mb-12 text-center">
         <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold text-white mb-3 tracking-tight">
-          My Bookings
+          {t("userBooking.myBookings")}
         </h1>
       </div>
 
@@ -72,7 +74,7 @@ const MyBookings = () => {
             const car = booking.car;
             const days = calculateDays(booking.pickupDate, booking.returnDate);
             const isEven = index % 2 === 0;
-            const orderNumber = `ORD-${String(index + 1).padStart(3, "0")}`; // 生成訂單編號：ORD-001, ORD-002...
+            const orderNumber = `ORD-${String(index + 1).padStart(3, "0")}`;
 
             return (
               <div
@@ -99,7 +101,7 @@ const MyBookings = () => {
                         <div
                           className={`bg-white px-5 py-2 rounded-full text-black font-bold text-sm shadow-lg .glow}`}
                         >
-                          {booking.status}
+                          {t(`userBooking.status.${booking.status}`)}
                         </div>
                       </div>
 
@@ -107,10 +109,10 @@ const MyBookings = () => {
                       <div className="absolute bottom-6 left-6">
                         <div className="bg-black/50 backdrop-blur-sm px-3 sm:px-5 py-1 sm:py-3 rounded-2xl border border-white/20">
                           <p className="text-gray-300 text-xs mb-1">
-                            Total Price
+                            {t("userBooking.totalPrice")}
                           </p>
                           <p className="text-white sm:text-xl md:text-2xl font-bold">
-                            $ {booking.price.toLocaleString()}
+                            {currency} {booking.price.toLocaleString()}
                           </p>
                         </div>
                       </div>
@@ -154,7 +156,13 @@ const MyBookings = () => {
                         </div>
                         <div className="flex-1">
                           <p className="text-gray-200 text-sm mb-2">
-                            Rental Period ({days} {days === 1 ? "day" : "days"})
+                            {t("userBooking.rentalPeriod", {
+                              days: days,
+                              dayText:
+                                days === 1
+                                  ? t("userBooking.day")
+                                  : t("userBooking.days"),
+                            })}
                           </p>
                           <div className="flex items-center gap-3 text-white">
                             <span className="font-semibold">
@@ -173,7 +181,9 @@ const MyBookings = () => {
                     <div className="flex items-center gap-2 text-gray-200 text-base mb-2">
                       <Clock className="w-4 h-4" />
                       <span>
-                        Booked on {formatCreatedAt(booking.createdAt)}
+                        {t("userBooking.bookedOn", {
+                          date: formatCreatedAt(booking.createdAt),
+                        })}
                       </span>
                     </div>
                   </div>
@@ -190,9 +200,9 @@ const MyBookings = () => {
             <Calendar className="w-12 h-12 text-white" />
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">
-            No bookings yet
+            {t("userBooking.noBookings")}
           </h3>
-          <p className="text-gray-300">Your booking history will appear here</p>
+          <p className="text-gray-300">{t("userBooking.noBookingsDesc")}</p>
         </div>
       )}
     </div>

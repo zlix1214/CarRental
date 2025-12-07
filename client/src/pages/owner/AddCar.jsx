@@ -15,9 +15,11 @@ import {
 import { assets } from "../../assets/assets";
 import { useAppContext } from "../../context/AppContext";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const AddCar = () => {
   const { axios, currency, token, isInitialized } = useAppContext();
+  const { t } = useTranslation();
 
   const [image, setImage] = useState(null);
   const [car, setCar] = useState({
@@ -37,7 +39,7 @@ const AddCar = () => {
 
   const onSubmitHandler = async (e) => {
     if (!token || !isInitialized) {
-      toast.error("Please login first");
+      toast.error(t("addCar.loginRequired"));
       return;
     }
     e.preventDefault();
@@ -80,11 +82,9 @@ const AddCar = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl md:text-6xl font-semibold text-slate-300 mb-2">
-            List Your Car
+            {t("addCar.pageTitle")}
           </h1>
-          <p className="text-slate-200">
-            Fill in the details below to add your car to the platform
-          </p>
+          <p className="text-slate-200">{t("addCar.pageSubtitle")}</p>
         </div>
 
         <div className="space-y-8 grid-cols-1 md">
@@ -118,10 +118,10 @@ const AddCar = () => {
                     <div className="w-45 h-30 sm:w-64 sm:h-40 flex flex-col items-center justify-center bg-white/5 backdrop-blur-sm border-2 border-dashed border-white/20 rounded-2xl group-hover:border-white/40 transition-all">
                       <Upload className="w-8 sm:w-12 h-8 sm:h-12 text-white/60 mb-3 group-hover:text-white/80 transition-colors" />
                       <p className="text-white/80 text-xs sm:text-sm font-medium">
-                        Click to upload
+                        {t("addCar.imageUpload.clickToUpload")}
                       </p>
                       <p className="text-white/50 text-xs mt-1">
-                        PNG, JPG up to 10MB
+                        {t("addCar.imageUpload.fileFormat")}
                       </p>
                     </div>
                   )}
@@ -137,21 +137,20 @@ const AddCar = () => {
 
               <div className="flex-1 text-center lg:text-left">
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
-                  Upload Car Image
+                  {t("addCar.imageUpload.title")}
                 </h3>
                 <p className="text-slate-300 text-sm mb-4">
-                  A high-quality image helps attract more renters. Make sure the
-                  car is well-lit and clearly visible.
+                  {t("addCar.imageUpload.description")}
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
                   <span className="hidden sm:block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
-                    Front view recommended
+                    {t("addCar.imageUpload.tips.frontView")}
                   </span>
                   <span className="hidden sm:block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
-                    Clean background
+                    {t("addCar.imageUpload.tips.cleanBackground")}
                   </span>
                   <span className="hidden sm:block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
-                    High resolution
+                    {t("addCar.imageUpload.tips.highResolution")}
                   </span>
                 </div>
               </div>
@@ -166,10 +165,10 @@ const AddCar = () => {
               </div>
               <div>
                 <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
-                  Basic Information
+                  {t("addCar.basicInfo.title")}
                 </h2>
                 <p className="text-sm text-slate-300">
-                  Enter your car's basic details
+                  {t("addCar.basicInfo.subtitle")}
                 </p>
               </div>
             </div>
@@ -177,11 +176,11 @@ const AddCar = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2">
-                  Brand
+                  {t("addCar.basicInfo.brand")}
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. BMW, Mercedes, Audi..."
+                  placeholder={t("addCar.basicInfo.brandPlaceholder")}
                   required
                   className="px-3 py-2 bg-white/20 rounded-xl outline-none"
                   value={car.brand}
@@ -190,11 +189,11 @@ const AddCar = () => {
               </div>
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2">
-                  Model
+                  {t("addCar.basicInfo.model")}
                 </label>
                 <input
                   type="text"
-                  placeholder="e.g. X5, E-Class, M4..."
+                  placeholder={t("addCar.basicInfo.modelPlaceholder")}
                   required
                   className="bg-white/20 px-3 py-2 rounded-xl outline-none"
                   value={car.model}
@@ -212,10 +211,10 @@ const AddCar = () => {
               </div>
               <div>
                 <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
-                  Pricing & Details
+                  {t("addCar.pricingDetails.title")}
                 </h2>
                 <p className="text-sm text-slate-300">
-                  Set your rental price and car details
+                  {t("addCar.pricingDetails.subtitle")}
                 </p>
               </div>
             </div>
@@ -224,7 +223,7 @@ const AddCar = () => {
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
-                  Year
+                  {t("addCar.pricingDetails.year")}
                 </label>
                 <input
                   type="number"
@@ -238,7 +237,7 @@ const AddCar = () => {
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <DollarSign className="w-4 h-4" />
-                  Daily Price ({currency})
+                  {t("addCar.pricingDetails.dailyPrice")} ({currency})
                 </label>
                 <input
                   type="number"
@@ -254,21 +253,37 @@ const AddCar = () => {
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Car className="w-4 h-4" />
-                  Category
+                  {t("addCar.pricingDetails.category")}
                 </label>
                 <select
                   onChange={(e) => setCar({ ...car, category: e.target.value })}
                   value={car.category}
                   className="px-3 py-2 rounded-xl outline-none focus:border-blue-500 transition-colors bg-white/20"
                 >
-                  <option value="">Select a category</option>
-                  <option value="Economy">Economy</option>
-                  <option value="Compact">Compact</option>
-                  <option value="Midsize">Midsize</option>
-                  <option value="SUV">SUV</option>
-                  <option value="Luxury">Luxury</option>
-                  <option value="Sport">Sport</option>
-                  <option value="Van">Van</option>
+                  <option value="">
+                    {t("addCar.pricingDetails.selectCategory")}
+                  </option>
+                  <option value="Economy">
+                    {t("addCar.pricingDetails.categories.economy")}
+                  </option>
+                  <option value="Compact">
+                    {t("addCar.pricingDetails.categories.compact")}
+                  </option>
+                  <option value="Midsize">
+                    {t("addCar.pricingDetails.categories.midsize")}
+                  </option>
+                  <option value="SUV">
+                    {t("addCar.pricingDetails.categories.suv")}
+                  </option>
+                  <option value="Luxury">
+                    {t("addCar.pricingDetails.categories.luxury")}
+                  </option>
+                  <option value="Sport">
+                    {t("addCar.pricingDetails.categories.sport")}
+                  </option>
+                  <option value="Van">
+                    {t("addCar.pricingDetails.categories.van")}
+                  </option>
                 </select>
               </div>
             </div>
@@ -282,10 +297,10 @@ const AddCar = () => {
               </div>
               <div>
                 <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
-                  Specifications
+                  {t("addCar.specifications.title")}
                 </h2>
                 <p className="text-sm text-slate-300">
-                  Technical details and features
+                  {t("addCar.specifications.subtitle")}
                 </p>
               </div>
             </div>
@@ -294,7 +309,7 @@ const AddCar = () => {
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Settings className="w-4 h-4" />
-                  Transmission
+                  {t("addCar.specifications.transmission")}
                 </label>
                 <select
                   onChange={(e) =>
@@ -303,16 +318,24 @@ const AddCar = () => {
                   value={car.transmission}
                   className="px-3 py-2 rounded-xl outline-none bg-white/20"
                 >
-                  <option value="">Select transmission</option>
-                  <option value="Automatic">Automatic</option>
-                  <option value="Manual">Manual</option>
-                  <option value="Semi-Automatic">Semi-Automatic</option>
+                  <option value="">
+                    {t("addCar.specifications.selectTransmission")}
+                  </option>
+                  <option value="Automatic">
+                    {t("addCar.specifications.transmissionTypes.automatic")}
+                  </option>
+                  <option value="Manual">
+                    {t("addCar.specifications.transmissionTypes.manual")}
+                  </option>
+                  <option value="Semi-Automatic">
+                    {t("addCar.specifications.transmissionTypes.semiAutomatic")}
+                  </option>
                 </select>
               </div>
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Fuel className="w-4 h-4" />
-                  Fuel Type
+                  {t("addCar.specifications.fuelType")}
                 </label>
                 <select
                   onChange={(e) =>
@@ -321,21 +344,31 @@ const AddCar = () => {
                   value={car.fuel_type}
                   className="px-3 py-2 rounded-xl outline-none bg-white/20"
                 >
-                  <option value="">Select fuel type</option>
-                  <option value="Gasoline">Gasoline</option>
-                  <option value="Diesel">Diesel</option>
-                  <option value="Hybrid">Hybrid</option>
-                  <option value="Electric">Electric</option>
+                  <option value="">
+                    {t("addCar.specifications.selectFuelType")}
+                  </option>
+                  <option value="Gasoline">
+                    {t("addCar.specifications.fuelTypes.gasoline")}
+                  </option>
+                  <option value="Diesel">
+                    {t("addCar.specifications.fuelTypes.diesel")}
+                  </option>
+                  <option value="Hybrid">
+                    {t("addCar.specifications.fuelTypes.hybrid")}
+                  </option>
+                  <option value="Electric">
+                    {t("addCar.specifications.fuelTypes.electric")}
+                  </option>
                 </select>
               </div>
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Users className="w-4 h-4" />
-                  Seating Capacity
+                  {t("addCar.specifications.seatingCapacity")}
                 </label>
                 <input
                   type="number"
-                  placeholder="4"
+                  placeholder={t("addCar.specifications.seatingPlaceholder")}
                   required
                   className="px-3 py-2 bg-white/20 rounded-xl outline-none"
                   value={car.seating_capacity}
@@ -355,10 +388,10 @@ const AddCar = () => {
               </div>
               <div>
                 <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
-                  Location & Description
+                  {t("addCar.locationDescription.title")}
                 </h2>
                 <p className="text-sm text-slate-300">
-                  Where is your car and what makes it special?
+                  {t("addCar.locationDescription.subtitle")}
                 </p>
               </div>
             </div>
@@ -367,35 +400,59 @@ const AddCar = () => {
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
-                  Location
+                  {t("addCar.locationDescription.location")}
                 </label>
                 <select
                   onChange={(e) => setCar({ ...car, location: e.target.value })}
                   value={car.location}
                   className="px-3 py-2 rounded-xl outline-none bg-white/20"
                 >
-                  <option value="">Select a location</option>
-                  <option value="Taipei">Taipei</option>
-                  <option value="New Taipei">New Taipei</option>
-                  <option value="Taoyuan">Taoyuan</option>
-                  <option value="Hsinchu">Hsinchu</option>
-                  <option value="Taichung">Taichung</option>
-                  <option value="Tainan">Tainan</option>
-                  <option value="Kaohsiung">Kaohsiung</option>
-                  <option value="Keelung">Keelung</option>
-                  <option value="Yilan">Yilan</option>
-                  <option value="Hualien">Hualien</option>
+                  <option value="">
+                    {t("addCar.locationDescription.selectLocation")}
+                  </option>
+                  <option value="Taipei">
+                    {t("addCar.locationDescription.locations.taipei")}
+                  </option>
+                  <option value="New Taipei">
+                    {t("addCar.locationDescription.locations.newTaipei")}
+                  </option>
+                  <option value="Taoyuan">
+                    {t("addCar.locationDescription.locations.taoyuan")}
+                  </option>
+                  <option value="Hsinchu">
+                    {t("addCar.locationDescription.locations.hsinchu")}
+                  </option>
+                  <option value="Taichung">
+                    {t("addCar.locationDescription.locations.taichung")}
+                  </option>
+                  <option value="Tainan">
+                    {t("addCar.locationDescription.locations.tainan")}
+                  </option>
+                  <option value="Kaohsiung">
+                    {t("addCar.locationDescription.locations.kaohsiung")}
+                  </option>
+                  <option value="Keelung">
+                    {t("addCar.locationDescription.locations.keelung")}
+                  </option>
+                  <option value="Yilan">
+                    {t("addCar.locationDescription.locations.yilan")}
+                  </option>
+                  <option value="Hualien">
+                    {t("addCar.locationDescription.locations.hualien")}
+                  </option>
                 </select>
               </div>
 
               <div className="flex flex-col">
                 <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <FileText className="w-4 h-4" />
-                  Description
+                  {t("addCar.locationDescription.description")}
                 </label>
                 <textarea
                   rows={5}
-                  placeholder="e.g. A luxurious SUV with a spacious interior and a powerful engine. Perfect for family trips or business travel. Features include leather seats, sunroof, and advanced safety systems."
+                  placeholder={t(
+                    "addCar.locationDescription.descriptionPlaceholder"
+                  )}
                   required
                   className="bg-white/20 px-3 py-2 rounded-xl outline-none resize-none"
                   value={car.description}
@@ -404,8 +461,7 @@ const AddCar = () => {
                   }
                 ></textarea>
                 <p className="text-sm text-slate-300 mt-2">
-                  Tip: Highlight unique features, recent maintenance, and why
-                  renters should choose your car
+                  {t("addCar.locationDescription.descriptionTip")}
                 </p>
               </div>
             </div>
@@ -419,7 +475,9 @@ const AddCar = () => {
             >
               <Check className="w-5 h-5 relative z-10" />
               <span className="relative z-10">
-                {isLoading ? "Listing..." : "List Your Car"}
+                {isLoading
+                  ? t("addCar.submit.loading")
+                  : t("addCar.submit.button")}
               </span>
             </button>
           </div>

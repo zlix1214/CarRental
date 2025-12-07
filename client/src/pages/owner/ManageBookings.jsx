@@ -11,9 +11,11 @@ import {
 } from "lucide-react";
 import { useAppContext } from "../../context/AppContext";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const ManageBookings = () => {
   const { token, isInitialized } = useAppContext();
+  const { t } = useTranslation();
   const [bookings, setBookings] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
@@ -22,7 +24,6 @@ const ManageBookings = () => {
 
   const fetchOwnerBookings = async () => {
     try {
-      // 確保 token 存在才發送請求
       if (!token) {
         console.log("Token not ready yet");
         return;
@@ -108,11 +109,9 @@ const ManageBookings = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-slate-200 mb-2">
-            Manage Bookings
+            {t("ownerBooking.pageTitle")}
           </h1>
-          <p className="text-slate-200">
-            Review and manage customer reservations
-          </p>
+          <p className="text-slate-200">{t("ownerBooking.pageSubtitle")}</p>
         </div>
 
         {/* Filters & Search Bar */}
@@ -127,7 +126,7 @@ const ManageBookings = () => {
                   : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
               }`}
             >
-              All ({bookings.length})
+              {t("ownerBooking.filters.all")} ({bookings.length})
             </button>
             <button
               onClick={() => setFilterStatus("pending")}
@@ -137,7 +136,8 @@ const ManageBookings = () => {
                   : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
               }`}
             >
-              Pending ({bookings.filter((b) => b.status === "pending").length})
+              {t("ownerBooking.filters.pending")} (
+              {bookings.filter((b) => b.status === "pending").length})
             </button>
             <button
               onClick={() => setFilterStatus("confirmed")}
@@ -147,7 +147,7 @@ const ManageBookings = () => {
                   : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
               }`}
             >
-              Confirmed (
+              {t("ownerBooking.filters.confirmed")} (
               {bookings.filter((b) => b.status === "confirmed").length})
             </button>
             <button
@@ -158,7 +158,7 @@ const ManageBookings = () => {
                   : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
               }`}
             >
-              Cancelled (
+              {t("ownerBooking.filters.cancelled")} (
               {bookings.filter((b) => b.status === "cancelled").length})
             </button>
           </div>
@@ -190,8 +190,7 @@ const ManageBookings = () => {
                         )}`}
                       >
                         {getStatusIcon(booking.status)}
-                        {booking.status.charAt(0).toUpperCase() +
-                          booking.status.slice(1)}
+                        {t(`ownerBooking.status.${booking.status}`)}
                       </span>
                     </div>
                   </div>
@@ -203,12 +202,6 @@ const ManageBookings = () => {
                       <h3 className="text-xl font-bold text-slate-200 mb-1">
                         {booking.car.brand} {booking.car.model}
                       </h3>
-                      <p className="text-sm text-slate-300">
-                        Booked by{" "}
-                        <span className="font-medium">
-                          {booking.customerName}
-                        </span>
-                      </p>
                     </div>
 
                     {/* Booking Details */}
@@ -226,12 +219,14 @@ const ManageBookings = () => {
                           {currency}
                           {booking.price}
                         </span>
-                        <span className="text-slate-300">total</span>
+                        <span className="text-slate-300">
+                          {t("ownerBooking.bookingCard.total")}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-slate-600">
                         <CreditCard className="w-4 h-4 text-slate-300" />
                         <span className="px-2 py-0.5 bg-slate-100 text-slate-700 rounded-md text-xs font-medium">
-                          Offline Payment
+                          {t("ownerBooking.bookingCard.offlinePayment")}
                         </span>
                       </div>
                     </div>
@@ -245,9 +240,15 @@ const ManageBookings = () => {
                         value={booking.status}
                         className="w-full appearance-none px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-xl outline-none font-medium text-slate-700 cursor-pointer"
                       >
-                        <option value="pending">Pending - Change Status</option>
-                        <option value="confirmed">Confirm Booking</option>
-                        <option value="cancelled">Cancel Booking</option>
+                        <option value="pending">
+                          {t("ownerBooking.bookingCard.changeStatus")}
+                        </option>
+                        <option value="confirmed">
+                          {t("ownerBooking.bookingCard.confirmBooking")}
+                        </option>
+                        <option value="cancelled">
+                          {t("ownerBooking.bookingCard.cancelBooking")}
+                        </option>
                       </select>
                       <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 pointer-events-none" />
                     </div>
@@ -264,12 +265,12 @@ const ManageBookings = () => {
               <Calendar className="w-12 h-12 text-slate-400" />
             </div>
             <h3 className="text-xl font-semibold text-slate-900 mb-2">
-              No bookings found
+              {t("ownerBooking.emptyState.title")}
             </h3>
             <p className="text-slate-600">
               {searchTerm || filterStatus !== "all"
-                ? "Try adjusting your search or filters"
-                : "You don't have any bookings yet"}
+                ? t("ownerBooking.emptyState.withFilters")
+                : t("ownerBooking.emptyState.noFilters")}
             </p>
           </div>
         )}

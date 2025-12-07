@@ -55,7 +55,17 @@
     "answer4": "The frontend is deployed on Vercel, and the backend is hosted on Render. Both services automatically redeploy when changes are pushed to the repository."
   },
   "footer": {},
-  "carPage": {},
+  "carPage": {
+    "availableCars": "Available Cars",
+    "choosePremium": "Choose from our premium selection of vehicles for your next journey",
+    "searchPlaceholder": "Search by make, model, or features...",
+    "showing": "Showing",
+    "vehicles": "vehicles",
+    "priceLowToHigh": "Price: Low to High",
+    "priceHighToLow": "Price: High to Low",
+    "newestFirst": "Newest First",
+    "oldestFirst": "Oldest First"
+  },
   "carCard": {
     "availableNow": "Available Now",
     "labelSeats": "Seats",
@@ -100,12 +110,245 @@
       "Hualien": "Hualien"
     }
   },
-  "carDetail": {},
-  "userBooking": {},
-  "sidebar": {},
-  "dashboard": {},
-  "addCar": {},
-  "manageCar": {},
-  "manageBooking": {},
+  "carDetail": {
+    "backButton": "Back to all cars",
+    "aboutThisCar": "About This Car",
+    "featuresAmenities": "Features & Amenities",
+    "protectedRental": "Protected Rental",
+    "protectedRentalDesc": "Your booking is protected with comprehensive insurance coverage. Drive with peace of mind knowing you're fully covered.",
+
+    "specs": {
+      "seats": "Seats"
+    },
+
+    "features": {
+      "360Camera": "360 Camera",
+      "bluetooth": "Bluetooth",
+      "gpsNavigation": "GPS Navigation",
+      "heatedSeats": "Heated Seats",
+      "rearViewMirror": "Rear View Mirror",
+      "parkingSensors": "Parking Sensors",
+      "sunroof": "Sunroof",
+      "premiumSoundSystem": "Premium Sound System"
+    },
+
+    "booking": {
+      "perDay": "per day",
+      "totalEst": "Total est.",
+      "pickupDate": "Pickup Date",
+      "returnDate": "Return Date",
+      "bookNow": "Book Now",
+      "noCreditCard": "No credit card required to reserve",
+      "benefits": {
+        "freeCancellation": "Free cancellation up to 24h before",
+        "instantConfirmation": "Instant confirmation",
+        "support247": "24/7 customer support"
+      }
+    }
+  },
+  "userBooking": {
+    "myBookings": "My Bookings",
+    "status": {
+      "confirmed": "Confirmed",
+      "pending": "Pending",
+      "cancelled": "Cancelled"
+    },
+    "totalPrice": "Total Price",
+    "rentalPeriod": "Rental Period ({{days}} {{dayText}})",
+    "day": "day",
+    "days": "days",
+    "bookedOn": "Booked on {{date}}",
+    "noBookings": "No bookings yet",
+    "noBookingsDesc": "Your booking history will appear here"
+  },
+  "sidebar": {
+    "save": "Save",
+    "dashboard": "Dashboard",
+    "addCar": "Add Car",
+    "manageCars": "Manage Cars",
+    "manageBookings": "Manage Bookings"
+  },
+  "dashboard": {
+    "loginRequired": "Please log in to access the Dashboard",
+    "confirm": "Confirm",
+    "title": "Dashboard",
+    "subtitle": "Welcome back! Here's what's happening with your rentals.",
+    "totalCars": "Total Cars",
+    "bookings": "Bookings",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "recentBookings": "Recent Bookings",
+    "latestCustomerBookings": "Latest customer bookings",
+    "viewAll": "View All",
+    "total": "Total",
+    "status": {
+      "confirmed": "Confirmed",
+      "pending": "Pending",
+      "cancelled": "Cancelled"
+    },
+    "monthlyRevenue": "Monthly Revenue",
+    "revenueCurrentMonth": "Revenue for current month",
+    "totalBookings": "Total bookings"
+  },
+  "addCar": {
+    "pageTitle": "List Your Car",
+    "pageSubtitle": "Fill in the details below to add your car to the platform",
+    "loginRequired": "Please login first",
+
+    "imageUpload": {
+      "title": "Upload Car Image",
+      "description": "A high-quality image helps attract more renters. Make sure the car is well-lit and clearly visible.",
+      "clickToUpload": "Click to upload",
+      "fileFormat": "PNG, JPG up to 10MB",
+      "tips": {
+        "frontView": "Front view recommended",
+        "cleanBackground": "Clean background",
+        "highResolution": "High resolution"
+      }
+    },
+
+    "basicInfo": {
+      "title": "Basic Information",
+      "subtitle": "Enter your car's basic details",
+      "brand": "Brand",
+      "brandPlaceholder": "e.g. BMW, Mercedes, Audi...",
+      "model": "Model",
+      "modelPlaceholder": "e.g. X5, E-Class, M4..."
+    },
+
+    "pricingDetails": {
+      "title": "Pricing & Details",
+      "subtitle": "Set your rental price and car details",
+      "year": "Year",
+      "dailyPrice": "Daily Price",
+      "category": "Category",
+      "selectCategory": "Select a category",
+      "categories": {
+        "economy": "Economy",
+        "compact": "Compact",
+        "midsize": "Midsize",
+        "suv": "SUV",
+        "luxury": "Luxury",
+        "sport": "Sport",
+        "van": "Van"
+      }
+    },
+
+    "specifications": {
+      "title": "Specifications",
+      "subtitle": "Technical details and features",
+      "transmission": "Transmission",
+      "selectTransmission": "Select transmission",
+      "transmissionTypes": {
+        "automatic": "Automatic",
+        "manual": "Manual",
+        "semiAutomatic": "Semi-Automatic"
+      },
+      "fuelType": "Fuel Type",
+      "selectFuelType": "Select fuel type",
+      "fuelTypes": {
+        "gasoline": "Gasoline",
+        "diesel": "Diesel",
+        "hybrid": "Hybrid",
+        "electric": "Electric"
+      },
+      "seatingCapacity": "Seating Capacity",
+      "seatingPlaceholder": "4"
+    },
+
+    "locationDescription": {
+      "title": "Location & Description",
+      "subtitle": "Where is your car and what makes it special?",
+      "location": "Location",
+      "selectLocation": "Select a location",
+      "locations": {
+        "taipei": "Taipei",
+        "newTaipei": "New Taipei",
+        "taoyuan": "Taoyuan",
+        "hsinchu": "Hsinchu",
+        "taichung": "Taichung",
+        "tainan": "Tainan",
+        "kaohsiung": "Kaohsiung",
+        "keelung": "Keelung",
+        "yilan": "Yilan",
+        "hualien": "Hualien"
+      },
+      "description": "Description",
+      "descriptionPlaceholder": "e.g. A luxurious SUV with a spacious interior and a powerful engine. Perfect for family trips or business travel. Features include leather seats, sunroof, and advanced safety systems.",
+      "descriptionTip": "Tip: Highlight unique features, recent maintenance, and why renters should choose your car"
+    },
+
+    "submit": {
+      "button": "List Your Car",
+      "loading": "Listing..."
+    }
+  },
+  "manageCars": {
+    "loading": "Loading your cars...",
+    "pageTitle": "Manage Cars",
+    "pageSubtitle": "View, edit, and manage your vehicle listings",
+
+    "filters": {
+      "all": "All",
+      "available": "Available",
+      "unavailable": "Unavailable"
+    },
+
+    "status": {
+      "available": "Available",
+      "unavailable": "Unavailable"
+    },
+
+    "carCard": {
+      "perDay": "/day",
+      "seats": "seats",
+      "actions": {
+        "hide": "Hide",
+        "show": "Show",
+        "edit": "Edit",
+        "delete": "Delete"
+      }
+    },
+
+    "deleteConfirm": "Are you sure you want to delete this car?",
+
+    "emptyState": {
+      "title": "No cars found",
+      "withFilters": "Try adjusting your search or filters",
+      "noFilters": "Start by adding your first vehicle"
+    }
+  },
+  "ownerBooking": {
+    "pageTitle": "Manage Bookings",
+    "pageSubtitle": "Review and manage customer reservations",
+
+    "filters": {
+      "all": "All",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    },
+
+    "bookingCard": {
+      "bookedBy": "Booked by",
+      "total": "total",
+      "offlinePayment": "Offline Payment",
+      "changeStatus": "Pending - Change Status",
+      "confirmBooking": "Confirm Booking",
+      "cancelBooking": "Cancel Booking"
+    },
+
+    "emptyState": {
+      "title": "No bookings found",
+      "withFilters": "Try adjusting your search or filters",
+      "noFilters": "You don't have any bookings yet"
+    }
+  },
   "loginPage": {}
 }

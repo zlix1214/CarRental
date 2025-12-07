@@ -13,8 +13,10 @@ import {
 import { gs } from "../../style/glassUi.js";
 import { useAppContext } from "../../context/AppContext.jsx";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const { currency, axios, isInitialized, navigate } = useAppContext();
 
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +32,7 @@ const Dashboard = () => {
 
   const dashboardCards = [
     {
-      title: "Total Cars",
+      title: t("dashboard.totalCars"),
       value: data.totalCars,
       icon: assets.carIconColored,
       IconComponent: Car,
@@ -41,7 +43,7 @@ const Dashboard = () => {
       isPositive: true,
     },
     {
-      title: "Bookings",
+      title: t("dashboard.bookings"),
       value: data.totalBookings,
       icon: assets.listIconColored,
       IconComponent: Calendar,
@@ -52,7 +54,7 @@ const Dashboard = () => {
       isPositive: true,
     },
     {
-      title: "Pending",
+      title: t("dashboard.pending"),
       value: data.pendingBookings,
       icon: assets.cautionIconColored,
       IconComponent: Clock,
@@ -63,7 +65,7 @@ const Dashboard = () => {
       isPositive: false,
     },
     {
-      title: "Confirmed",
+      title: t("dashboard.confirmed"),
       value: data.completedBookings,
       icon: assets.listIconColored,
       IconComponent: CheckCircle,
@@ -117,14 +119,14 @@ const Dashboard = () => {
         <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center pointer-events-auto">
           <div className="bg-white p-6 rounded-lg shadow-md w-80 text-center pointer-events-auto">
             <h2 className="text-lg font-semibold mb-4">
-              請先登入才能進入 Dashboard
+              {t("dashboard.loginRequired")}
             </h2>
 
             <button
               onClick={handleConfirm}
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             >
-              確定
+              {t("dashboard.confirm")}
             </button>
           </div>
         </div>
@@ -135,10 +137,10 @@ const Dashboard = () => {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-4xl sm:text-6xl font-bold text-slate-200 mb-2">
-              Dashboard
+              {t("dashboard.title")}
             </h1>
             <p className="text-slate-200 text-sm sm:text-base lg:text-lg">
-              Welcome back! Here's what's happening with your rentals.
+              {t("dashboard.subtitle")}
             </p>
           </div>
 
@@ -180,14 +182,14 @@ const Dashboard = () => {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
-                    Recent Bookings
+                    {t("dashboard.recentBookings")}
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-200 mt-1">
-                    Latest customer bookings
+                    {t("dashboard.latestCustomerBookings")}
                   </p>
                 </div>
                 <button className="px-4 py-2 text-sm font-medium text-slate-200 hover:bg-blue-50 rounded-xl transition-colors">
-                  View All
+                  {t("dashboard.viewAll")}
                 </button>
               </div>
 
@@ -218,7 +220,9 @@ const Dashboard = () => {
                     {/* Price & Status */}
                     <div className="flex items-center gap-3">
                       <div className="text-right">
-                        <p className="text-xs text-slate-200">Total</p>
+                        <p className="text-xs text-slate-200">
+                          {t("dashboard.total")}
+                        </p>
                         <p className="font-bold text-slate-200 text-xs md:text-base lg:text-lg xl:text-2xl">
                           {currency}
                           {booking.price}
@@ -229,7 +233,7 @@ const Dashboard = () => {
                           booking.status
                         )}`}
                       >
-                        {booking.status}
+                        {t(`dashboard.status.${booking.status}`)}
                       </span>
                     </div>
                   </div>
@@ -242,11 +246,8 @@ const Dashboard = () => {
               <div className="relative">
                 {/* Title */}
                 <h2 className="text-lg font-bold text-white mb-1">
-                  Monthly Revenue
+                  {t("dashboard.monthlyRevenue")}
                 </h2>
-                <p className="text-sm text-slate-200 mb-6">
-                  Revenue for current month
-                </p>
 
                 {/* Revenue Amount */}
                 <div className="mb-6">
@@ -261,7 +262,7 @@ const Dashboard = () => {
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
                   <div>
                     <p className="text-sm lg:text-base text-slate-200 mb-1">
-                      Total bookings
+                      {t("dashboard.totalBookings")}
                     </p>
                     <p className="text-lg font-bold text-white">
                       {data.totalBookings}

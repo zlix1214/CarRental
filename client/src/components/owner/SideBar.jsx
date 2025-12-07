@@ -4,9 +4,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import { gs } from "../../style/glassUi";
 import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
   const { user, axios, fetchUser } = useAppContext();
+  const { t } = useTranslation();
   const location = useLocation();
   const [image, setImage] = useState("");
 
@@ -61,7 +63,7 @@ const Sidebar = () => {
           className="absolute top-2 right-0 flex p-2 gap-1 bg-white cursor-pointer"
           onClick={updateImage}
         >
-          Save
+          {t("sidebar.save")}
         </button>
       )}
       <p className="mt-2 text-base max-md:hidden">{user?.name}</p>
@@ -80,7 +82,7 @@ const Sidebar = () => {
               }
               alt="car icon"
             />
-            <span className="max-md:hidden">{link.name}</span>
+            <span className="max-md:hidden">{t(link.name)}</span>
             <div
               className={`${
                 link.path === location.pathname && "bg-primary"

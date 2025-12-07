@@ -5,8 +5,10 @@ import { Search } from "lucide-react";
 import { gs } from "../style/glassUi";
 import { useSearchParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import { useTranslation } from "react-i18next";
 
 const Cars = () => {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const pickupLocation = searchParams.get("pickupLocation");
   const pickupDate = searchParams.get("pickupDate");
@@ -16,8 +18,9 @@ const Cars = () => {
 
   const [input, setInput] = useState("");
   const [showFilters, setShowFilters] = useState(false);
+  const [sortOption, setSortOption] = useState("");
 
-  const filteredCars = cars.filter((car) => {
+  let filteredCars = cars.filter((car) => {
     const keyword = input.toLowerCase();
 
     // 品牌型號搜尋
@@ -43,6 +46,27 @@ const Cars = () => {
     return matchKeyword && matchLocation && matchDate;
   });
 
+  if (sortOption === "lowToHigh") {
+    filteredCars = [...filteredCars].sort(
+      (a, b) => a.pricePerDay - b.pricePerDay
+    );
+  }
+  if (sortOption === "highToLow") {
+    filteredCars = [...filteredCars].sort(
+      (a, b) => b.pricePerDay - a.pricePerDay
+    );
+  }
+  if (sortOption === "newest") {
+    filteredCars = [...filteredCars].sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+  }
+  if (sortOption === "oldest") {
+    filteredCars = [...filteredCars].sort(
+      (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+    );
+  }
+
   return (
     <div className="min-h-screen ">
       {/* Hero Section with Search */}
@@ -50,12 +74,11 @@ const Cars = () => {
         <div className="relative px-4 md:px-8 py-16 md:py-24">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
-              Available Cars
+              {t("carPage.availableCars")}
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-5 sm:mb-10 max-w-2xl mx-auto hidden sm:block">
-              Choose from our premium selection of vehicles for your next
-              journey
+              {t("carPage.choosePremium")}
             </p>
 
             {/* Modern Search Bar */}
@@ -69,23 +92,9 @@ const Cars = () => {
                   onChange={(e) => setInput(e.target.value)}
                   value={input}
                   type="text"
-                  placeholder="Search by make, model, or features..."
+                  placeholder={t("carPage.searchPlaceholder")}
                   className="flex-1 text-slate-900 placeholder:text-slate-400 text-lg outline-none"
                 />
-              </div>
-
-              {/* Quick Filter Chips */}
-              <div className="mt-6 flex flex-wrap justify-center gap-2">
-                {["All Cars", "Sedan", "SUV", "Sports", "Electric"].map(
-                  (filter) => (
-                    <button
-                      key={filter}
-                      className="px-5 sm:py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium transition-all hover:scale-105"
-                    >
-                      {filter}
-                    </button>
-                  )
-                )}
               </div>
             </div>
           </div>
@@ -99,19 +108,23 @@ const Cars = () => {
           <div className="flex items-center justify-between mb-4 md:mb-8">
             <div>
               <p className="text-slate-200 text-sm sm:text-base md:text-lg">
-                Showing{" "}
+                {t("carPage.showing")}{" "}
                 <span className="font-bold text-slate-300">
                   {filteredCars.length}
                 </span>{" "}
-                vehicles
+                {t("carPage.vehicles")}
               </p>
             </div>
 
             <div className="flex items-center gap-3">
-              <select className="px-1 py-1 sm:px-4 sm:py-2 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium outline-none cursor-pointer">
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Newest First</option>
+              <select
+                className="px-1 py-1 sm:px-4 sm:py-2 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium outline-none cursor-pointer"
+                onChange={(e) => setSortOption(e.target.value)}
+              >
+                <option value="lowToHigh">{t("carPage.priceLowToHigh")}</option>
+                <option value="highToLow">{t("carPage.priceHighToLow")}</option>
+                <option value="newest">{t("carPage.newestFirst")}</option>
+                <option value="oldest">{t("carPage.oldestFirst")}</option>
               </select>
             </div>
           </div>

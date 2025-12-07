@@ -3,18 +3,19 @@ import { assets, dummyCarData } from "../../assets/assets";
 import { Eye, EyeOff, Trash2, Edit, Search, Car } from "lucide-react";
 import { useAppContext } from "../../context/AppContext";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 const ManageCars = () => {
-  const { currency, axios, isOwner, token, isInitialized } = useAppContext(); // 加入 isInitialized
+  const { currency, axios, isOwner, token, isInitialized } = useAppContext();
+  const { t } = useTranslation();
 
   const [cars, setCars] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
-  const [isLoading, setIsLoading] = useState(true); // 加入載入狀態
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchOwnerCars = async () => {
     try {
-      // 確保 token 存在才發送請求
       if (!token) {
         console.log("Token not ready yet");
         return;
@@ -56,9 +57,7 @@ const ManageCars = () => {
 
   const deleteCar = async (carId) => {
     try {
-      const confirm = window.confirm(
-        "Are you sure you want to delete this car?"
-      );
+      const confirm = window.confirm(t("manageCars.deleteConfirm"));
 
       if (!confirm) return null;
 
@@ -74,15 +73,13 @@ const ManageCars = () => {
     }
   };
 
-  // 關鍵修改:等待初始化完成且 token 存在後才執行 fetch
   useEffect(() => {
     if (isInitialized && token) {
       fetchOwnerCars();
     } else if (isInitialized && !token) {
-      // 如果初始化完成但沒有 token,停止載入
       setIsLoading(false);
     }
-  }, [isInitialized, token]); // 監聽 isInitialized 和 token
+  }, [isInitialized, token]);
 
   const filteredCars = cars.filter((car) => {
     const matchesFilter =
@@ -93,13 +90,12 @@ const ManageCars = () => {
     return matchesFilter;
   });
 
-  // 載入中狀態
   if (isLoading) {
     return (
       <div className="min-h-screen px-4 pt-10 md:px-10 w-full flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-slate-300 border-t-slate-900 mb-4"></div>
-          <p className="text-slate-600">Loading your cars...</p>
+          <p className="text-slate-600">{t("manageCars.loading")}</p>
         </div>
       </div>
     );
@@ -111,11 +107,9 @@ const ManageCars = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-slate-200 mb-2">
-            Manage Cars
+            {t("manageCars.pageTitle")}
           </h1>
-          <p className="text-slate-200">
-            View, edit, and manage your vehicle listings
-          </p>
+          <p className="text-slate-200">{t("manageCars.pageSubtitle")}</p>
         </div>
 
         {/* Filters & Search Bar */}
@@ -130,7 +124,7 @@ const ManageCars = () => {
                   : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
               }`}
             >
-              All ({cars.length})
+              {t("manageCars.filters.all")} ({cars.length})
             </button>
             <button
               onClick={() => setFilterStatus("available")}
@@ -140,7 +134,8 @@ const ManageCars = () => {
                   : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
               }`}
             >
-              Available ({cars.filter((c) => c.isAvaliable).length})
+              {t("manageCars.filters.available")} (
+              {cars.filter((c) => c.isAvaliable).length})
             </button>
             <button
               onClick={() => setFilterStatus("unavailable")}
@@ -150,7 +145,8 @@ const ManageCars = () => {
                   : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
               }`}
             >
-              Unavailable ({cars.filter((c) => !c.isAvaliable).length})
+              {t("manageCars.filters.unavailable")} (
+              {cars.filter((c) => !c.isAvaliable).length})
             </button>
           </div>
         </div>
@@ -179,7 +175,9 @@ const ManageCars = () => {
                         : "bg-red-500/90 text-white"
                     }`}
                   >
-                    {car.isAvaliable ? "Available" : "Unavailable"}
+                    {car.isAvaliable
+                      ? t("manageCars.status.available")
+                      : t("manageCars.status.unavailable")}
                   </span>
                 </div>
 
@@ -188,7 +186,9 @@ const ManageCars = () => {
                   <p className="text-white font-bold">
                     {currency}
                     {car.pricePerDay}
-                    <span className="text-xs text-white/80 ml-1">/day</span>
+                    <span className="text-xs text-white/80 ml-1">
+                      {t("manageCars.carCard.perDay")}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -208,7 +208,7 @@ const ManageCars = () => {
                       {car.year}
                     </span>
                     <span className="text-xs text-slate-300">
-                      {car.seating_capacity} seats
+                      {car.seating_capacity} {t("manageCars.carCard.seats")}
                     </span>
                     <span className="text-xs text-slate-300">
                       {car.transmission}
@@ -237,12 +237,12 @@ const ManageCars = () => {
                     {car.isAvaliable ? (
                       <>
                         <EyeOff className="w-4 h-4" />
-                        Hide
+                        {t("manageCars.carCard.actions.hide")}
                       </>
                     ) : (
                       <>
                         <Eye className="w-4 h-4" />
-                        Show
+                        {t("manageCars.carCard.actions.show")}
                       </>
                     )}
                   </button>
@@ -270,12 +270,12 @@ const ManageCars = () => {
               <Car className="w-12 h-12 text-slate-400" />
             </div>
             <h3 className="text-xl font-semibold text-slate-200 mb-2">
-              No cars found
+              {t("manageCars.emptyState.title")}
             </h3>
             <p className="text-slate-300">
               {searchTerm || filterStatus !== "all"
-                ? "Try adjusting your search or filters"
-                : "Start by adding your first vehicle"}
+                ? t("manageCars.emptyState.withFilters")
+                : t("manageCars.emptyState.noFilters")}
             </p>
           </div>
         )}

@@ -55,7 +55,17 @@
     "answer4": "前端部署在 Vercel，後端則使用 Render。只要 push 更新，兩邊都會自動重新部署。"
   },
   "footer": {},
-  "carPage": {},
+  "carPage": {
+    "availableCars": "可租車輛",
+    "choosePremium": "從我們的高級車輛中選擇您的下一趟旅程",
+    "searchPlaceholder": "搜尋品牌、車型或特色...",
+    "showing": "顯示",
+    "vehicles": "輛車",
+    "priceLowToHigh": "價格：低到高",
+    "priceHighToLow": "價格：高到低",
+    "newestFirst": "最新車輛",
+    "oldestFirst": "最舊車輛"
+  },
   "carCard": {
     "availableNow": "可立即租用",
     "labelSeats": "座位",
@@ -100,12 +110,245 @@
       "Hualien": "花蓮"
     }
   },
-  "carDetail": {},
-  "userBooking": {},
-  "sidebar": {},
-  "dashboard": {},
-  "addCar": {},
-  "manageCar": {},
-  "manageBooking": {},
+  "carDetail": {
+    "backButton": "返回所有車輛",
+    "aboutThisCar": "關於這輛車",
+    "featuresAmenities": "功能與配備",
+    "protectedRental": "保護租賃",
+    "protectedRentalDesc": "您的預訂受到全面的保險保障。安心駕駛，您已獲得全面保障。",
+
+    "specs": {
+      "seats": "座位"
+    },
+
+    "features": {
+      "360Camera": "360度環景攝影",
+      "bluetooth": "藍牙",
+      "gpsNavigation": "GPS導航",
+      "heatedSeats": "加熱座椅",
+      "rearViewMirror": "後視鏡",
+      "parkingSensors": "停車感應器",
+      "sunroof": "天窗",
+      "premiumSoundSystem": "頂級音響系統"
+    },
+
+    "booking": {
+      "perDay": "每日",
+      "totalEst": "預估總計",
+      "pickupDate": "取車日期",
+      "returnDate": "還車日期",
+      "bookNow": "立即預訂",
+      "noCreditCard": "預訂無需信用卡",
+      "benefits": {
+        "freeCancellation": "取車前24小時免費取消",
+        "instantConfirmation": "即時確認",
+        "support247": "24/7客戶支援"
+      }
+    }
+  },
+  "userBooking": {
+    "myBookings": "我的訂單",
+    "status": {
+      "confirmed": "已確認",
+      "pending": "待確認",
+      "cancelled": "已取消"
+    },
+    "totalPrice": "總價",
+    "rentalPeriod": "租車期間 ({{days}} {{dayText}})",
+    "day": "天",
+    "days": "天",
+    "bookedOn": "訂於 {{date}}",
+    "noBookings": "尚無訂單",
+    "noBookingsDesc": "您的訂單紀錄將顯示於此"
+  },
+  "sidebar": {
+    "save": "儲存",
+    "dashboard": "首頁",
+    "addCar": "新增車輛",
+    "manageCars": "車輛",
+    "manageBookings": "我的預訂"
+  },
+  "dashboard": {
+    "loginRequired": "請先登入才能進入 Dashboard",
+    "confirm": "確定",
+    "title": "控制台",
+    "subtitle": "歡迎回來！以下是您的租車情況。",
+    "totalCars": "車輛總數",
+    "bookings": "訂單數",
+    "pending": "待處理",
+    "confirmed": "已確認",
+    "recentBookings": "最新訂單",
+    "latestCustomerBookings": "客戶最新訂單",
+    "viewAll": "查看全部",
+    "total": "總計",
+    "status": {
+      "confirmed": "已確認",
+      "pending": "待處理",
+      "cancelled": "已取消"
+    },
+    "monthlyRevenue": "本月營收",
+    "revenueCurrentMonth": "本月收入",
+    "totalBookings": "總訂單數"
+  },
+  "addCar": {
+    "pageTitle": "刊登您的車輛",
+    "pageSubtitle": "填寫以下資料，將您的愛車加入平台",
+    "loginRequired": "請先登入",
+
+    "imageUpload": {
+      "title": "上傳車輛照片",
+      "description": "高品質的照片有助於吸引更多租客。請確保車輛光線充足且清晰可見。",
+      "clickToUpload": "點擊上傳",
+      "fileFormat": "PNG、JPG 最大 10MB",
+      "tips": {
+        "frontView": "建議拍攝正面",
+        "cleanBackground": "背景乾淨",
+        "highResolution": "高解析度"
+      }
+    },
+
+    "basicInfo": {
+      "title": "基本資訊",
+      "subtitle": "輸入您的車輛基本資料",
+      "brand": "品牌",
+      "brandPlaceholder": "例如：BMW、Mercedes、Audi...",
+      "model": "型號",
+      "modelPlaceholder": "例如：X5、E-Class、M4..."
+    },
+
+    "pricingDetails": {
+      "title": "定價與細節",
+      "subtitle": "設定您的租金價格和車輛詳細資訊",
+      "year": "年份",
+      "dailyPrice": "每日價格",
+      "category": "類別",
+      "selectCategory": "選擇類別",
+      "categories": {
+        "economy": "經濟型",
+        "compact": "小型車",
+        "midsize": "中型車",
+        "suv": "休旅車",
+        "luxury": "豪華車",
+        "sport": "跑車",
+        "van": "廂型車"
+      }
+    },
+
+    "specifications": {
+      "title": "規格配備",
+      "subtitle": "技術細節與功能",
+      "transmission": "變速系統",
+      "selectTransmission": "選擇變速系統",
+      "transmissionTypes": {
+        "automatic": "自排",
+        "manual": "手排",
+        "semiAutomatic": "半自排"
+      },
+      "fuelType": "燃料類型",
+      "selectFuelType": "選擇燃料類型",
+      "fuelTypes": {
+        "gasoline": "汽油",
+        "diesel": "柴油",
+        "hybrid": "油電混合",
+        "electric": "電動"
+      },
+      "seatingCapacity": "座位數",
+      "seatingPlaceholder": "4"
+    },
+
+    "locationDescription": {
+      "title": "地點與描述",
+      "subtitle": "您的車輛位於何處？有什麼特別之處？",
+      "location": "地點",
+      "selectLocation": "選擇地點",
+      "locations": {
+        "taipei": "台北",
+        "newTaipei": "新北",
+        "taoyuan": "桃園",
+        "hsinchu": "新竹",
+        "taichung": "台中",
+        "tainan": "台南",
+        "kaohsiung": "高雄",
+        "keelung": "基隆",
+        "yilan": "宜蘭",
+        "hualien": "花蓮"
+      },
+      "description": "描述",
+      "descriptionPlaceholder": "例如：豪華休旅車，內部空間寬敞，動力強勁。適合家庭旅遊或商務差旅。配備包括真皮座椅、天窗和先進安全系統。",
+      "descriptionTip": "提示：突顯獨特功能、最近保養紀錄，以及租客應該選擇您的車輛的理由"
+    },
+
+    "submit": {
+      "button": "刊登您的車輛",
+      "loading": "刊登中..."
+    }
+  },
+  "manageCars": {
+    "loading": "載入您的車輛中...",
+    "pageTitle": "管理車輛",
+    "pageSubtitle": "查看、編輯和管理您的車輛列表",
+
+    "filters": {
+      "all": "全部",
+      "available": "可租用",
+      "unavailable": "不可租用"
+    },
+
+    "status": {
+      "available": "可租用",
+      "unavailable": "不可租用"
+    },
+
+    "carCard": {
+      "perDay": "/天",
+      "seats": "座位",
+      "actions": {
+        "hide": "隱藏",
+        "show": "顯示",
+        "edit": "編輯",
+        "delete": "刪除"
+      }
+    },
+
+    "deleteConfirm": "您確定要刪除這輛車嗎？",
+
+    "emptyState": {
+      "title": "找不到車輛",
+      "withFilters": "試著調整您的搜尋或篩選條件",
+      "noFilters": "從新增您的第一輛車開始吧"
+    }
+  },
+  "ownerBooking": {
+    "pageTitle": "管理預訂",
+    "pageSubtitle": "審核和管理客戶預訂",
+
+    "filters": {
+      "all": "全部",
+      "pending": "待處理",
+      "confirmed": "已確認",
+      "cancelled": "已取消"
+    },
+
+    "status": {
+      "pending": "待處理",
+      "confirmed": "已確認",
+      "cancelled": "已取消"
+    },
+
+    "bookingCard": {
+      "bookedBy": "預訂者",
+      "total": "總計",
+      "offlinePayment": "線下付款",
+      "changeStatus": "待處理 - 變更狀態",
+      "confirmBooking": "確認預訂",
+      "cancelBooking": "取消預訂"
+    },
+
+    "emptyState": {
+      "title": "找不到預訂",
+      "withFilters": "試著調整您的搜尋或篩選條件",
+      "noFilters": "您目前還沒有任何預訂"
+    }
+  },
   "loginPage": {}
 }
