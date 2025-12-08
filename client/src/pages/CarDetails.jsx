@@ -96,12 +96,18 @@ const CarDetails = () => {
       icon: <Users className="w-4 h-4 sm:w-5 sm:h-5" />,
       text: `${car.seating_capacity} ${t("carDetail.specs.seats")}`,
     },
-    { icon: <Fuel className="w-5 h-5 sm:w-5 sm:h-5" />, text: car.fuel_type },
+    {
+      icon: <Fuel className="w-5 h-5 sm:w-5 sm:h-5" />,
+      text: t(`carDetail.specs.fuel.${car.fuel_type}`),
+    },
     {
       icon: <Settings className="w-5 h-5 sm:w-5 sm:h-5" />,
-      text: car.transmission,
+      text: t(`carDetail.specs.transmission.${car.transmission}`),
     },
-    { icon: <MapPin className="w-5 h-5 sm:w-5 sm:h-5" />, text: car.location },
+    {
+      icon: <MapPin className="w-5 h-5 sm:w-5 sm:h-5" />,
+      text: t(`carDetail.specs.location.${car.location}`),
+    },
   ];
 
   return (
@@ -138,7 +144,7 @@ const CarDetails = () => {
                   </h1>
                   <div className="flex items-center gap-3">
                     <span className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">
-                      {car.category}
+                      {t(`carDetail.category.${car.category}`)}
                     </span>
                     <span className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold">
                       {car.year}

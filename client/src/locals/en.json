@@ -1,4 +1,39 @@
 {
+  "common": {
+    "seats": "seats",
+    "categories": {
+      "Economy": "Economy",
+      "Compact": "Compact",
+      "Midsize": "Midsize",
+      "SUV": "SUV",
+      "Luxury": "Luxury",
+      "Sport": "Sport",
+      "Van": "Van"
+    },
+    "fuel": {
+      "Gasoline": "Gasoline",
+      "Diesel": "Diesel",
+      "Electric": "Electric",
+      "Hybrid": "Hybrid"
+    },
+    "transmission": {
+      "Automatic": "Automatic",
+      "Manual": "Manual",
+      "Semi-Automatic": "Semi-Automatic"
+    },
+    "location": {
+      "Taipei": "台北",
+      "New Taipei": "新北",
+      "Taoyuan": "桃園",
+      "Hsinchu": "新竹",
+      "Taichung": "台中",
+      "Tainan": "台南",
+      "Kaohsiung": "高雄",
+      "Keelung": "Keelung",
+      "Yilan": "Yilan",
+      "Hualien": "Hualien"
+    }
+  },
   "navbar": {
     "home": "Home",
     "car": "Cars",
@@ -117,10 +152,41 @@
     "protectedRental": "Protected Rental",
     "protectedRentalDesc": "Your booking is protected with comprehensive insurance coverage. Drive with peace of mind knowing you're fully covered.",
 
-    "specs": {
-      "seats": "Seats"
+    "category": {
+      "Economy": "Economy",
+      "Compact": "Compact",
+      "Midsize": "Midsize",
+      "SUV": "SUV",
+      "Luxury": "Luxury",
+      "Sport": "Sport",
+      "Van": "Van"
     },
-
+    "specs": {
+      "seats": "seats",
+      "fuel": {
+        "Gasoline": "Gasoline",
+        "Diesel": "Diesel",
+        "Electric": "Electric",
+        "Hybrid": "Hybrid"
+      },
+      "transmission": {
+        "Automatic": "Automatic",
+        "Manual": "Manual",
+        "Semi-Automatic": "Semi-Automatic"
+      },
+      "location": {
+        "Taipei": "Taipei",
+        "Taichung": "Taichung",
+        "New Taipei": "New Taipei",
+        "Kaohsiung": "Kaohsiung",
+        "Taoyuan": "Taoyuan",
+        "Hsinchu": "Hsinchu",
+        "Tainan": "Tainan",
+        "Keelung": "Keelung",
+        "Yilan": "Yilan",
+        "Hualien": "Hualien"
+      }
+    },
     "features": {
       "360Camera": "360 Camera",
       "bluetooth": "Bluetooth",

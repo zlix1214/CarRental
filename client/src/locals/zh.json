@@ -1,4 +1,39 @@
 {
+  "common": {
+    "seats": "人座",
+    "categories": {
+      "Economy": "經濟型",
+      "Compact": "小型車",
+      "Midsize": "中型車",
+      "SUV": "休旅車",
+      "Luxury": "豪華車",
+      "Sport": "跑車/超跑",
+      "Van": "廂型車"
+    },
+    "fuel": {
+      "Gasoline": "汽油",
+      "Diesel": "柴油",
+      "Electric": "電動",
+      "Hybrid": "油電混合"
+    },
+    "transmission": {
+      "Automatic": "自排",
+      "Manual": "手排",
+      "Semi-Automatic": "半自排"
+    },
+    "location": {
+      "Taipei": "台北",
+      "New Taipei": "新北",
+      "Taoyuan": "桃園",
+      "Hsinchu": "新竹",
+      "Taichung": "台中",
+      "Tainan": "台南",
+      "Kaohsiung": "高雄",
+      "Keelung": "基隆",
+      "Yilan": "宜蘭",
+      "Hualien": "花蓮"
+    }
+  },
   "navbar": {
     "home": "主頁",
     "car": "車款",
@@ -117,8 +152,33 @@
     "protectedRental": "保護租賃",
     "protectedRentalDesc": "您的預訂受到全面的保險保障。安心駕駛，您已獲得全面保障。",
 
+    "category": {
+      "Economy": "經濟型",
+      "Compact": "小型車",
+      "Midsize": "中型車",
+      "SUV": "休旅車",
+      "Luxury": "豪華車",
+      "Van": "廂型車",
+      "Sport": "跑車/超跑"
+    },
     "specs": {
-      "seats": "座位"
+      "seats": "人座",
+      "fuel": {
+        "Gasoline": "汽油",
+        "Diesel": "柴油",
+        "Electric": "電動",
+        "Hybrid": "油電混合"
+      },
+      "transmission": {
+        "Automatic": "自排",
+        "Manual": "手排",
+        "Semi-Automatic": "半自排"
+      },
+      "location": {
+        "Taipei": "台北",
+        "Taichung": "台中",
+        "Kaohsiung": "高雄"
+      }
     },
 
     "features": {
