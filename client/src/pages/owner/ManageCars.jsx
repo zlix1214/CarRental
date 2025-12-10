@@ -202,7 +202,7 @@ const ManageCars = () => {
                   </h3>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="px-2 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-medium">
-                      {car.category}
+                      {t(`common.categories.${car.category}`)}
                     </span>
                     <span className="px-2 py-1 bg-blue-50 text-blue-600 rounded-lg text-xs font-medium">
                       {car.year}
@@ -211,7 +211,7 @@ const ManageCars = () => {
                       {car.seating_capacity} {t("manageCars.carCard.seats")}
                     </span>
                     <span className="text-xs text-slate-300">
-                      {car.transmission}
+                      {t(`common.transmission.${car.transmission}`)}
                     </span>
                   </div>
                 </div>
@@ -220,7 +220,7 @@ const ManageCars = () => {
                 <div className="mb-4 flex items-center gap-3 text-sm text-slate-300">
                   <div className="flex items-center gap-1">
                     <Car className="w-4 h-4" />
-                    <span>{car.fuel_type}</span>
+                    <span>{t(`common.fuel.${car.fuel_type}`)}</span>
                   </div>
                 </div>
 
