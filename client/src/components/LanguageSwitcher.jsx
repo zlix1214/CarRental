@@ -8,7 +8,10 @@ const LanguageSwitcher = () => {
     i18n.changeLanguage(newLang);
   };
   return (
-    <button onClick={switchLanguage} className="px-3 py-1 border rounded">
+    <button
+      onClick={switchLanguage}
+      className="px-3 py-1 rounded cursor-pointer"
+    >
       {i18n.language === "zh" ? "EN" : "中文"}
     </button>
   );

@@ -15,9 +15,7 @@ const FeaturedSection = () => {
       <h1 className="text-center text-white text-5xl md:text-7xl">
         {t("featuredSection.title")}
       </h1>
-      <div
-        className={`${gs.glassCard} grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 md:mt-12 lg:mt-16 p-5 w-full`}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 md:mt-12 lg:mt-16 p-5 w-full">
         {cars.slice(0, 6).map((car) => (
           <CarCard key={car._id} car={car} />
         ))}
@@ -28,7 +26,7 @@ const FeaturedSection = () => {
           navigate("/cars");
           scrollTo(0, 0);
         }}
-        className={`bg-white/10 p-3 md:p-5 mt-18 w-auto text-sm sm:text-base md:text-xl lg:text-2xl text-white cursor-pointer shadow-2xl rounded-2xl`}
+        className="bg-white/10 px-6 py-3 mt-18 w-auto text-sm sm:text-base md:text-xl lg:text-2xl text-white cursor-pointer shadow-2xl rounded-2xl hover:bg-white/30  transition-all duration-300"
       >
         {t("featuredSection.expandButton")}
       </button>

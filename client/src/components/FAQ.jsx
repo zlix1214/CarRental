@@ -52,7 +52,7 @@ const FAQ = () => {
 
         <button
           onClick={toggleExpandAll}
-          className={`bg-white/10 px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-xl shadow-black/50 cursor-pointer`}
+          className="bg-white/10 px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-xl shadow-black/50 cursor-pointer hover:bg-white/30  transition-all duration-300"
         >
           {expandAll ? `${t("faq.button2")}` : `${t("faq.button1")}`}
         </button>
@@ -81,7 +81,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
     <div className={`${!isLast ? "" : "rounded-b-2xl"}`}>
       {/* questions */}
       <button
-        className={`w-full py-5 px-6 flex justify-between items-center text-left shadow-xl shadow-black/30 `}
+        className="w-full py-5 px-6 flex justify-between items-center text-left shadow-xl shadow-black/30 cursor-pointer"
         onClick={onClick}
       >
         <span className="text-sm sm:text-base lg:text-lg font-medium text-gray-200 pr-4">
@@ -89,9 +89,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
         </span>
 
         {/* expand/collapse */}
-        <div
-          className={`${gs.glass} shrink-0 w-8 h-8 flex items-center justify-center rounded-full`}
-        >
+        <div className="cursor-pointer shrink-0 w-8 h-8 flex items-center justify-center rounded-full">
           <span className="text-gray-200 text-xl font-bold">
             {isOpen ? "−" : "+"}
           </span>

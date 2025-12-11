@@ -7,6 +7,11 @@
 body {
   background: #000000;
 }
+
+/* input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+} */
 /* 
   
   background: linear-gradient(135deg, #d1d1d1, #242424, #2e2e2e, #cccccc);

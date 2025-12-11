@@ -3,6 +3,7 @@ import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { gs } from "../style/glassUi";
 import { useTranslation } from "react-i18next";
+import { Users, Fuel, Car, MapPin } from "lucide-react";
 
 const CarCard = ({ car }) => {
   const { t } = useTranslation();
@@ -11,22 +12,22 @@ const CarCard = ({ car }) => {
 
   const specs = [
     {
-      icon: assets.users_icon,
+      icon: Users,
       value: car.seating_capacity,
       label: t("carCard.labelSeats"),
     },
     {
-      icon: assets.fuel_icon,
+      icon: Fuel,
       value: t(`carCard.fuel.${car.fuel_type}`),
       label: t("carCard.labelFuel"),
     },
     {
-      icon: assets.car_icon,
+      icon: Car,
       value: t(`carCard.transmission.${car.transmission}`),
       label: t("carCard.labelType"),
     },
     {
-      icon: assets.location_icon,
+      icon: MapPin,
       value: t(`carCard.location.${car.location}`),
       label: t("carCard.labelLocation"),
     },
@@ -51,15 +52,15 @@ const CarCard = ({ car }) => {
 
         {/* Floating Tags */}
         <div className="absolute top-4 left-4 right-4 flex lg:flex-col xl:flex-row gap-2 justify-between items-start">
-          <div className="bg-white/80 sm:bg-white px-4 py-1 sm:py-2 rounded-full shadow-xl">
-            <span className="text-black text-xs font-semibold flex items-center gap-2">
-              <span className="w-2 h-2 bg-black rounded-full animate-pulse" />
+          <div className="bg-black/80 px-4 py-1 sm:py-2 rounded-full shadow-xl">
+            <span className="text-neutral-300 text-xs font-semibold flex items-center gap-2">
+              <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
               {t("carCard.availableNow")}
             </span>
           </div>
 
-          <div className="bg-white/80 sm:bg-white px-5 sm:py-1 rounded-2xl shadow-xl flex-col items-center gap-2">
-            <div className="text-xs sm:text-base font-semibold text-black py-1 sm:py-0">
+          <div className="bg-black/80  px-5 sm:py-1 rounded-2xl shadow-xl flex-col items-center gap-2">
+            <div className="text-xs sm:text-base font-semibold text-neutral-300 py-1 sm:py-0">
               {currency} {car.pricePerDay}
             </div>
           </div>
@@ -69,17 +70,17 @@ const CarCard = ({ car }) => {
       </div>
 
       {/* Info Section */}
-      <div className="relative bg-black p-6 space-y-4">
+      <div className="relative bg-black/30 p-6 space-y-4">
         <div>
           <h3 className="text-2xl font-bold text-white mb-2">
             {car.brand} <span className="text-white-400">{car.model}</span>
           </h3>
 
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">
+            <span className="px-3 py-1 bg-gray-100/20 text-neutral-300 rounded-full text-xs font-medium">
               {t(`carCard.category.${car.category}`)}
             </span>
-            <span className="px-3 py-1 bg-gray-50 text-gray-700 rounded-full text-xs font-semibold">
+            <span className="px-3 py-1 bg-gray-100/20 text-neutral-300 rounded-full text-xs font-semibold">
               {car.year}
             </span>
           </div>
@@ -87,17 +88,23 @@ const CarCard = ({ car }) => {
 
         {/* Specs */}
         <div className="grid grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-2">
-          {specs.map((spec, index) => (
-            <div
-              key={index}
-              className={`${gs.glassDark} flex items-center lg:justify-between p-3 rounded-xl`}
-            >
-              <img src={spec.icon} alt="" className="h-5 w-5 mb-1" />
-              <div className="text-xs md:text-sm font-semibold text-slate-200 truncate w-full text-center">
-                {spec.value}
+          {specs.map((spec, index) => {
+            const Icon = spec.icon;
+            return (
+              <div
+                key={index}
+                className="flex items-center lg:justify-between p-3 rounded-xl"
+              >
+                <Icon
+                  className="w-5 h-5 mr-1 text-neutral-100"
+                  strokeWidth={1.5}
+                />
+                <div className="text-xs md:text-sm font-semibold text-slate-200 truncate w-full text-center">
+                  {spec.value}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

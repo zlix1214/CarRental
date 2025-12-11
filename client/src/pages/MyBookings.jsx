@@ -79,7 +79,7 @@ const MyBookings = () => {
             return (
               <div
                 key={index}
-                className={` bg-gradient-to-br from-[#2a2a2a] to-[#df0a0a] shadow-2xl rounded-3xl overflow-hidden group hover:scale-[1.01] transition-all duration-300 ${
+                className={`shadow-lg shadow-white/20 rounded-3xl overflow-hidden group hover:scale-[1.01] transition-all duration-300 ${
                   isEven ? "md:mr-12" : "md:ml-12"
                 }`}
               >
@@ -99,15 +99,32 @@ const MyBookings = () => {
                       {/* 狀態標籤 */}
                       <div className="absolute top-6 right-6">
                         <div
-                          className={`bg-white px-5 py-2 rounded-full text-black font-bold text-sm shadow-lg .glow}`}
+                          className={`
+                            px-5 py-2 rounded-full
+                            ${
+                              booking.status === "pending"
+                                ? "bg-orange-500"
+                                : ""
+                            }
+                            ${
+                              booking.status === "confirmed"
+                                ? "bg-green-500"
+                                : ""
+                            }
+                            ${
+                              booking.status === "cancelled" ? "bg-red-600" : ""
+                            }
+                          `}
                         >
-                          {t(`userBooking.status.${booking.status}`)}
+                          <p className="text-white font-bold text-sm">
+                            {t(`userBooking.status.${booking.status}`)}
+                          </p>
                         </div>
                       </div>
 
                       {/* 價格標籤 */}
                       <div className="absolute bottom-6 left-6">
-                        <div className="bg-black/50 backdrop-blur-sm px-3 sm:px-5 py-1 sm:py-3 rounded-2xl border border-white/20">
+                        <div className="bg-black/30 backdrop-blur-sm px-3 sm:px-5 py-1 sm:py-3 rounded-2xl border border-white/20">
                           <p className="text-gray-300 text-xs mb-1">
                             {t("userBooking.totalPrice")}
                           </p>
@@ -149,10 +166,10 @@ const MyBookings = () => {
                     </div>
 
                     {/* 租車時間 */}
-                    <div className={`${gs.glassCard} p-5 rounded-2xl mb-4`}>
+                    <div className="p-5 rounded-2xl mb-4">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
-                          <Calendar className="w-6 h-6 text-black" />
+                        <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                          <Calendar className="w-6 h-6 text-white" />
                         </div>
                         <div className="flex-1">
                           <p className="text-gray-200 text-sm mb-2">

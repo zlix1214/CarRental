@@ -29,7 +29,6 @@ export const gs = {
     backdrop-blur-md
     bg-white/20
     hover:bg-white/30
-    border border-white/25
     shadow-[0_0_15px_rgba(255,255,255,0.12)]
     rounded-xl
     transition-all duration-300
@@ -40,7 +39,6 @@ export const gs = {
   glassInput: `
     backdrop-blur-md
     bg-white/12
-    border border-white/25
     rounded-xl
     px-4 py-3
     focus:bg-white/20

@@ -2,9 +2,11 @@ import React from "react";
 import { gs } from "../style/glassUi";
 import { assets } from "../assets/assets.js";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col gap-12 lg:flex-row  md:justify-center items-center px-8 mt-80">
@@ -16,7 +18,11 @@ const Banner = () => {
           {t("banner.content")}
         </p>
         <button
-          className={`bg-white/10 px-6 py-3 text-basic mt-4 w-1/2 shadow-2xl rounded-2xl`}
+          className="bg-white/10 px-6 py-3 text-basic mt-8 shadow-2xl rounded-2xl cursor-pointer hover:bg-white/30  transition-all duration-300"
+          onClick={() => {
+            navigate("/owner");
+            scrollTo(0, 0);
+          }}
         >
           {t("banner.button")}
         </button>

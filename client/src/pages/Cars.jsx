@@ -83,9 +83,9 @@ const Cars = () => {
 
             {/* Modern Search Bar */}
             <div className="max-w-3xl mx-auto">
-              <div className="flex items-center bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="flex items-center bg-white/10 rounded-2xl shadow-2xl overflow-hidden">
                 <div className="pl-6 pr-4 py-2 sm:py-3 md:py-4 lg:py-5">
-                  <Search className="w-6 h-6 text-slate-400" />
+                  <Search className="w-6 h-6 text-slate-100" />
                 </div>
 
                 <input
@@ -93,7 +93,7 @@ const Cars = () => {
                   value={input}
                   type="text"
                   placeholder={t("carPage.searchPlaceholder")}
-                  className="flex-1 text-slate-900 placeholder:text-slate-400 text-lg outline-none"
+                  className="flex-1 text-white placeholder:text-neutral-300 text-lg outline-none"
                 />
               </div>
             </div>
@@ -102,7 +102,7 @@ const Cars = () => {
       </div>
 
       {/* Cars Grid Section */}
-      <div className={`${gs.glassCard} w-fit mx-auto p-4 md:p-8 lg:p-16 pb-16`}>
+      <div className="w-fit mx-auto p-4 md:p-8 lg:p-16 pb-16">
         <div className="max-w-7xl mx-auto">
           {/* Results Header */}
           <div className="flex items-center justify-between mb-4 md:mb-8">
@@ -116,17 +116,23 @@ const Cars = () => {
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
-              <select
-                className="px-1 py-1 sm:px-4 sm:py-2 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium outline-none cursor-pointer"
-                onChange={(e) => setSortOption(e.target.value)}
-              >
-                <option value="lowToHigh">{t("carPage.priceLowToHigh")}</option>
-                <option value="highToLow">{t("carPage.priceHighToLow")}</option>
-                <option value="newest">{t("carPage.newestFirst")}</option>
-                <option value="oldest">{t("carPage.oldestFirst")}</option>
-              </select>
-            </div>
+            {filteredCars.length > 0 && (
+              <div className="flex items-center gap-3">
+                <select
+                  className="px-1 py-1 sm:px-4 sm:py-2 border-white rounded-xl text-neutral-300 font-medium outline-none cursor-pointer"
+                  onChange={(e) => setSortOption(e.target.value)}
+                >
+                  <option value="lowToHigh">
+                    {t("carPage.priceLowToHigh")}
+                  </option>
+                  <option value="highToLow">
+                    {t("carPage.priceHighToLow")}
+                  </option>
+                  <option value="newest">{t("carPage.newestFirst")}</option>
+                  <option value="oldest">{t("carPage.oldestFirst")}</option>
+                </select>
+              </div>
+            )}
           </div>
 
           {/* Cars Grid */}

@@ -116,7 +116,7 @@ const CarDetails = () => {
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 mb-4 text-slate-200 hover:text-slate-900 transition-colors group"
+          className="flex items-center gap-2 mb-4 text-slate-200 cursor-pointer"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
           <span className="font-medium">{t("carDetail.backButton")}</span>
@@ -135,7 +135,7 @@ const CarDetails = () => {
             </div>
 
             {/* Car Name & Category */}
-            <div className="rounded-2xl p-6 shadow-lg shadow-slate-800">
+            <div className="rounded-2xl p-6 shadow-lg shadow-white/20">
               <div className="flex items-start justify-between">
                 <div>
                   <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-200 mb-2">
@@ -143,10 +143,10 @@ const CarDetails = () => {
                     <span className="text-slate-300">{car.model}</span>
                   </h1>
                   <div className="flex items-center gap-3">
-                    <span className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">
+                    <span className="px-3 py-1.5 bg-white/20 text-neutral-300 rounded-full text-xs font-medium">
                       {t(`carDetail.category.${car.category}`)}
                     </span>
-                    <span className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-semibold">
+                    <span className="px-3 py-1.5 bg-white/20 text-neutral-300 rounded-full text-xs font-semibold">
                       {car.year}
                     </span>
                   </div>
@@ -158,7 +158,7 @@ const CarDetails = () => {
                 {specs.map(({ icon, text }, idx) => (
                   <div
                     key={idx}
-                    className="flex flex-col items-center p-2 sm:p-3 rounded-xl transition-colors bg-black shadow-lg shadow-black/60"
+                    className="flex flex-col items-center p-2 sm:p-3 rounded-xl transition-colors bg-black shadow shadow-white/20"
                   >
                     <div className="text-slate-200 mb-2">{icon}</div>
                     <span className="text-sm font-medium text-slate-200">
@@ -170,7 +170,7 @@ const CarDetails = () => {
             </div>
 
             {/* Description */}
-            <div className="rounded-2xl p-6 shadow-lg shadow-black/60">
+            <div className="rounded-2xl p-6 shadow-lg shadow-white/20">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-2">
                 {t("carDetail.aboutThisCar")}
               </h2>
@@ -180,7 +180,7 @@ const CarDetails = () => {
             </div>
 
             {/* Features */}
-            <div className="rounded-2xl p-6 shadow-lg shadow-black/60">
+            <div className="rounded-2xl p-6 shadow-lg shadow-white/20">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-4">
                 {t("carDetail.featuresAmenities")}
               </h2>
@@ -188,7 +188,7 @@ const CarDetails = () => {
                 {features.map((feature, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 p-2 rounded-xl shadow-lg shadow-black/40"
+                    className="flex items-center gap-3 p-2 rounded-xl shadow-lg shadow-black/20"
                   >
                     <div className="flex-shrink-0 w-6 h-6 bg-black rounded-full flex items-center justify-center">
                       <Check className="w-4 h-4 text-white" />
@@ -202,10 +202,10 @@ const CarDetails = () => {
             </div>
 
             {/* Insurance Info */}
-            <div className="bg-black shadow-lg shadow-black/60 rounded-2xl p-6">
+            <div className="bg-black border border-emerald-400 rounded-2xl p-6">
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-red-600 rounded-xl">
-                  <Shield className="w-6 h-6 text-white" />
+                <div className="p-3 bg-emerald-300 rounded-xl">
+                  <Shield className="w-6 h-6 text-black" />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-slate-200 mb-2">
@@ -221,7 +221,7 @@ const CarDetails = () => {
 
           {/* Right: Booking Form (1/3 width - Sticky) */}
           <div className="lg:sticky lg:top-24 h-fit">
-            <div className="bg-gradient-to-br from-[#2a2a2a] to-[#df0a0a] rounded-2xl p-6 shadow-lg shadow-black/60">
+            <div className="rounded-2xl p-6 shadow-lg shadow-white/20">
               {/* Price Header */}
               <div className="mb-6 pb-6 border-b border-slate-900">
                 <div className="flex items-baseline justify-between">
@@ -262,7 +262,9 @@ const CarDetails = () => {
                     id="pickup-date"
                     value={pickupDate}
                     onChange={(e) => setPickupDate(e.target.value)}
-                    className="w-full px-4 py-3 shadow-lg shadow-black/40 bg-red-500/30 text-slate-200 rounded-xl outline-none focus:border-blue-500 transition-colors"
+                    onClick={(e) => e.target.showPicker?.()}
+                    className="w-full px-4 py-3 shadow-lg shadow-black/40 bg-black/30 text-slate-200 rounded-xl outline-none cursor-pointer"
+                    onMouseDown={(e) => e.preventDefault()}
                     required
                     min={new Date().toISOString().split("T")[0]}
                   />
@@ -281,7 +283,9 @@ const CarDetails = () => {
                     id="return-date"
                     value={returnDate}
                     onChange={(e) => setReturnDate(e.target.value)}
-                    className="w-full px-4 py-3 bg-red-500/30 shadow-lg shadow-black/40 rounded-xl outline-none focus:border-blue-500 transition-colors text-slate-200"
+                    onClick={(e) => e.target.showPicker?.()}
+                    className="w-full px-4 py-3 bg-black/30 shadow-lg shadow-black/40 rounded-xl outline-none text-slate-200 cursor-pointer"
+                    onMouseDown={(e) => e.preventDefault()}
                     required
                     min={new Date().toISOString().split("T")[0]}
                   />
@@ -291,7 +295,7 @@ const CarDetails = () => {
               {/* Book Button */}
               <button
                 onClick={handleSubmit}
-                className="w-full bg-red-500/60 text-white font-bold shadow-lg shadow-black/80 py-4 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all mb-4"
+                className="w-full bg-emerald-500 text-white font-bold shadow-lg shadow-black/80 py-4 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all mb-4"
               >
                 {t("carDetail.booking.bookNow")}
               </button>

@@ -73,7 +73,7 @@ const Sidebar = () => {
           <NavLink
             key={index}
             to={link.path}
-            className={`relative flex items-center gap-2 w-full py-3 pl-3 first:mt-6 bg-white/10 shadow-2xl rounded-xl text-white 
+            className={`relative flex items-center gap-2 w-full py-3 px-1 first:mt-6 md:bg-white/10 shadow-2xl rounded-xl text-white 
             `}
           >
             <img
