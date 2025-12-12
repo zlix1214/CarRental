@@ -232,7 +232,11 @@
     "dashboard": "Dashboard",
     "addCar": "Add Car",
     "manageCars": "Manage Cars",
-    "manageBookings": "Manage Bookings"
+    "manageBookings": "Manage Bookings",
+    "confirmChangeImage":"Confirm Image Change",
+    "previewNewImage":"Preview new image:",
+    "cancel":"Cancel",
+    "confirmUpdate":"Confirm Update"
   },
   "dashboard": {
     "loginRequired": "Please log in to access the Dashboard",

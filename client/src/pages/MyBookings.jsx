@@ -60,7 +60,7 @@ const MyBookings = () => {
   return (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-16 max-w-7xl mx-auto">
       {/* header */}
-      <div className="mb-12 text-center">
+      <div className="my-8 text-center">
         <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold text-white mb-3 tracking-tight">
           {t("userBooking.myBookings")}
         </h1>
@@ -79,7 +79,7 @@ const MyBookings = () => {
             return (
               <div
                 key={index}
-                className={`shadow-lg shadow-white/20 rounded-3xl overflow-hidden group hover:scale-[1.01] transition-all duration-300 ${
+                className={`bg-white/5 shadow-lg shadow-white/20 rounded-3xl overflow-hidden group hover:scale-[1.01] transition-all duration-300 ${
                   isEven ? "md:mr-12" : "md:ml-12"
                 }`}
               >
@@ -212,8 +212,8 @@ const MyBookings = () => {
 
       {/* 空狀態 */}
       {bookings.length === 0 && (
-        <div className={`${gs.glass} p-16 rounded-3xl text-center`}>
-          <div className="w-24 h-24 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full mx-auto mb-6 flex items-center justify-center opacity-50">
+        <div className="p-16 rounded-3xl text-center">
+          <div className="w-24 h-24 rounded-full mx-auto flex items-center justify-center opacity-50">
             <Calendar className="w-12 h-12 text-white" />
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">

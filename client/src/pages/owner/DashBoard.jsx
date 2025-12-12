@@ -98,19 +98,19 @@ const Dashboard = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case "Confirmed":
-        return "bg-emerald-100 text-emerald-700 border-emerald-200";
-      case "Pending":
-        return "bg-orange-100 text-orange-700 border-orange-200";
-      case "Completed":
-        return "bg-blue-100 text-blue-700 border-blue-200";
+      case "confirmed":
+        return "bg-emerald-500 text-white";
+      case "pending":
+        return "bg-orange-500 text-white";
+      case "cancelled":
+        return "bg-red-500 text-white";
       default:
-        return "bg-slate-100 text-slate-700 border-slate-200";
+        return "bg-orange-400 text-white";
     }
   };
   const handleConfirm = () => {
     setShowModal(false);
-    navigate("/"); // 回首頁
+    navigate("/");
   };
 
   return (
@@ -151,7 +151,7 @@ const Dashboard = () => {
               return (
                 <div
                   key={index}
-                  className={`${gs.glassCard} group relative overflow-hidden  rounded-2xl p-2 sm:p-4 lg:p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}
+                  className="group relative overflow-hidden  rounded-2xl p-2 sm:p-4 lg:p-6 shadow shadow-white/50 transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="relative flex items-center justify-between">
                     {/* Icon */}
@@ -178,7 +178,9 @@ const Dashboard = () => {
 
           <div className="grid lg:grid-cols-3 gap-6 mb-8">
             {/* Recent Bookings */}
-            <div className={`lg:col-span-2 rounded-2xl p-6 shadow-2xl`}>
+            <div
+              className={`lg:col-span-2 rounded-2xl p-6 shadow-md shadow-white/40`}
+            >
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-base sm:text-xl md:text-2xl font-bold text-slate-200">
@@ -188,7 +190,10 @@ const Dashboard = () => {
                     {t("dashboard.latestCustomerBookings")}
                   </p>
                 </div>
-                <button className="px-4 py-2 text-sm font-medium text-slate-200 hover:bg-blue-50 rounded-xl transition-colors">
+                <button
+                  className="px-4 py-2 text-sm font-medium text-slate-200 cursor-pointer rounded-xl transition-colors"
+                  onClick={() => navigate("/owner/manage-bookings")}
+                >
                   {t("dashboard.viewAll")}
                 </button>
               </div>
@@ -201,7 +206,7 @@ const Dashboard = () => {
                   >
                     <div className="flex items-center gap-4">
                       {/* Car Icon */}
-                      <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-xl group-hover:scale-110 transition-transform">
+                      <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-xl">
                         <Car className="w-6 h-6 text-white" />
                       </div>
 
@@ -218,7 +223,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* Price & Status */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-4">
                       <div className="text-right">
                         <p className="text-xs text-slate-200">
                           {t("dashboard.total")}
@@ -229,7 +234,7 @@ const Dashboard = () => {
                         </p>
                       </div>
                       <span
-                        className={`px-1.5 sm:px-3 py-1.5 rounded-full text-xs font-semibold border ${getStatusColor(
+                        className={`px-1.5 sm:px-3 py-1.5 rounded-full text-xs font-semibold ${getStatusColor(
                           booking.status
                         )}`}
                       >
@@ -242,7 +247,7 @@ const Dashboard = () => {
             </div>
 
             {/* Monthly Revenue Card */}
-            <div className="relative overflow-hidden rounded-2xl p-6 shadow-2xl bg-gradient-to-br from-[#1a1a1a] to-[#7a0101]">
+            <div className="relative overflow-hidden rounded-2xl p-6 bg-white/5 shadow-md shadow-white/40">
               <div className="relative">
                 {/* Title */}
                 <h2 className="text-lg font-bold text-white mb-1">

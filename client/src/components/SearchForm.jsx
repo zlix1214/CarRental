@@ -26,7 +26,7 @@ const SearchForm = () => {
   return (
     <form
       onSubmit={handleSearch}
-      className={`bg-white/10 flex flex-col md:flex-row gap-4 p-6 md:w-auto shadow-xl rounded-2xl shadow-black/60`}
+      className={`bg-white/5 flex flex-col md:flex-row gap-4 p-6 md:w-auto shadow rounded-2xl shadow-white/40`}
     >
       {/* Pickup Location */}
       <div className="flex flex-col gap-1 flex-1">

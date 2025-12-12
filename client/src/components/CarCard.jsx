@@ -66,11 +66,11 @@ const CarCard = ({ car }) => {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent" />
+        {/* <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black to-transparent" /> */}
       </div>
 
       {/* Info Section */}
-      <div className="relative bg-black/30 p-6 space-y-4">
+      <div className="relative bg-white/5 p-6 space-y-4">
         <div>
           <h3 className="text-2xl font-bold text-white mb-2">
             {car.brand} <span className="text-white-400">{car.model}</span>
@@ -93,7 +93,7 @@ const CarCard = ({ car }) => {
             return (
               <div
                 key={index}
-                className="flex items-center lg:justify-between p-3 rounded-xl"
+                className="flex items-center lg:justify-between p-3 rounded-xl bg-white/10"
               >
                 <Icon
                   className="w-5 h-5 mr-1 text-neutral-100"

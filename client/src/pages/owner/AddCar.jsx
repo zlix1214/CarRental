@@ -89,7 +89,7 @@ const AddCar = () => {
 
         <div className="space-y-8 grid-cols-1 md">
           {/* Image Upload Section - Hero Style */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1a1a1a] to-[#7a0101] p-8 md:p-12">
+          <div className="relative overflow-hidden rounded-3xl p-8 md:p-12">
             <div className="relative flex flex-col lg:flex-row items-center gap-8">
               <label
                 htmlFor="car-image"
@@ -115,7 +115,7 @@ const AddCar = () => {
                       </button>
                     </div>
                   ) : (
-                    <div className="w-45 h-30 sm:w-64 sm:h-40 flex flex-col items-center justify-center bg-white/5 backdrop-blur-sm border-2 border-dashed border-white/20 rounded-2xl group-hover:border-white/40 transition-all">
+                    <div className="w-45 h-30 sm:w-64 sm:h-40 flex flex-col items-center justify-center backdrop-blur-sm border-2 border-dashed border-white/20 rounded-2xl group-hover:border-white/40 transition-all">
                       <Upload className="w-8 sm:w-12 h-8 sm:h-12 text-white/60 mb-3 group-hover:text-white/80 transition-colors" />
                       <p className="text-white/80 text-xs sm:text-sm font-medium">
                         {t("addCar.imageUpload.clickToUpload")}
@@ -143,13 +143,13 @@ const AddCar = () => {
                   {t("addCar.imageUpload.description")}
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-                  <span className="hidden sm:block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
+                  <span className="hidden sm:block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs">
                     {t("addCar.imageUpload.tips.frontView")}
                   </span>
-                  <span className="hidden sm:block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
+                  <span className="hidden sm:block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs">
                     {t("addCar.imageUpload.tips.cleanBackground")}
                   </span>
-                  <span className="hidden sm:block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-xs">
+                  <span className="hidden sm:block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs">
                     {t("addCar.imageUpload.tips.highResolution")}
                   </span>
                 </div>
@@ -158,7 +158,7 @@ const AddCar = () => {
           </div>
 
           {/* Basic Information */}
-          <div className="bg-white/10 rounded-3xl p-6 md:p-8 shadow-2xl">
+          <div className="rounded-3xl bg-white/5 p-6 md:p-8 shadow-md shadow-white/40">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl">
                 <Car className="w-6 h-6 text-white" />
@@ -204,7 +204,7 @@ const AddCar = () => {
           </div>
 
           {/* Pricing & Details */}
-          <div className="bg-white/10 rounded-3xl shadow-2xl p-6 md:p-8">
+          <div className="rounded-3xl bg-white/5 shadow-md shadow-white/40 p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl">
                 <DollarSign className="w-6 h-6 text-white" />
@@ -290,7 +290,7 @@ const AddCar = () => {
           </div>
 
           {/* Specifications */}
-          <div className="bg-white/10 rounded-3xl shadow-2xl p-6 md:p-8">
+          <div className="rounded-3xl bg-white/5 shadow-md shadow-white/40 p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl">
                 <Settings className="w-6 h-6 text-white" />
@@ -381,7 +381,7 @@ const AddCar = () => {
           </div>
 
           {/* Location & Description */}
-          <div className="bg-white/10 rounded-3xl shadow-2xl p-6 md:p-8">
+          <div className="rounded-3xl bg-white/5 shadow-md shadow-white/40 p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl">
                 <MapPin className="w-6 h-6 text-white" />
@@ -471,7 +471,7 @@ const AddCar = () => {
           <div className="flex justify-center md:justify-end">
             <button
               onClick={onSubmitHandler}
-              className="group relative overflow-hidden px-4 py-3 bg-white/20 text-white rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all hover:scale-105 flex items-center gap-3"
+              className="group relative overflow-hidden px-4 py-3 text-white bg-white/10 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-lg transition-all hover:scale-105 flex items-center gap-3 cursor-pointer"
             >
               <Check className="w-5 h-5 relative z-10" />
               <span className="relative z-10">

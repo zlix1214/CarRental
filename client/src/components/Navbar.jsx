@@ -21,7 +21,7 @@ const Navbar = () => {
         setIsOwner(true);
         toast.success(data.message);
       } else {
-        toast.error(error.message);
+        toast.error(data.message);
       }
     } catch (error) {
       toast.error(error.message);
@@ -76,12 +76,7 @@ const Navbar = () => {
             My Bookings
           </Link>
 
-          <button
-            onClick={() => {
-              isOwner ? navigate("/owner") : changeRole();
-            }}
-            className="text-left"
-          >
+          <button onClick={() => navigate("/owner")} className="text-left">
             Dashboard
           </button>
           <LanguageSwitcher />

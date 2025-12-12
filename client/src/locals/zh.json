@@ -226,7 +226,11 @@
     "dashboard": "首頁",
     "addCar": "新增車輛",
     "manageCars": "車輛",
-    "manageBookings": "我的預訂"
+    "manageBookings": "我的預訂",
+    "confirmChangeImage":"確認更換頭像",
+    "previewNewImage":"預覽新頭像",
+    "cancel":"取消",
+    "confirmUpdate":"確認更新"
   },
   "dashboard": {
     "loginRequired": "請先登入才能進入 Dashboard",
