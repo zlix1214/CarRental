@@ -54,7 +54,7 @@ const Sidebar = () => {
       {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl max-w-md w-full p-6 border border-slate-700">
+          <div className="bg-white/5 rounded-2xl shadow shadow-white/40 max-w-md w-full p-6 border border-slate-700">
             {/* Modal Header */}
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-xl font-bold text-white">
@@ -86,14 +86,14 @@ const Sidebar = () => {
             <div className="flex gap-3">
               <button
                 onClick={handleCancel}
-                className="flex-1 px-4 py-2.5 bg-slate-700 hover:bg-slate-600 text-white rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 bg-white/5 hover:bg-black/30 text-white rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-3 cursor-pointer"
               >
                 <X className="w-4 h-4" />
                 {t("sidebar.cancel")}
               </button>
               <button
                 onClick={updateImage}
-                className="flex-1 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 shadow-lg"
+                className="flex-1 px-4 py-2.5 bg-white/30 hover:bg-black/30 text-white rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 shadow-lg cursor-pointer"
               >
                 <Check className="w-4 h-4" />
                 {t("sidebar.confirmUpdate")}

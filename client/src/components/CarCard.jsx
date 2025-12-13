@@ -40,7 +40,7 @@ const CarCard = ({ car }) => {
         scrollTo(0, 0);
       }}
       className="group relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-500
-      hover:shadow-2xl hover:-translate-y-2 shadow-black/90"
+      hover:shadow-lg hover:-translate-y-2 shadow shadow-white/40"
     >
       {/* Image */}
       <div className="relative h-45 sm:h-55 lg:h-65 xl:h-75 overflow-hidden">
@@ -70,7 +70,7 @@ const CarCard = ({ car }) => {
       </div>
 
       {/* Info Section */}
-      <div className="relative bg-white/5 p-6 space-y-4">
+      <div className="relative p-6 space-y-4">
         <div>
           <h3 className="text-2xl font-bold text-white mb-2">
             {car.brand} <span className="text-white-400">{car.model}</span>

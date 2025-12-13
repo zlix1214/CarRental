@@ -347,6 +347,16 @@
       "loading": "刊登中..."
     }
   },
+  "editCar":{
+    "pageTitle":"編輯您的車輛",
+    "pageSubtitle":"編輯以下資料，將您的愛車加入平台",
+    "backToManageCars":"回到車輛管理頁面",
+    "imageUploadTitle":"編輯或上傳車輛照片",
+    "imageUploadSubTitle":"高品質的照片有助於吸引更多租客。請確保車輛光線充足且清晰可見。",
+    "cancel":"取消編輯",
+    "loading":"刊登中...",
+    "button":"保存編輯"
+  },
   "manageCars": {
     "loading": "載入您的車輛中...",
     "pageTitle": "管理車輛",
@@ -365,7 +375,7 @@
 
     "carCard": {
       "perDay": "/天",
-      "seats": "座位",
+      "seats": "人座",
       "actions": {
         "hide": "隱藏",
         "show": "顯示",

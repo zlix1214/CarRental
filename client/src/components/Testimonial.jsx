@@ -53,7 +53,7 @@ const Testimonial = () => {
         <h1 className=" text-4xl sm:text-5xl text-white font-medium">
           {t("testimonial.title")}
         </h1>
-        <p className="text-gray-200 text-base sm:text-xl max-w-130">
+        <p className="text-gray-200 text-base sm:text-xl max-w-130 my-4">
           {t("testimonial.content")}
         </p>
       </div>
@@ -69,7 +69,9 @@ const Testimonial = () => {
               alt="avatar"
               className="h-20 w-20 rounded-full"
             />
-            <h3 className="text-white text-lg font-bold">{t(item.nameKey)}</h3>
+            <h3 className="text-yellow-100 text-lg font-bold mt-2">
+              {t(item.nameKey)}
+            </h3>
             <div className="text-sm text-gray-200 mt-1"> {t(item.roleKey)}</div>
             <RatingStars rating={item.rating} />
             <p className="text-gray-300 mt-2 text-center">{t(item.textKey)}</p>

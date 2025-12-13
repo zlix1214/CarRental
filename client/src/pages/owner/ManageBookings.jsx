@@ -123,7 +123,7 @@ const ManageBookings = () => {
               className={`px-4 py-3 rounded-xl font-medium text-sm transition-all ${
                 filterStatus === "all"
                   ? "bg-slate-900 text-white shadow-lg"
-                  : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
+                  : "bg-white/5 text-white"
               }`}
             >
               {t("ownerBooking.filters.all")} ({bookings.length})
@@ -133,7 +133,7 @@ const ManageBookings = () => {
               className={`px-4 py-3 rounded-xl font-medium text-sm transition-all ${
                 filterStatus === "pending"
                   ? "bg-orange-500 text-white shadow-lg"
-                  : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
+                  : "bg-white/5 text-white"
               }`}
             >
               {t("ownerBooking.filters.pending")} (
@@ -144,7 +144,7 @@ const ManageBookings = () => {
               className={`px-4 py-3 rounded-xl font-medium text-sm transition-all ${
                 filterStatus === "confirmed"
                   ? "bg-emerald-500 text-white shadow-lg"
-                  : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
+                  : "bg-white/5 text-white"
               }`}
             >
               {t("ownerBooking.filters.confirmed")} (
@@ -155,7 +155,7 @@ const ManageBookings = () => {
               className={`px-4 py-3 rounded-xl font-medium text-sm transition-all ${
                 filterStatus === "cancelled"
                   ? "bg-red-500 text-white shadow-lg"
-                  : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
+                  : "bg-white/5 text-white"
               }`}
             >
               {t("ownerBooking.filters.cancelled")} (
@@ -225,7 +225,7 @@ const ManageBookings = () => {
                       </div>
                       <div className="flex items-center gap-2 text-sm text-slate-600">
                         <CreditCard className="w-4 h-4 text-slate-300" />
-                        <span className="px-2 py-0.5 bg-slate-100 text-slate-700 rounded-md text-xs font-medium">
+                        <span className="px-2 py-0.5 text-white rounded-md text-xs font-medium">
                           {t("ownerBooking.bookingCard.offlinePayment")}
                         </span>
                       </div>
@@ -238,15 +238,15 @@ const ManageBookings = () => {
                           changeBookingStatus(booking._id, e.target.value)
                         }
                         value={booking.status}
-                        className="w-full appearance-none px-4 py-2.5 bg-slate-50 border-2 border-slate-200 rounded-xl outline-none font-medium text-slate-700 cursor-pointer"
+                        className="w-full appearance-none px-4 py-2.5 shadow-md shadow-black/60 rounded-xl  outline-none font-medium text-white/60 cursor-pointer"
                       >
-                        <option value="pending">
+                        <option className="text-gray-500" value="pending">
                           {t("ownerBooking.bookingCard.changeStatus")}
                         </option>
-                        <option value="confirmed">
+                        <option className="text-gray-500" value="confirmed">
                           {t("ownerBooking.bookingCard.confirmBooking")}
                         </option>
-                        <option value="cancelled">
+                        <option className="text-gray-500" value="cancelled">
                           {t("ownerBooking.bookingCard.cancelBooking")}
                         </option>
                       </select>
@@ -261,13 +261,13 @@ const ManageBookings = () => {
         {/* Empty State */}
         {filteredBookings.length === 0 && (
           <div className="text-center py-16">
-            <div className="inline-flex p-6 rounded-full bg-slate-100 mb-4">
+            <div className="inline-flex p-6 mb-4">
               <Calendar className="w-12 h-12 text-slate-400" />
             </div>
-            <h3 className="text-xl font-semibold text-slate-900 mb-2">
+            <h3 className="text-xl font-semibold text-slate-300 mb-2">
               {t("ownerBooking.emptyState.title")}
             </h3>
-            <p className="text-slate-600">
+            <p className="text-slate-400">
               {searchTerm || filterStatus !== "all"
                 ? t("ownerBooking.emptyState.withFilters")
                 : t("ownerBooking.emptyState.noFilters")}

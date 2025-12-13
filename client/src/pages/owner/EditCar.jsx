@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Upload,
   Check,
@@ -11,17 +12,20 @@ import {
   MapPin,
   FileText,
   X,
+  ArrowLeft,
 } from "lucide-react";
-import { assets } from "../../assets/assets";
 import { useAppContext } from "../../context/AppContext";
 import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
-const AddCar = () => {
+const EditCar = () => {
+  const { carId } = useParams();
+  const navigate = useNavigate();
   const { axios, currency, token, isInitialized } = useAppContext();
   const { t } = useTranslation();
 
   const [image, setImage] = useState(null);
+  const [existingImageUrl, setExistingImageUrl] = useState("");
   const [car, setCar] = useState({
     brand: "",
     model: "",
@@ -36,59 +40,125 @@ const AddCar = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
+
+  // 載入車輛資料
+  useEffect(() => {
+    const fetchCarData = async () => {
+      if (!token || !isInitialized) {
+        setIsFetching(false);
+        return;
+      }
+
+      try {
+        const { data } = await axios.get(`/api/owner/car/${carId}`);
+
+        if (data.success) {
+          const carData = data.car;
+          setCar({
+            brand: carData.brand,
+            model: carData.model,
+            year: carData.year,
+            pricePerDay: carData.pricePerDay,
+            category: carData.category,
+            transmission: carData.transmission,
+            fuel_type: carData.fuel_type,
+            seating_capacity: carData.seating_capacity,
+            location: carData.location,
+            description: carData.description,
+          });
+          setExistingImageUrl(carData.image);
+        } else {
+          toast.error(data.message);
+          navigate("/owner/manage-cars");
+        }
+      } catch (error) {
+        toast.error(error.response?.data?.message || error.message);
+        navigate("/owner/manage-cars");
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
+    if (carId && token && isInitialized) {
+      fetchCarData();
+    }
+  }, [carId, token, isInitialized, navigate, axios]);
 
   const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
     if (!token || !isInitialized) {
       toast.error(t("addCar.loginRequired"));
       return;
     }
-    e.preventDefault();
-    if (isLoading) return null;
+
+    if (isLoading) return;
+
     setIsLoading(true);
+
     try {
       const formData = new FormData();
-      formData.append("image", image);
+
+      // 只有在選擇新圖片時才添加圖片
+      if (image) {
+        formData.append("image", image);
+      }
+
+      formData.append("carId", carId);
       formData.append("carData", JSON.stringify(car));
-      const { data } = await axios.post("/api/owner/add-car", formData);
+
+      const { data } = await axios.post("/api/owner/update-car", formData);
 
       if (data.success) {
-        toast.success(data.message);
-        setImage(null);
-        setCar({
-          brand: "",
-          model: "",
-          year: 0,
-          pricePerDay: 0,
-          category: "",
-          transmission: "",
-          fuel_type: "",
-          seating_capacity: 0,
-          location: "",
-          description: "",
-        });
+        toast.success(data.message || "Car updated successfully!");
+        navigate("/owner/manage-cars");
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response?.data?.message || error.message);
     } finally {
       setIsLoading(false);
     }
   };
 
+  if (isFetching) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 pt-10 md:px-10">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-slate-300 border-t-slate-900 mb-4"></div>
+          <p className="text-slate-300">{t("manageCars.loading")}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen px-4 py-10 md:px-10 flex-1">
       <div className="max-w-5xl mx-auto">
-        {/* Header */}
+        {/* Header with Back Button */}
         <div className="mb-8">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-slate-300 hover:text-white mb-4 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span>
+              {t("editCar.backToManageCars") || "Back to Manage Cars"}
+            </span>
+          </button>
+
           <h1 className="text-4xl md:text-6xl font-semibold text-slate-300 mb-2">
-            {t("addCar.pageTitle")}
+            {t("addCar.pageTitle") || "Edit Car"}
           </h1>
-          <p className="text-slate-200">{t("addCar.pageSubtitle")}</p>
+          <p className="text-slate-200">
+            {t("editCar.pageSubtitle") || "Update your vehicle information"}
+          </p>
         </div>
 
-        <div className="space-y-8 grid-cols-1 md">
-          {/* Image Upload Section - Hero Style */}
+        <div className="space-y-8">
+          {/* Image Upload Section */}
           <div className="relative overflow-hidden rounded-3xl p-8 md:p-12">
             <div className="relative flex flex-col lg:flex-row items-center gap-8">
               <label
@@ -114,6 +184,20 @@ const AddCar = () => {
                         <X className="w-4 h-4" />
                       </button>
                     </div>
+                  ) : existingImageUrl ? (
+                    <div className="relative">
+                      <img
+                        src={existingImageUrl}
+                        alt="Current car"
+                        className="w-64 h-40 object-cover rounded-2xl border-4 border-slate-700"
+                      />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
+                        <p className="text-white text-sm font-medium">
+                          {t("editCar.imageUpload.changeImage") ||
+                            "Click to change image"}
+                        </p>
+                      </div>
+                    </div>
                   ) : (
                     <div className="w-45 h-30 sm:w-64 sm:h-40 flex flex-col items-center justify-center backdrop-blur-sm border-2 border-dashed border-white/20 rounded-2xl group-hover:border-white/40 transition-all">
                       <Upload className="w-8 sm:w-12 h-8 sm:h-12 text-white/60 mb-3 group-hover:text-white/80 transition-colors" />
@@ -137,22 +221,28 @@ const AddCar = () => {
 
               <div className="flex-1 text-center lg:text-left">
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
-                  {t("addCar.imageUpload.title")}
+                  {t("editCar.imageUploadTitle") || "Update Car Image"}
                 </h3>
                 <p className="text-slate-300 text-sm mb-4">
-                  {t("addCar.imageUpload.description")}
+                  {image
+                    ? t("editCar.imageUpload.newImageSelected") ||
+                      "New image selected. Click submit to update."
+                    : t("editCar.imageUploadSubTitle") ||
+                      "Click on the image to upload a new one, or keep the existing image."}
                 </p>
-                <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-                  <span className="hidden sm:block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs">
-                    {t("addCar.imageUpload.tips.frontView")}
-                  </span>
-                  <span className="hidden sm:block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs">
-                    {t("addCar.imageUpload.tips.cleanBackground")}
-                  </span>
-                  <span className="hidden sm:block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs">
-                    {t("addCar.imageUpload.tips.highResolution")}
-                  </span>
-                </div>
+                {!image && (
+                  <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                    <span className="hidden sm:block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs">
+                      {t("addCar.imageUpload.tips.frontView")}
+                    </span>
+                    <span className="hidden sm:block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs">
+                      {t("addCar.imageUpload.tips.cleanBackground")}
+                    </span>
+                    <span className="hidden sm:block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs">
+                      {t("addCar.imageUpload.tips.highResolution")}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -182,7 +272,7 @@ const AddCar = () => {
                   type="text"
                   placeholder={t("addCar.basicInfo.brandPlaceholder")}
                   required
-                  className="px-3 py-2 bg-white/20 rounded-xl outline-none text-white/60"
+                  className="px-3 py-2 bg-white/20 rounded-xl outline-none text-white"
                   value={car.brand}
                   onChange={(e) => setCar({ ...car, brand: e.target.value })}
                 />
@@ -195,7 +285,7 @@ const AddCar = () => {
                   type="text"
                   placeholder={t("addCar.basicInfo.modelPlaceholder")}
                   required
-                  className="bg-white/20 px-3 py-2 rounded-xl outline-none text-white/60"
+                  className="bg-white/20 px-3 py-2 rounded-xl outline-none text-white"
                   value={car.model}
                   onChange={(e) => setCar({ ...car, model: e.target.value })}
                 />
@@ -229,7 +319,7 @@ const AddCar = () => {
                   type="number"
                   placeholder=""
                   required
-                  className="bg-white/20 px-3 py-2 rounded-xl outline-none text-white/60"
+                  className="bg-white/20 px-3 py-2 rounded-xl outline-none text-white"
                   value={car.year}
                   onChange={(e) => setCar({ ...car, year: e.target.value })}
                 />
@@ -243,7 +333,7 @@ const AddCar = () => {
                   type="number"
                   placeholder=""
                   required
-                  className="bg-white/20 px-3 py-2 rounded-xl outline-none text-white/60"
+                  className="bg-white/20 px-3 py-2 rounded-xl outline-none text-white"
                   value={car.pricePerDay}
                   onChange={(e) =>
                     setCar({ ...car, pricePerDay: e.target.value })
@@ -258,7 +348,7 @@ const AddCar = () => {
                 <select
                   onChange={(e) => setCar({ ...car, category: e.target.value })}
                   value={car.category}
-                  className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white/60"
+                  className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white"
                 >
                   <option value="">
                     {t("addCar.pricingDetails.selectCategory")}
@@ -316,7 +406,7 @@ const AddCar = () => {
                     setCar({ ...car, transmission: e.target.value })
                   }
                   value={car.transmission}
-                  className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white/60"
+                  className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white"
                 >
                   <option value="">
                     {t("addCar.specifications.selectTransmission")}
@@ -342,7 +432,7 @@ const AddCar = () => {
                     setCar({ ...car, fuel_type: e.target.value })
                   }
                   value={car.fuel_type}
-                  className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white/60"
+                  className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white"
                 >
                   <option value="">
                     {t("addCar.specifications.selectFuelType")}
@@ -362,7 +452,7 @@ const AddCar = () => {
                 </select>
               </div>
               <div className="flex flex-col">
-                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2 ">
+                <label className="text-sm font-semibold text-slate-200 mb-2 flex items-center gap-2">
                   <Users className="w-4 h-4" />
                   {t("addCar.specifications.seatingCapacity")}
                 </label>
@@ -370,7 +460,7 @@ const AddCar = () => {
                   type="number"
                   placeholder={t("addCar.specifications.seatingPlaceholder")}
                   required
-                  className="px-3 py-2 bg-white/20 rounded-xl outline-none text-white/60"
+                  className="px-3 py-2 bg-white/20 rounded-xl outline-none text-white"
                   value={car.seating_capacity}
                   onChange={(e) =>
                     setCar({ ...car, seating_capacity: e.target.value })
@@ -405,7 +495,7 @@ const AddCar = () => {
                 <select
                   onChange={(e) => setCar({ ...car, location: e.target.value })}
                   value={car.location}
-                  className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white/60"
+                  className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white"
                 >
                   <option value="">
                     {t("addCar.locationDescription.selectLocation")}
@@ -454,7 +544,7 @@ const AddCar = () => {
                     "addCar.locationDescription.descriptionPlaceholder"
                   )}
                   required
-                  className="bg-white/20 text-white/80 px-3 py-2 rounded-xl outline-none resize-none"
+                  className="bg-white/20 px-3 py-2 rounded-xl outline-none resize-none text-white"
                   value={car.description}
                   onChange={(e) =>
                     setCar({ ...car, description: e.target.value })
@@ -467,17 +557,25 @@ const AddCar = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
-          <div className="flex justify-center md:justify-end">
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <button
+              onClick={() => navigate("/owner/manage-cars")}
+              className="px-6 py-3 text-slate-300 hover:text-white transition-colors w-full sm:w-auto text-center"
+            >
+              {t("editCar.cancel") || "Cancel"}
+            </button>
+
             <button
               onClick={onSubmitHandler}
-              className="group relative overflow-hidden px-4 py-3 text-white bg-white/10 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-lg transition-all hover:scale-105 flex items-center gap-3 cursor-pointer"
+              disabled={isLoading}
+              className="group relative overflow-hidden px-8 py-3 text-white bg-white/10 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-lg transition-all hover:scale-105 flex items-center justify-center gap-3 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
             >
               <Check className="w-5 h-5 relative z-10" />
               <span className="relative z-10">
                 {isLoading
-                  ? t("addCar.submit.loading")
-                  : t("addCar.submit.button")}
+                  ? t("editCar.loading") || "Updating..."
+                  : t("editCar.button") || "Update Car"}
               </span>
             </button>
           </div>
@@ -487,4 +585,4 @@ const AddCar = () => {
   );
 };
 
-export default AddCar;
+export default EditCar;

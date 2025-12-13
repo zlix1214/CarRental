@@ -14,11 +14,11 @@ const Banner = () => {
         <h2 className="text-4xl sm:text-5xl font-medium text-center lg:text-left">
           {t("banner.title")}
         </h2>
-        <p className="mt-2 text-base sm:text-xl text-center lg:text-left max-w-130">
+        <p className="my-4 text-base sm:text-xl text-center lg:text-left max-w-130">
           {t("banner.content")}
         </p>
         <button
-          className="bg-white/10 px-6 py-3 text-basic mt-8 shadow-2xl rounded-2xl cursor-pointer hover:bg-white/30  transition-all duration-300"
+          className="bg-white/10 px-6 py-3 text-basic mt-8 shadow-2xl rounded-2xl cursor-pointer hover:scale-105 transition-all duration-300"
           onClick={() => {
             navigate("/owner");
             scrollTo(0, 0);

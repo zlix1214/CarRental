@@ -151,7 +151,7 @@ const Dashboard = () => {
               return (
                 <div
                   key={index}
-                  className="group relative overflow-hidden  rounded-2xl p-2 sm:p-4 lg:p-6 shadow shadow-white/50 transition-all duration-300 hover:-translate-y-1"
+                  className="group relative overflow-hidden  rounded-2xl p-2 sm:p-4 lg:p-6 bg-white/5 shadow shadow-white/50 transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="relative flex items-center justify-between">
                     {/* Icon */}
@@ -179,7 +179,7 @@ const Dashboard = () => {
           <div className="grid lg:grid-cols-3 gap-6 mb-8">
             {/* Recent Bookings */}
             <div
-              className={`lg:col-span-2 rounded-2xl p-6 shadow-md shadow-white/40`}
+              className={`lg:col-span-2 rounded-2xl p-6 bg-white/5 shadow-md shadow-white/40`}
             >
               <div className="flex items-center justify-between mb-6">
                 <div>

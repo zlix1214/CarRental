@@ -135,7 +135,7 @@ const CarDetails = () => {
             </div>
 
             {/* Car Name & Category */}
-            <div className="rounded-2xl p-6 shadow-lg shadow-white/20">
+            <div className="rounded-2xl p-6 bg-white/5 shadow shadow-white/40">
               <div className="flex items-start justify-between">
                 <div>
                   <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-200 mb-2">
@@ -158,7 +158,7 @@ const CarDetails = () => {
                 {specs.map(({ icon, text }, idx) => (
                   <div
                     key={idx}
-                    className="flex flex-col items-center p-2 sm:p-3 rounded-xl transition-colors bg-black shadow shadow-white/20"
+                    className="flex flex-col items-center p-2 sm:p-3 rounded-xl transition-colors bg-black/30 shadow shadow-white/20"
                   >
                     <div className="text-slate-200 mb-2">{icon}</div>
                     <span className="text-sm font-medium text-slate-200">
@@ -170,7 +170,7 @@ const CarDetails = () => {
             </div>
 
             {/* Description */}
-            <div className="rounded-2xl p-6 shadow-lg shadow-white/20">
+            <div className="rounded-2xl p-6 bg-white/5 shadow shadow-white/40">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-2">
                 {t("carDetail.aboutThisCar")}
               </h2>
@@ -180,7 +180,7 @@ const CarDetails = () => {
             </div>
 
             {/* Features */}
-            <div className="rounded-2xl p-6 shadow-lg shadow-white/20">
+            <div className="rounded-2xl p-6 bg-white/5 shadow shadow-white/40">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-4">
                 {t("carDetail.featuresAmenities")}
               </h2>
@@ -188,10 +188,10 @@ const CarDetails = () => {
                 {features.map((feature, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 p-2 rounded-xl shadow-lg shadow-black/20"
+                    className="flex items-center gap-3 p-2 rounded-xl shadow-lg shadow-black/40"
                   >
-                    <div className="flex-shrink-0 w-6 h-6 bg-black rounded-full flex items-center justify-center">
-                      <Check className="w-4 h-4 text-white" />
+                    <div className="flex-shrink-0 w-6 h-6  rounded-full flex items-center justify-center">
+                      <Check className="w-4 h-4 text-emerald-400" />
                     </div>
                     <span className="text-slate-200 font-medium">
                       {feature}
@@ -202,7 +202,7 @@ const CarDetails = () => {
             </div>
 
             {/* Insurance Info */}
-            <div className="bg-black border border-emerald-400 rounded-2xl p-6">
+            <div className="bg-black/60 rounded-2xl p-6">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-emerald-300 rounded-xl">
                   <Shield className="w-6 h-6 text-black" />
@@ -221,7 +221,7 @@ const CarDetails = () => {
 
           {/* Right: Booking Form (1/3 width - Sticky) */}
           <div className="lg:sticky lg:top-24 h-fit">
-            <div className="rounded-2xl p-6 shadow-lg shadow-white/20">
+            <div className="rounded-2xl p-6 bg-white/5 shadow shadow-white/40">
               {/* Price Header */}
               <div className="mb-6 pb-6 border-b border-slate-900">
                 <div className="flex items-baseline justify-between">

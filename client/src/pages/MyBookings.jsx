@@ -11,7 +11,6 @@ const MyBookings = () => {
   const { axios, currency, user } = useAppContext();
   const [bookings, setBookings] = useState([]);
 
-  // 計算租車天數的函數
   const calculateDays = (start, end) => {
     const startDate = new Date(start);
     const endDate = new Date(end);
@@ -20,12 +19,10 @@ const MyBookings = () => {
     return diffDays === 0 ? 1 : diffDays; // 至少1天
   };
 
-  // 格式化日期：從 ISO 格式轉換成 YYYY-MM-DD
   const formatDate = (isoDate) => {
     return new Date(isoDate).toISOString().split("T")[0];
   };
 
-  // 格式化建立時間：顯示年月日和時分
   const formatCreatedAt = (isoDate) => {
     const date = new Date(isoDate);
     return date
@@ -168,9 +165,6 @@ const MyBookings = () => {
                     {/* 租車時間 */}
                     <div className="p-5 rounded-2xl mb-4">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
-                          <Calendar className="w-6 h-6 text-white" />
-                        </div>
                         <div className="flex-1">
                           <p className="text-gray-200 text-sm mb-2">
                             {t("userBooking.rentalPeriod", {

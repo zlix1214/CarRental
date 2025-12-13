@@ -52,7 +52,7 @@ const FAQ = () => {
 
         <button
           onClick={toggleExpandAll}
-          className="bg-white/10 px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-xl shadow-black/50 cursor-pointer hover:bg-white/30  transition-all duration-300"
+          className="bg-white/10 px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-xl shadow-black/50 cursor-pointer hover:scale-105 transition-all duration-300"
         >
           {expandAll ? `${t("faq.button2")}` : `${t("faq.button1")}`}
         </button>
@@ -84,7 +84,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
         className="w-full py-5 px-6 flex justify-between items-center text-left shadow-xl shadow-black/30 cursor-pointer"
         onClick={onClick}
       >
-        <span className="text-sm sm:text-base lg:text-lg font-medium text-gray-200 pr-4">
+        <span className="text-base sm:text-xl font-medium text-yellow-100 pr-4">
           {t(item.question)}
         </span>
 
@@ -104,7 +104,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
           opacity: isOpen ? 1 : 0,
         }}
       >
-        <div className="px-6 py-5 text-gray-100 leading-relaxed">
+        <div className="px-6 py-5 text-gray-300 leading-relaxed">
           {t(item.answer)}
         </div>
       </div>

@@ -6,7 +6,8 @@ import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 
 const ManageCars = () => {
-  const { currency, axios, isOwner, token, isInitialized } = useAppContext();
+  const { currency, axios, isOwner, token, isInitialized, navigate } =
+    useAppContext();
   const { t } = useTranslation();
 
   const [cars, setCars] = useState([]);
@@ -118,20 +119,20 @@ const ManageCars = () => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilterStatus("all")}
-              className={`px-4 py-3 rounded-xl font-medium text-xs transition-all ${
+              className={`cursor-pointer px-4 py-3 rounded-xl font-medium text-xs transition-all ${
                 filterStatus === "all"
                   ? "bg-slate-900 text-white shadow-lg"
-                  : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
+                  : "bg-white/5 text-white"
               }`}
             >
               {t("manageCars.filters.all")} ({cars.length})
             </button>
             <button
               onClick={() => setFilterStatus("available")}
-              className={`px-4 py-3 rounded-xl font-medium text-sm transition-all ${
+              className={`cursor-pointer px-4 py-3 rounded-xl font-medium text-sm transition-all ${
                 filterStatus === "available"
                   ? "bg-emerald-500 text-white shadow-lg"
-                  : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
+                  : "bg-white/5 text-white"
               }`}
             >
               {t("manageCars.filters.available")} (
@@ -139,10 +140,10 @@ const ManageCars = () => {
             </button>
             <button
               onClick={() => setFilterStatus("unavailable")}
-              className={`px-4 py-3 rounded-xl font-medium text-sm transition-all ${
+              className={`cursor-pointer px-4 py-3 rounded-xl font-medium text-sm transition-all ${
                 filterStatus === "unavailable"
                   ? "bg-red-500 text-white shadow-lg"
-                  : "bg-white text-slate-600 border-2 border-slate-200 hover:border-slate-300"
+                  : "bg-white/5 text-white"
               }`}
             >
               {t("manageCars.filters.unavailable")} (
@@ -156,7 +157,7 @@ const ManageCars = () => {
           {filteredCars.map((car, index) => (
             <div
               key={index}
-              className="group relative bg-white/10 rounded-2xl overflow-hidden shadow shadow-white/40 transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-white/5 rounded-2xl overflow-hidden shadow shadow-white/40 transition-all duration-300 hover:-translate-y-1"
             >
               {/* Image Section */}
               <div className="relative h-48 overflow-hidden">
@@ -182,7 +183,7 @@ const ManageCars = () => {
                 </div>
 
                 {/* Price Badge */}
-                <div className="absolute top-4 right-4 bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-xl">
+                <div className="absolute top-4 right-4 bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-xl">
                   <p className="text-white font-bold">
                     {currency}
                     {car.pricePerDay}
@@ -201,10 +202,10 @@ const ManageCars = () => {
                     {car.brand} {car.model}
                   </h3>
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="px-2 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-medium">
+                    <span className="px-2 py-1 bg-white/30 text-white/90 rounded-lg text-xs font-medium">
                       {t(`common.categories.${car.category}`)}
                     </span>
-                    <span className="px-2 py-1 bg-blue-50 text-blue-600 rounded-lg text-xs font-medium">
+                    <span className="px-2 py-1 bg-white/30 text-white/90 rounded-lg text-xs font-medium">
                       {car.year}
                     </span>
                     <span className="text-xs text-slate-300">
@@ -213,14 +214,9 @@ const ManageCars = () => {
                     <span className="text-xs text-slate-300">
                       {t(`common.transmission.${car.transmission}`)}
                     </span>
-                  </div>
-                </div>
-
-                {/* Specs */}
-                <div className="mb-4 flex items-center gap-3 text-sm text-slate-300">
-                  <div className="flex items-center gap-1">
-                    <Car className="w-4 h-4" />
-                    <span>{t(`common.fuel.${car.fuel_type}`)}</span>
+                    <span className="text-xs text-slate-300">
+                      {t(`common.fuel.${car.fuel_type}`)}
+                    </span>
                   </div>
                 </div>
 
@@ -228,10 +224,10 @@ const ManageCars = () => {
                 <div className="flex gap-2">
                   <button
                     onClick={() => toggleAvailability(car._id)}
-                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm transition-all ${
+                    className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm cursor-pointer  transition-all ${
                       car.isAvaliable
-                        ? "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                        : "bg-blue-50 text-blue-600 hover:bg-blue-100"
+                        ? "bg-white/5 text-white/60 hover:bg-black/80"
+                        : "bg-black/60 text-white/60 hover:bg-black/20"
                     }`}
                   >
                     {car.isAvaliable ? (
@@ -247,13 +243,16 @@ const ManageCars = () => {
                     )}
                   </button>
 
-                  <button className="px-4 py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-xl transition-colors">
+                  <button
+                    onClick={() => navigate(`/owner/edit-car/${car._id}`)}
+                    className="px-4 py-2.5 text-white/60 hover:bg-black/80 cursor-pointer rounded-xl transition-colors"
+                  >
                     <Edit className="w-4 h-4" />
                   </button>
 
                   <button
                     onClick={() => deleteCar(car._id)}
-                    className="px-4 py-2.5 bg-red-50 text-red-600 hover:bg-red-100 rounded-xl transition-colors"
+                    className="px-4 py-2.5 text-red-500 hover:bg-black/80 rounded-xl cursor-pointer transition-colors"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -266,13 +265,13 @@ const ManageCars = () => {
         {/* Empty State */}
         {filteredCars.length === 0 && (
           <div className="text-center py-16">
-            <div className="inline-flex p-6 rounded-full bg-slate-100 mb-4">
+            <div className="inline-flex p-6 mb-4">
               <Car className="w-12 h-12 text-slate-400" />
             </div>
-            <h3 className="text-xl font-semibold text-slate-200 mb-2">
+            <h3 className="text-xl font-semibold text-slate-300 mb-2">
               {t("manageCars.emptyState.title")}
             </h3>
-            <p className="text-slate-300">
+            <p className="text-slate-400">
               {searchTerm || filterStatus !== "all"
                 ? t("manageCars.emptyState.withFilters")
                 : t("manageCars.emptyState.noFilters")}
