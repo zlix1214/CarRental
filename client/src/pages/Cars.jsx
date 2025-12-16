@@ -122,14 +122,18 @@ const Cars = () => {
                   className="px-1 py-1 sm:px-4 sm:py-2 border-white rounded-xl text-neutral-300 font-medium outline-none cursor-pointer"
                   onChange={(e) => setSortOption(e.target.value)}
                 >
-                  <option value="lowToHigh">
+                  <option value="lowToHigh" className="text-black/80">
                     {t("carPage.priceLowToHigh")}
                   </option>
-                  <option value="highToLow">
+                  <option value="highToLow" className="text-black/80">
                     {t("carPage.priceHighToLow")}
                   </option>
-                  <option value="newest">{t("carPage.newestFirst")}</option>
-                  <option value="oldest">{t("carPage.oldestFirst")}</option>
+                  <option value="newest" className="text-black/80">
+                    {t("carPage.newestFirst")}
+                  </option>
+                  <option value="oldest" className="text-black/80">
+                    {t("carPage.oldestFirst")}
+                  </option>
                 </select>
               </div>
             )}

@@ -83,9 +83,7 @@ const SearchForm = () => {
       </div>
 
       {/* Search Button */}
-      <button
-        className={`${gs.glassButton} px-3 py-2 mt-4 md:mt-0 text-white self-stretch cursor-pointer`}
-      >
+      <button className="px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-sm shadow-white cursor-pointer hover:scale-105 hover:shadow-md transition-all duration-300">
         {t("searchForm.search")}
       </button>
     </form>

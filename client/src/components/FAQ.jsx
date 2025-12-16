@@ -43,7 +43,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="flex flex-col items-center px-4 py-12 mt-80 w-full">
+    <div className="flex flex-col items-center px-4 py-12 mt-80">
       {/* title */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 max-w-4xl w-full">
         <h2 className="text-4xl sm:text-5xl font-medium text-gray-200 text-center sm:text-left">
@@ -52,14 +52,14 @@ const FAQ = () => {
 
         <button
           onClick={toggleExpandAll}
-          className="bg-white/10 px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-xl shadow-black/50 cursor-pointer hover:scale-105 transition-all duration-300"
+          className="px-3 sm:px-5 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-sm shadow-white cursor-pointer hover:scale-105 hover:shadow-md transition-all duration-300"
         >
           {expandAll ? `${t("faq.button2")}` : `${t("faq.button1")}`}
         </button>
       </div>
 
       {/* FAQ list */}
-      <div className=" rounded-xl shadow-md overflow-hidden">
+      <div className="w-full max-w-5xl rounded-xl shadow-md overflow-hidden">
         {faqData.map((item, index) => (
           <FAQItem
             key={item.id}
@@ -84,7 +84,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
         className="w-full py-5 px-6 flex justify-between items-center text-left shadow-xl shadow-black/30 cursor-pointer"
         onClick={onClick}
       >
-        <span className="text-base sm:text-xl font-medium text-yellow-100 pr-4">
+        <span className="text-lg sm:text-2xl font-medium text-yellow-50 pr-4">
           {t(item.question)}
         </span>
 
@@ -105,7 +105,7 @@ const FAQItem = ({ item, isOpen, onClick, isLast }) => {
         }}
       >
         <div className="px-6 py-5 text-gray-300 leading-relaxed">
-          {t(item.answer)}
+          <p className="text-base sm:text-md">{t(item.answer)}</p>
         </div>
       </div>
     </div>

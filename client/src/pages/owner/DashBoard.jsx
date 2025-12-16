@@ -117,14 +117,14 @@ const Dashboard = () => {
     <>
       {showModal && (
         <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center pointer-events-auto">
-          <div className="bg-white p-6 rounded-lg shadow-md w-80 text-center pointer-events-auto">
-            <h2 className="text-lg font-semibold mb-4">
+          <div className="bg-black p-6 rounded-lg shadow-md w-80 text-center shadow-white/50 pointer-events-auto">
+            <h2 className="text-lg text-neutral-200 font-semibold mb-4">
               {t("dashboard.loginRequired")}
             </h2>
 
             <button
               onClick={handleConfirm}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="px-4 py-2 text-white rounded-lg cursor-pointer shadow-xs shadow-white hover:scale-105 transition-all "
             >
               {t("dashboard.confirm")}
             </button>

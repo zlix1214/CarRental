@@ -51,7 +51,7 @@ const Navbar = () => {
           <LanguageSwitcher />
           <button
             onClick={() => (user ? logout() : setShowLogin(true))}
-            className={`${gs.glassButton} px-2 py-1 md:px-3 md:py-2 cursor-pointer`}
+            className="px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-sm shadow-white cursor-pointer hover:scale-105 hover:shadow-md transition-all duration-300"
           >
             {user ? `${t("navbar.logout")}` : `${t("navbar.login")}`}
           </button>
@@ -65,7 +65,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="flex flex-col gap-4 px-6 py-4  sm:hidden ">
+        <div className="flex flex-col gap-4 px-6 py-4  sm:hidden">
           <Link to="/" onClick={() => setOpen(false)}>
             Home
           </Link>
@@ -76,7 +76,10 @@ const Navbar = () => {
             My Bookings
           </Link>
 
-          <button onClick={() => navigate("/owner")} className="text-left">
+          <button
+            onClick={() => navigate("/owner")}
+            className="cursor-pointer text-left"
+          >
             Dashboard
           </button>
           <LanguageSwitcher />
@@ -84,7 +87,7 @@ const Navbar = () => {
             onClick={() => {
               user ? logout() : setShowLogin(true);
             }}
-            className={`${gs.glassButton} p-1.5 w-1/2 self-center`}
+            className="px-1 sm:px-4 py-2 text-xs md:text-sm font-medium text-gray-200 rounded-2xl shadow-sm shadow-white cursor-pointer hover:scale-105 transition-all duration-300"
           >
             {user ? "Logout" : "Login"}
           </button>

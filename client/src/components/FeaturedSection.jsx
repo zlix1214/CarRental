@@ -26,7 +26,7 @@ const FeaturedSection = () => {
           navigate("/cars");
           scrollTo(0, 0);
         }}
-        className="bg-white/10 px-6 py-3 mt-18 w-auto text-sm sm:text-base md:text-xl lg:text-2xl text-white cursor-pointer shadow-2xl rounded-2xl hover:scale-105 transition-all duration-300"
+        className="px-6 py-3 mt-18 w-auto text-sm sm:text-base md:text-xl lg:text-2xl text-white cursor-pointer shadow-sm shadow-white rounded-2xl hover:scale-105 hover:shadow-md transition-all duration-300"
       >
         {t("featuredSection.expandButton")}
       </button>

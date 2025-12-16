@@ -293,16 +293,15 @@ const CarDetails = () => {
               </div>
 
               {/* Book Button */}
+              <p className=" mb-5 text-center text-sm text-slate-200">
+                {t("carDetail.booking.noCreditCard")}
+              </p>
               <button
                 onClick={handleSubmit}
-                className="w-full bg-emerald-500 text-white font-bold shadow-lg shadow-black/80 py-4 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all mb-4"
+                className="w-full text-white shadow-sm shadow-white font-bold py-4 rounded-xl hover:shadow-md cursor-pointer hover:scale-[1.02] transition-all mb-4"
               >
                 {t("carDetail.booking.bookNow")}
               </button>
-
-              <p className="text-center text-sm text-slate-200">
-                {t("carDetail.booking.noCreditCard")}
-              </p>
 
               {/* Benefits */}
               <div className="mt-6 pt-6 border-t border-slate-200 space-y-3">

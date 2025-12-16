@@ -471,7 +471,7 @@ const AddCar = () => {
           <div className="flex justify-center md:justify-end">
             <button
               onClick={onSubmitHandler}
-              className="group relative overflow-hidden px-4 py-3 text-white bg-white/10 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-lg transition-all hover:scale-105 flex items-center gap-3 cursor-pointer"
+              className="group relative overflow-hidden px-4 py-3 text-white rounded-2xl font-semibold text-lg shadow-sm shadow-white hover:shadow-md transition-all hover:scale-105 flex items-center gap-3 cursor-pointer"
             >
               <Check className="w-5 h-5 relative z-10" />
               <span className="relative z-10">

@@ -42,6 +42,19 @@
     "login": "Login",
     "logout": "Logout"
   },
+  "login":{
+    "user":"User",
+    "login":"Login",
+    "signUp":"Sign Up",
+    "name":"Name",
+    "email":"Email",
+    "password":"Password",
+    "create":"Create an account?",
+    "already":"Already have account?",
+    "click":"click here",
+    "createButton":"Create Account",
+    "loginButton":"Login"
+  },
   "hero": {
     "title": "Drive in style."
   },
@@ -62,17 +75,17 @@
     "button": "List your car"
   },
   "testimonial": {
-    "title": " What our Customer Say..",
-    "content": "See what people who’ve used CarRental have to say — and why they keep coming back.",
+    "title": " What our Customer Say...",
+    "content": "See what people who’ve used ShiftLab have to say — and why they keep coming back.",
     "review": {
       "name1": "Gary Sun",
       "role1": "Developer",
       "text1": "I've been using this service for over a year, and the experience has been consistently excellent.",
       "name2": "JayLoveJapan",
-      "role2": "landlord",
+      "role2": "unemployed",
       "text2": "Very smooth process and professional support. Would recommend to others for sure.",
       "name3": "Jonathan Lin",
-      "role3": "Lawyer",
+      "role3": "designer",
       "text3": "Solid platform with great reliability. Looking forward to future improvements."
     }
   },

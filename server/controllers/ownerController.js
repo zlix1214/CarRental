@@ -177,3 +177,77 @@ export const updateUserImage = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+// 獲取單一車輛資料 (用於編輯頁面載入資料)
+export const getCarById = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const { carId } = req.params;
+
+    const car = await Car.findById(carId);
+
+    if (!car) {
+      return res.json({ success: false, message: "Car not found" });
+    }
+
+    // 確認是車主本人
+    if (car.owner.toString() !== _id.toString()) {
+      return res.json({ success: false, message: "Not authorized" });
+    }
+
+    res.json({ success: true, car });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+// 更新車輛資料
+export const updateCar = async (req, res) => {
+  try {
+    const { _id } = req.user;
+    const { carId } = req.body;
+    let carData = JSON.parse(req.body.carData);
+
+    const car = await Car.findById(carId);
+
+    if (!car) {
+      return res.json({ success: false, message: "Car not found" });
+    }
+
+    // 確認是車主本人
+    if (car.owner.toString() !== _id.toString()) {
+      return res.json({ success: false, message: "Not authorized" });
+    }
+
+    // 如果有新圖片上傳
+    if (req.file) {
+      const imageFile = req.file;
+      const fileBuffer = fs.readFileSync(imageFile.path);
+      const response = await imagekit.upload({
+        file: fileBuffer,
+        fileName: imageFile.originalname,
+        folder: "/cars",
+      });
+
+      const optimizedImageUrl = imagekit.url({
+        path: response.filePath,
+        transformation: [
+          { width: "1280" },
+          { quality: "auto" },
+          { format: "webp" },
+        ],
+      });
+
+      carData.image = optimizedImageUrl;
+    }
+
+    // 更新車輛資料
+    await Car.findByIdAndUpdate(carId, carData);
+
+    res.json({ success: true, message: "Car updated successfully" });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
+  }
+};

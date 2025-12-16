@@ -1,6 +1,9 @@
 import React from "react";
 import { gs } from "../style/glassUi";
 import { useTranslation } from "react-i18next";
+import avatarGs from "../assets/avatar_gs.png";
+import avatarJz from "../assets/avatar_jz.png";
+import avatarJl from "../assets/avatar_jl.jpg";
 
 const testimonialData = [
   {
@@ -8,8 +11,7 @@ const testimonialData = [
     nameKey: "testimonial.review.name1",
     roleKey: "testimonial.review.role1",
     textKey: "testimonial.review.text1",
-    avatar:
-      "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
+    avatar: avatarGs,
     rating: 5,
   },
   {
@@ -17,8 +19,7 @@ const testimonialData = [
     nameKey: "testimonial.review.name2",
     roleKey: "testimonial.review.role2",
     textKey: "testimonial.review.text2",
-    avatar:
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
+    avatar: avatarJz,
     rating: 4,
   },
   {
@@ -26,8 +27,7 @@ const testimonialData = [
     nameKey: "testimonial.review.name3",
     roleKey: "testimonial.review.role3",
     textKey: "testimonial.review.text3",
-    avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop",
+    avatar: avatarJl,
     rating: 4,
   },
 ];
@@ -62,14 +62,14 @@ const Testimonial = () => {
         {testimonialData.map((item, index) => (
           <div
             key={index}
-            className={`p-6 flex flex-col items-center rounded-2xl bg-white/10 backdrop-blur-md w-full max-w-md shadow-xl shadow-black/60`}
+            className={`p-6 flex flex-col items-center rounded-2xl  backdrop-blur-md w-full max-w-md shadow-xs shadow-white`}
           >
             <img
               src={item.avatar}
               alt="avatar"
               className="h-20 w-20 rounded-full"
             />
-            <h3 className="text-yellow-100 text-lg font-bold mt-2">
+            <h3 className="text-yellow-100 text-lg font-base mt-2">
               {t(item.nameKey)}
             </h3>
             <div className="text-sm text-gray-200 mt-1"> {t(item.roleKey)}</div>
