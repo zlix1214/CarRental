@@ -262,9 +262,9 @@ const CarDetails = () => {
                     id="pickup-date"
                     value={pickupDate}
                     onChange={(e) => setPickupDate(e.target.value)}
-                    onClick={(e) => e.target.showPicker?.()}
                     className="w-full px-4 py-3 shadow-lg shadow-black/40 bg-black/30 text-slate-200 rounded-xl outline-none cursor-pointer"
                     onMouseDown={(e) => e.preventDefault()}
+                    onClick={(e) => e.target.showPicker?.()}
                     required
                     min={new Date().toISOString().split("T")[0]}
                   />

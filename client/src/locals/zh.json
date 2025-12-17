@@ -56,7 +56,7 @@
     "loginButton":"登錄"
   },
   "hero": {
-    "title": "享受每一段旅程"
+    "title": "ShiftLab Est. 2025"
   },
   "searchForm": {
     "placeholderLocation": "選擇地點",
@@ -71,7 +71,7 @@
   },
   "banner": {
     "title": "您也想刊登車輛嗎？",
-    "content": "把車放到 ShiftLab 上就能輕鬆賺錢。保險、駕駛驗證、付款流程都由我們處理，您只需要坐著就可以增加收被動收入",
+    "content": "把車放到 ShiftLab 上就能輕鬆賺錢。保險、駕駛驗證、付款流程都由我們處理，只需要坐等被動收入!",
     "button": "刊登車輛"
   },
   "testimonial": {
@@ -102,7 +102,9 @@
     "question4": "這個專案是怎麼部署的？",
     "answer4": "前端部署在 Vercel，後端則使用 Render。只要 push 更新，兩邊都會自動重新部署。"
   },
-  "footer": {},
+  "footer": {
+     "text":"版權所有"
+  },
   "carPage": {
     "availableCars": "可租車輛",
     "choosePremium": "從我們的高級車輛中選擇您的下一趟旅程",
@@ -248,8 +250,8 @@
   "dashboard": {
     "loginRequired": "請先登入才能進入管理中心",
     "confirm": "確定",
-    "title": "控制台",
-    "subtitle": "歡迎回來！以下是您的租車情況。",
+    "title": "管理中心",
+    "subtitle": "歡迎回來！檢視您的租車狀態",
     "totalCars": "車輛總數",
     "bookings": "訂單數",
     "pending": "待處理",
@@ -274,7 +276,7 @@
 
     "imageUpload": {
       "title": "上傳車輛照片",
-      "description": "高品質的照片有助於吸引更多租客。請確保車輛光線充足且清晰可見。",
+      "description": "高畫質的照片有助於吸引更多租客，請確保車輛光線充足且清晰可見",
       "clickToUpload": "點擊上傳",
       "fileFormat": "PNG、JPG 最大 10MB",
       "tips": {

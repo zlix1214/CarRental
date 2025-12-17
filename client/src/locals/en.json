@@ -56,7 +56,7 @@
     "loginButton":"Login"
   },
   "hero": {
-    "title": "Drive in style."
+    "title": "ShiftLab Est. 2025"
   },
   "searchForm": {
     "placeholderLocation": "select a location",
@@ -70,7 +70,7 @@
     "expandButton": "Expand All"
   },
   "banner": {
-    "title": "Do you own a Luxury Car?",
+    "title": "Interested in listing your vehicle?",
     "content": " Monetize your vehicle effortlessly by listing it on CarRental. We take care of insurance, driver vertification and secure payments - so you can earn passive income, stress free.",
     "button": "List your car"
   },
@@ -102,7 +102,9 @@
     "question4": "How is the project deployed?",
     "answer4": "The frontend is deployed on Vercel, and the backend is hosted on Render. Both services automatically redeploy when changes are pushed to the repository."
   },
-  "footer": {},
+  "footer": {
+    "text":"All rights reserved."
+  },
   "carPage": {
     "availableCars": "Available Cars",
     "choosePremium": "Choose from our premium selection of vehicles for your next journey",

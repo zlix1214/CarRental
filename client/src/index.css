@@ -1,8 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Rokkitt:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 * {
   font-family: "Outfit", sans-serif;
+}
+h2{
+  font-family: "Rokkitt",serif;
+  font-weight: 200;
+}
+h1{
+  font-family: "Nunito",sans-serif;
+  font-weight: 400;
 }
 body {
   background: #000000;

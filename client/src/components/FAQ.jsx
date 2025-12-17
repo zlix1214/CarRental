@@ -46,9 +46,9 @@ const FAQ = () => {
     <div className="flex flex-col items-center px-4 py-12 mt-80">
       {/* title */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 max-w-4xl w-full">
-        <h2 className="text-4xl sm:text-5xl font-medium text-gray-200 text-center sm:text-left">
+        <h1 className="text-4xl sm:text-5xl font-medium text-gray-200 text-center sm:text-left">
           {t("faq.title")}
-        </h2>
+        </h1>
 
         <button
           onClick={toggleExpandAll}

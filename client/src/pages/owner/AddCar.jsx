@@ -318,16 +318,16 @@ const AddCar = () => {
                   value={car.transmission}
                   className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white/60"
                 >
-                  <option value="">
+                  <option value="" className="text-black/80">
                     {t("addCar.specifications.selectTransmission")}
                   </option>
-                  <option value="Automatic">
+                  <option value="Automatic" className="text-black/80">
                     {t("addCar.specifications.transmissionTypes.automatic")}
                   </option>
-                  <option value="Manual">
+                  <option value="Manual" className="text-black/80">
                     {t("addCar.specifications.transmissionTypes.manual")}
                   </option>
-                  <option value="Semi-Automatic">
+                  <option value="Semi-Automatic" className="text-black/80">
                     {t("addCar.specifications.transmissionTypes.semiAutomatic")}
                   </option>
                 </select>
@@ -344,19 +344,19 @@ const AddCar = () => {
                   value={car.fuel_type}
                   className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white/60"
                 >
-                  <option value="">
+                  <option value="" className="text-black/80">
                     {t("addCar.specifications.selectFuelType")}
                   </option>
-                  <option value="Gasoline">
+                  <option value="Gasoline" className="text-black/80">
                     {t("addCar.specifications.fuelTypes.gasoline")}
                   </option>
-                  <option value="Diesel">
+                  <option value="Diesel" className="text-black/80">
                     {t("addCar.specifications.fuelTypes.diesel")}
                   </option>
-                  <option value="Hybrid">
+                  <option value="Hybrid" className="text-black/80">
                     {t("addCar.specifications.fuelTypes.hybrid")}
                   </option>
-                  <option value="Electric">
+                  <option value="Electric" className="">
                     {t("addCar.specifications.fuelTypes.electric")}
                   </option>
                 </select>
@@ -407,37 +407,37 @@ const AddCar = () => {
                   value={car.location}
                   className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white/60"
                 >
-                  <option value="">
+                  <option value="" className="text-black/80">
                     {t("addCar.locationDescription.selectLocation")}
                   </option>
-                  <option value="Taipei">
+                  <option value="Taipei" className="text-black/80">
                     {t("addCar.locationDescription.locations.taipei")}
                   </option>
-                  <option value="New Taipei">
+                  <option value="New Taipei" className="text-black/80">
                     {t("addCar.locationDescription.locations.newTaipei")}
                   </option>
-                  <option value="Taoyuan">
+                  <option value="Taoyuan" className="text-black/80">
                     {t("addCar.locationDescription.locations.taoyuan")}
                   </option>
-                  <option value="Hsinchu">
+                  <option value="Hsinchu" className="text-black/80">
                     {t("addCar.locationDescription.locations.hsinchu")}
                   </option>
-                  <option value="Taichung">
+                  <option value="Taichung" className="text-black/80">
                     {t("addCar.locationDescription.locations.taichung")}
                   </option>
-                  <option value="Tainan">
+                  <option value="Tainan" className="text-black/80">
                     {t("addCar.locationDescription.locations.tainan")}
                   </option>
-                  <option value="Kaohsiung">
+                  <option value="Kaohsiung" className="text-black/80">
                     {t("addCar.locationDescription.locations.kaohsiung")}
                   </option>
-                  <option value="Keelung">
+                  <option value="Keelung" className="text-black/80">
                     {t("addCar.locationDescription.locations.keelung")}
                   </option>
-                  <option value="Yilan">
+                  <option value="Yilan" className="text-black/80">
                     {t("addCar.locationDescription.locations.yilan")}
                   </option>
-                  <option value="Hualien">
+                  <option value="Hualien" className="text-black">
                     {t("addCar.locationDescription.locations.hualien")}
                   </option>
                 </select>

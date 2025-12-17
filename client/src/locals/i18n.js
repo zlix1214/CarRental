@@ -9,8 +9,8 @@ i18n.use(initReactI18next).init({
     en: { translation: en },
     zh: { translation: zh },
   },
-  lng: "zh",
-  fallbackLng: "en",
+  lng: "en",
+  fallbackLng: "zh",
   interpolation: { escapeValue: false },
 });
 

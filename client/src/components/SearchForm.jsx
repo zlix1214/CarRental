@@ -63,6 +63,8 @@ const SearchForm = () => {
           value={pickupDate}
           min={new Date().toISOString().split("T")[0]}
           className={`${gs.glassInput} text-gray-200`}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={(e) => e.target.showPicker?.()}
         />
       </div>
 
@@ -79,6 +81,8 @@ const SearchForm = () => {
           onChange={(e) => setReturnDate(e.target.value)}
           value={returnDate}
           className={`${gs.glassInput} text-gray-200`}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={(e) => e.target.showPicker?.()}
         />
       </div>
 

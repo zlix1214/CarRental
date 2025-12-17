@@ -1,16 +1,20 @@
 import { assets } from "../assets/assets";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="flex flex-col items-center justify-center p-20 text-white/70 mt-10 ">
       <img src={assets.logo} alt="" />
       <p className="mt-4 text-center">
-        © {new Date().getFullYear()} Felix. All rights reserved.
+        © {new Date().getFullYear()} Felix. {t("footer.text")}
       </p>
       <div className="flex items-center gap-4 mt-5">
         <a
-          href="#"
+          href="https://www.linkedin.com/in/%E7%A5%A5%E4%BD%91-%E9%84%AD-430778225/"
           className="hover:-translate-y-0.5 transition-all duration-300"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <svg
             width="24"
@@ -30,8 +34,10 @@ const Footer = () => {
           </svg>
         </a>
         <a
-          href="#"
+          href="https://github.com/zlix1214"
           className="hover:-translate-y-0.5 transition-all duration-300"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <svg
             width="24"

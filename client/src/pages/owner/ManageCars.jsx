@@ -157,7 +157,7 @@ const ManageCars = () => {
           {filteredCars.map((car, index) => (
             <div
               key={index}
-              className="group relative bg-white/5 rounded-2xl overflow-hidden shadow shadow-white/40 transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-white/5 rounded-2xl overflow-hidden shadow shadow-white/40 transition-all duration-300"
             >
               {/* Image Section */}
               <div className="relative h-48 overflow-hidden">

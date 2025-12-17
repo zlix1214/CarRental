@@ -171,7 +171,7 @@ const ManageBookings = () => {
             .map((booking, index) => (
               <div
                 key={index}
-                className="bg-white/10 group relative rounded-2xl  overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="bg-white/10 group relative rounded-2xl  overflow-hidden shadow-xl transition-all duration-300"
               >
                 <div className="flex flex-col sm:flex-row h-full">
                   {/* Car Image */}
