@@ -107,9 +107,9 @@ const ManageCars = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-200 mb-2">
+          <h2 className="text-4xl sm:text-6xl font-bold text-slate-200 mb-2">
             {t("manageCars.pageTitle")}
-          </h1>
+          </h2>
           <p className="text-slate-200">{t("manageCars.pageSubtitle")}</p>
         </div>
 

@@ -12,13 +12,17 @@ const FeaturedSection = () => {
 
   return (
     <div className="flex flex-col items-center px-6 md:px-16 lg:px-24 xl:px-32 mt-80 ">
-      <h1 className="text-center text-white text-5xl md:text-7xl">
+      <h2 className="text-center text-white text-5xl md:text-7xl">
         {t("featuredSection.title")}
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 md:mt-12 lg:mt-16 p-5 w-full">
-        {cars.slice(0, 6).map((car) => (
-          <CarCard key={car._id} car={car} />
-        ))}
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 md:mt-12 lg:mt-16 p-5 w-full max-w-6xl ">
+        {cars
+          .slice()
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .slice(0, 6)
+          .map((car) => (
+            <CarCard key={car._id} car={car} />
+          ))}
       </div>
 
       <button

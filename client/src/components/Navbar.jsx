@@ -43,7 +43,10 @@ const Navbar = () => {
           <Link to="/my-bookings">{t("navbar.booking")}</Link>
 
           <button
-            onClick={() => navigate("/owner")}
+            onClick={() => {
+              navigate("/owner");
+              scrollTo(0, 0);
+            }}
             className={`p-2 cursor-pointer`}
           >
             {t("navbar.dashboard")}

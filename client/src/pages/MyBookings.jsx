@@ -58,9 +58,9 @@ const MyBookings = () => {
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-16 max-w-7xl mx-auto">
       {/* header */}
       <div className="my-8 text-center">
-        <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold text-white mb-3 tracking-tight">
+        <h2 className="text-5xl md:text-6xl xl:text-7xl font-bold text-white mb-3 tracking-tight">
           {t("userBooking.myBookings")}
-        </h1>
+        </h2>
       </div>
 
       {/* 訂單卡片 - 交錯排版 */}
@@ -146,9 +146,9 @@ const MyBookings = () => {
                     </div>
 
                     {/* 車輛名稱 */}
-                    <h2 className="text-3xl font-bold text-white mb-2">
+                    <h1 className="text-3xl font-bold text-white mb-2">
                       {car.brand} {car.model}
-                    </h2>
+                    </h1>
 
                     {/* 車輛基本資訊 */}
                     <div className="flex flex-wrap gap-4 text-gray-300 mb-6">
@@ -204,7 +204,7 @@ const MyBookings = () => {
           })}
       </div>
 
-      {/* 空狀態 */}
+      {/* empty status */}
       {bookings.length === 0 && (
         <div className="p-16 rounded-3xl text-center">
           <div className="w-24 h-24 rounded-full mx-auto flex items-center justify-center opacity-50">

@@ -81,9 +81,9 @@ const AddCar = () => {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl md:text-6xl font-semibold text-slate-300 mb-2">
+          <h2 className="text-4xl md:text-6xl font-semibold text-slate-300 mb-2">
             {t("addCar.pageTitle")}
-          </h1>
+          </h2>
           <p className="text-slate-200">{t("addCar.pageSubtitle")}</p>
         </div>
 
@@ -260,28 +260,28 @@ const AddCar = () => {
                   value={car.category}
                   className="px-3 py-2 rounded-xl outline-none bg-white/20 text-white/60"
                 >
-                  <option value="">
+                  <option value="" className="text-black/80">
                     {t("addCar.pricingDetails.selectCategory")}
                   </option>
-                  <option value="Economy">
+                  <option value="Economy" className="text-black/80">
                     {t("addCar.pricingDetails.categories.economy")}
                   </option>
-                  <option value="Compact">
+                  <option value="Compact" className="text-black/80">
                     {t("addCar.pricingDetails.categories.compact")}
                   </option>
-                  <option value="Midsize">
+                  <option value="Midsize" className="text-black/80">
                     {t("addCar.pricingDetails.categories.midsize")}
                   </option>
-                  <option value="SUV">
+                  <option value="SUV" className="text-black/80">
                     {t("addCar.pricingDetails.categories.suv")}
                   </option>
-                  <option value="Luxury">
+                  <option value="Luxury" className="text-black/80">
                     {t("addCar.pricingDetails.categories.luxury")}
                   </option>
-                  <option value="Sport">
+                  <option value="Sport" className="text-black/80">
                     {t("addCar.pricingDetails.categories.sport")}
                   </option>
-                  <option value="Van">
+                  <option value="Van" className="text-black/80">
                     {t("addCar.pricingDetails.categories.van")}
                   </option>
                 </select>
@@ -356,7 +356,7 @@ const AddCar = () => {
                   <option value="Hybrid" className="text-black/80">
                     {t("addCar.specifications.fuelTypes.hybrid")}
                   </option>
-                  <option value="Electric" className="">
+                  <option value="Electric" className="text-black/80">
                     {t("addCar.specifications.fuelTypes.electric")}
                   </option>
                 </select>

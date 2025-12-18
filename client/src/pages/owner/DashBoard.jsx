@@ -118,9 +118,9 @@ const Dashboard = () => {
       {showModal && (
         <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center pointer-events-auto">
           <div className="bg-black p-6 rounded-lg shadow-md w-80 text-center shadow-white/50 pointer-events-auto">
-            <h2 className="text-lg text-neutral-200 font-semibold mb-4">
+            <h1 className="text-lg text-neutral-200 font-semibold mb-4">
               {t("dashboard.loginRequired")}
-            </h2>
+            </h1>
 
             <button
               onClick={handleConfirm}
@@ -136,9 +136,9 @@ const Dashboard = () => {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl sm:text-6xl font-bold text-slate-200 mb-2">
+            <h2 className="text-4xl sm:text-6xl font-bold text-slate-200 mb-2">
               {t("dashboard.title")}
-            </h1>
+            </h2>
             <p className="text-slate-200 text-sm sm:text-base lg:text-lg">
               {t("dashboard.subtitle")}
             </p>
@@ -250,9 +250,9 @@ const Dashboard = () => {
             <div className="relative overflow-hidden rounded-2xl p-6 bg-white/5 shadow-md shadow-white/40">
               <div className="relative">
                 {/* Title */}
-                <h2 className="text-lg font-bold text-white mb-1">
+                <h1 className="text-lg font-bold text-white mb-1">
                   {t("dashboard.monthlyRevenue")}
-                </h2>
+                </h1>
 
                 {/* Revenue Amount */}
                 <div className="mb-6">
