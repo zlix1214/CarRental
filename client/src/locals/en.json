@@ -42,18 +42,18 @@
     "login": "Login",
     "logout": "Logout"
   },
-  "login":{
-    "user":"User",
-    "login":"Login",
-    "signUp":"Sign Up",
-    "name":"Name",
-    "email":"Email",
-    "password":"Password",
-    "create":"Create an account?",
-    "already":"Already have account?",
-    "click":"click here",
-    "createButton":"Create Account",
-    "loginButton":"Login"
+  "login": {
+    "user": "User",
+    "login": "Login",
+    "signUp": "Sign Up",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "create": "Create an account?",
+    "already": "Already have account?",
+    "click": "click here",
+    "createButton": "Create Account",
+    "loginButton": "Login"
   },
   "hero": {
     "title": "ShiftLab Est. 2025"
@@ -82,7 +82,7 @@
       "role1": "Developer",
       "text1": "I've been using this service for over a year, and the experience has been consistently excellent.",
       "name2": "JayLoveJapan",
-      "role2": "unemployed",
+      "role2": "Traveler",
       "text2": "Very smooth process and professional support. Would recommend to others for sure.",
       "name3": "Jonathan Lin",
       "role3": "designer",
@@ -103,7 +103,7 @@
     "answer4": "The frontend is deployed on Vercel, and the backend is hosted on Render. Both services automatically redeploy when changes are pushed to the repository."
   },
   "footer": {
-    "text":"All rights reserved."
+    "text": "All rights reserved."
   },
   "carPage": {
     "availableCars": "Available Cars",
@@ -248,10 +248,10 @@
     "addCar": "Add Car",
     "manageCars": "Manage Cars",
     "manageBookings": "Manage Bookings",
-    "confirmChangeImage":"Confirm Image Change",
-    "previewNewImage":"Preview new image:",
-    "cancel":"Cancel",
-    "confirmUpdate":"Confirm Update"
+    "confirmChangeImage": "Confirm Image Change",
+    "previewNewImage": "Preview new image:",
+    "cancel": "Cancel",
+    "confirmUpdate": "Confirm Update"
   },
   "dashboard": {
     "loginRequired": "Please log in to access the Dashboard",

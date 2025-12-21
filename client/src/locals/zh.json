@@ -42,18 +42,18 @@
     "login": "登錄",
     "logout": "登出"
   },
-  "login":{
-    "user":"用戶",
-    "login":"登錄",
-    "signUp":"註冊",
-    "name":"用戶名",
-    "email":"電子信箱",
-    "password":"密碼",
-    "create":"創建帳號?",
-    "already":"已有帳號?",
-    "click":"點擊這裡",
-    "createButton":"創建帳號",
-    "loginButton":"登錄"
+  "login": {
+    "user": "用戶",
+    "login": "登錄",
+    "signUp": "註冊",
+    "name": "用戶名",
+    "email": "電子信箱",
+    "password": "密碼",
+    "create": "創建帳號?",
+    "already": "已有帳號?",
+    "click": "點擊這裡",
+    "createButton": "創建帳號",
+    "loginButton": "登錄"
   },
   "hero": {
     "title": "ShiftLab Est. 2025"
@@ -78,14 +78,14 @@
     "title": "客戶怎麼說",
     "content": "看看用過 ShiftLab 的人怎麼評價，以及為什麼他們會持續選擇我們",
     "review": {
-      "name1": "GS孫卓",
+      "name1": "Gary Sun",
       "role1": "軟體工程師",
       "text1": "我已經透過 ShiftLab 租車一年多了，服務一直非常優秀",
-      "name2": "紹恩將軍",
-      "role2": "食尚玩家",
+      "name2": "JayLoveJapan",
+      "role2": "旅行家",
       "text2": "預訂流程很順暢，客服也很專業。強烈推薦 ！",
-      "name3": "o0我不是林岳穎0o",
-      "role3": "西裝設計師",
+      "name3": "Jonathan Lin",
+      "role3": "設計師",
       "text3": "平台可靠車款選擇也豐富，持續使用 ShiftLab來安排行程中"
     }
   },
@@ -103,7 +103,7 @@
     "answer4": "前端部署在 Vercel，後端則使用 Render。只要 push 更新，兩邊都會自動重新部署。"
   },
   "footer": {
-     "text":"版權所有"
+    "text": "版權所有"
   },
   "carPage": {
     "availableCars": "可租車輛",
@@ -242,10 +242,10 @@
     "addCar": "新增車輛",
     "manageCars": "車輛",
     "manageBookings": "我的預訂",
-    "confirmChangeImage":"確認更換頭像",
-    "previewNewImage":"預覽新頭像",
-    "cancel":"取消",
-    "confirmUpdate":"確認更新"
+    "confirmChangeImage": "確認更換頭像",
+    "previewNewImage": "預覽新頭像",
+    "cancel": "取消",
+    "confirmUpdate": "確認更新"
   },
   "dashboard": {
     "loginRequired": "請先登入才能進入管理中心",
@@ -362,15 +362,15 @@
       "loading": "刊登中..."
     }
   },
-  "editCar":{
-    "pageTitle":"編輯您的車輛",
-    "pageSubtitle":"編輯以下資料，將您的愛車加入平台",
-    "backToManageCars":"回到車輛管理頁面",
-    "imageUploadTitle":"編輯或上傳車輛照片",
-    "imageUploadSubTitle":"高品質的照片有助於吸引更多租客。請確保車輛光線充足且清晰可見。",
-    "cancel":"取消編輯",
-    "loading":"刊登中...",
-    "button":"保存編輯"
+  "editCar": {
+    "pageTitle": "編輯您的車輛",
+    "pageSubtitle": "編輯以下資料，將您的愛車加入平台",
+    "backToManageCars": "回到車輛管理頁面",
+    "imageUploadTitle": "編輯或上傳車輛照片",
+    "imageUploadSubTitle": "高品質的照片有助於吸引更多租客。請確保車輛光線充足且清晰可見。",
+    "cancel": "取消編輯",
+    "loading": "刊登中...",
+    "button": "保存編輯"
   },
   "manageCars": {
     "loading": "載入您的車輛中...",
@@ -439,5 +439,5 @@
       "noFilters": "您目前還沒有任何預訂"
     }
   },
-  "toast":{}
+  "toast": {}
 }

@@ -25,12 +25,12 @@ const AddCar = () => {
   const [car, setCar] = useState({
     brand: "",
     model: "",
-    year: 0,
-    pricePerDay: 0,
+    year: "",
+    pricePerDay: "",
     category: "",
     transmission: "",
     fuel_type: "",
-    seating_capacity: 0,
+    seating_capacity: "",
     location: "",
     description: "",
   });
@@ -47,8 +47,15 @@ const AddCar = () => {
     setIsLoading(true);
     try {
       const formData = new FormData();
+      const carData = {
+        ...car,
+        year: Number(car.year),
+        pricePerDay: Number(car.pricePerDay),
+        seating_capacity: Number(car.seating_capacity),
+      };
+
       formData.append("image", image);
-      formData.append("carData", JSON.stringify(car));
+      formData.append("carData", JSON.stringify(carData));
       const { data } = await axios.post("/api/owner/add-car", formData);
 
       if (data.success) {
@@ -57,12 +64,12 @@ const AddCar = () => {
         setCar({
           brand: "",
           model: "",
-          year: 0,
-          pricePerDay: 0,
+          year: "",
+          pricePerDay: "",
           category: "",
           transmission: "",
           fuel_type: "",
-          seating_capacity: 0,
+          seating_capacity: "",
           location: "",
           description: "",
         });
@@ -368,7 +375,7 @@ const AddCar = () => {
                 </label>
                 <input
                   type="number"
-                  placeholder={t("addCar.specifications.seatingPlaceholder")}
+                  placeholder=""
                   required
                   className="px-3 py-2 bg-white/20 rounded-xl outline-none text-white/60"
                   value={car.seating_capacity}
