@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { assets, dummyCarData } from "../assets/assets";
 import CarCard from "../components/CarCard";
-import { Search } from "lucide-react";
+import { Search, X, MapPin, Calendar } from "lucide-react";
 import { gs } from "../style/glassUi";
 import { useSearchParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
@@ -14,27 +14,23 @@ const Cars = () => {
   const pickupDate = searchParams.get("pickupDate");
   const returnDate = searchParams.get("returnDate");
 
-  const { axios, cars } = useAppContext();
+  const { axios, cars, navigate } = useAppContext();
 
   const [input, setInput] = useState("");
   const [showFilters, setShowFilters] = useState(false);
-  const [sortOption, setSortOption] = useState("");
+  const [sortOption, setSortOption] = useState("oldest");
 
+  // 檢查是否有預約篩選條件
+  const hasBookingFilters = pickupLocation || pickupDate || returnDate;
+
+  // 第一步：根據預約條件篩選（地點、日期）
   let filteredCars = cars.filter((car) => {
-    const keyword = input.toLowerCase();
-
-    // 品牌型號搜尋
-    const matchKeyword =
-      car.brand?.toLowerCase().includes(keyword) ||
-      car.model?.toLowerCase().includes(keyword) ||
-      car.type?.toLowerCase().includes(keyword);
-
-    // 地點搜尋
+    // 地點篩選
     const matchLocation = pickupLocation
       ? car.location?.toLowerCase() === pickupLocation.toLowerCase()
       : true;
 
-    // 日期搜尋
+    // 日期篩選
     const matchDate =
       pickupDate && returnDate
         ? !(
@@ -43,9 +39,21 @@ const Cars = () => {
           )
         : true;
 
-    return matchKeyword && matchLocation && matchDate;
+    return matchLocation && matchDate;
   });
 
+  // 第二步：在篩選結果中進行關鍵字搜尋（品牌/型號）
+  if (input.trim()) {
+    const keyword = input.toLowerCase();
+    filteredCars = filteredCars.filter(
+      (car) =>
+        car.brand?.toLowerCase().includes(keyword) ||
+        car.model?.toLowerCase().includes(keyword) ||
+        car.type?.toLowerCase().includes(keyword)
+    );
+  }
+
+  // 排序
   if (sortOption === "lowToHigh") {
     filteredCars = [...filteredCars].sort(
       (a, b) => a.pricePerDay - b.pricePerDay
@@ -66,6 +74,17 @@ const Cars = () => {
       (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
     );
   }
+
+  // 清除所有篩選條件
+  const clearAllFilters = () => {
+    navigate("/cars");
+    setInput("");
+  };
+
+  // 清除預約篩選條件
+  const clearBookingFilters = () => {
+    navigate("/cars");
+  };
 
   return (
     <div className="min-h-screen ">
@@ -95,8 +114,52 @@ const Cars = () => {
                   placeholder={t("carPage.searchPlaceholder")}
                   className="flex-1 text-white placeholder:text-neutral-300 text-lg outline-none"
                 />
+
+                {input && (
+                  <button
+                    onClick={() => setInput("")}
+                    className="pr-6 pl-4 py-2 sm:py-3 md:py-4 lg:py-5 hover:bg-white/5 transition-colors rounded-r-2xl"
+                  >
+                    <X className="w-5 h-5 text-slate-300" />
+                  </button>
+                )}
               </div>
             </div>
+
+            {/* 篩選條件標籤 */}
+            {hasBookingFilters && (
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <span className="text-slate-300 text-sm">
+                  {t("carPage.bookingFilters")}
+                </span>
+
+                {pickupLocation && (
+                  <div className="flex items-center gap-2 border border-white/30 rounded-full px-4 py-2 text-sm text-white/80">
+                    <MapPin className="w-4 h-4" />
+                    <span>
+                      {t(`common.location.${pickupLocation}`) || pickupLocation}
+                    </span>
+                  </div>
+                )}
+
+                {pickupDate && returnDate && (
+                  <div className="flex items-center gap-2 border border-white/30 rounded-full px-4 py-2 text-sm text-white/80">
+                    <Calendar className="w-4 h-4" />
+                    <span>
+                      {pickupDate} ~ {returnDate}
+                    </span>
+                  </div>
+                )}
+
+                <button
+                  onClick={clearBookingFilters}
+                  className="flex items-center gap-1 bg-red-500/20 border border-white/20 rounded-full px-4 py-2 text-sm text-white/80 hover:bg-red-500/30 transition-colors cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                  {t("carPage.clearBookingFilters")}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -104,47 +167,79 @@ const Cars = () => {
       {/* Cars Grid Section */}
       <div className="w-fit mx-auto p-4 md:p-8 lg:p-16 pb-16">
         <div className="max-w-7xl mx-auto">
-          {/* Results Header */}
-          <div className="flex items-center justify-between mb-4 md:mb-8">
-            <div>
-              <p className="text-slate-200 text-sm sm:text-base md:text-lg">
-                {t("carPage.showing")}{" "}
-                <span className="font-bold text-slate-300">
-                  {filteredCars.length}
-                </span>{" "}
-                {t("carPage.vehicles")}
-              </p>
-            </div>
+          {/* Results Header - 只在有結果時顯示 */}
+          {filteredCars.length > 0 && (
+            <div className="flex items-center justify-between mb-4 md:mb-8">
+              <div>
+                <p className="text-slate-200 text-sm sm:text-base md:text-lg">
+                  {t("carPage.showing")}{" "}
+                  <span className="font-bold text-slate-300">
+                    {filteredCars.length}
+                  </span>{" "}
+                  {t("carPage.vehicles")}
+                </p>
+              </div>
 
-            {filteredCars.length > 0 && (
               <div className="flex items-center gap-3">
+                {(hasBookingFilters || input) && (
+                  <button
+                    onClick={clearAllFilters}
+                    className="px-3 py-2 text-xs md:text-sm text-slate-300 hover:text-white border border-slate-500 rounded-xl hover:border-slate-400 transition-colors"
+                  >
+                    {t("carPage.clearAllFilters")}
+                  </button>
+                )}
+
                 <select
                   className="px-1 py-1 sm:px-4 sm:py-2 border-white rounded-xl text-neutral-300 font-medium outline-none cursor-pointer"
                   onChange={(e) => setSortOption(e.target.value)}
+                  value={sortOption}
                 >
+                  <option value="oldest" className="text-black/80">
+                    {t("carPage.oldestFirst")}
+                  </option>
+                  <option value="newest" className="text-black/80">
+                    {t("carPage.newestFirst")}
+                  </option>
                   <option value="lowToHigh" className="text-black/80">
                     {t("carPage.priceLowToHigh")}
                   </option>
                   <option value="highToLow" className="text-black/80">
                     {t("carPage.priceHighToLow")}
                   </option>
-                  <option value="newest" className="text-black/80">
-                    {t("carPage.newestFirst")}
-                  </option>
-                  <option value="oldest" className="text-black/80">
-                    {t("carPage.oldestFirst")}
-                  </option>
                 </select>
               </div>
-            )}
-          </div>
+            </div>
+          )}
 
           {/* Cars Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {filteredCars.map((car) => (
-              <CarCard key={car._id} car={car} />
-            ))}
-          </div>
+          {filteredCars.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {filteredCars.map((car) => (
+                <CarCard key={car._id} car={car} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <h3 className="text-2xl font-bold text-white mb-2">
+                {t("carPage.noResults")}
+              </h3>
+              <p className="text-slate-300 mb-6">
+                {hasBookingFilters || input
+                  ? t("carPage.tryAdjustFilters")
+                  : t("carPage.noAvailableCars")}
+              </p>
+              {/* 只有在預約條件篩選沒結果時才顯示清除按鈕 */}
+              {hasBookingFilters && (
+                <button
+                  onClick={clearAllFilters}
+                  className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white hover:bg-white/15 transition-colors"
+                >
+                  {t("carPage.clearAllFilters")}
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -114,7 +114,13 @@
     "priceLowToHigh": "價格：低到高",
     "priceHighToLow": "價格：高到低",
     "newestFirst": "最新車輛",
-    "oldestFirst": "最舊車輛"
+    "oldestFirst": "最舊車輛",
+    "noResults": "找不到符合條件的車輛",
+    "tryAdjustFilters": "請嘗試調整篩選條件",
+    "noAvailableCars": "目前沒有可用車輛",
+    "clearAllFilters": "清除所有篩選",
+    "clearBookingFilters": "清除預約條件",
+    "bookingFilters": "預約篩選條件"
   },
   "carCard": {
     "availableNow": "可立即租用",

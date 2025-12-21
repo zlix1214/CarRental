@@ -22,13 +22,13 @@
       "Semi-Automatic": "Semi-Automatic"
     },
     "location": {
-      "Taipei": "台北",
-      "New Taipei": "新北",
-      "Taoyuan": "桃園",
-      "Hsinchu": "新竹",
-      "Taichung": "台中",
-      "Tainan": "台南",
-      "Kaohsiung": "高雄",
+      "Taipei": "Taipei",
+      "Taichung": "Taichung",
+      "New Taipei": "New Taipei",
+      "Kaohsiung": "Kaohsiung",
+      "Taoyuan": "Taoyuan",
+      "Hsinchu": "Hsinchu",
+      "Tainan": "Tainan",
       "Keelung": "Keelung",
       "Yilan": "Yilan",
       "Hualien": "Hualien"
@@ -114,7 +114,13 @@
     "priceLowToHigh": "Price: Low to High",
     "priceHighToLow": "Price: High to Low",
     "newestFirst": "Newest First",
-    "oldestFirst": "Oldest First"
+    "oldestFirst": "Oldest First",
+    "noResults": "No Results ...",
+    "tryAdjustFilters": "Try adjust the filters",
+    "noAvailableCars": "No available cars now",
+    "clearAllFilters": "Clear all filters",
+    "clearBookingFilters": "Clear booking filters",
+    "bookingFilters": "Booking filters"
   },
   "carCard": {
     "availableNow": "Available Now",

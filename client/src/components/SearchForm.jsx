@@ -43,7 +43,7 @@ const SearchForm = () => {
           <option value="">{t("searchForm.pickupLocation")}</option>
           {cityList.map((city) => (
             <option key={city} value={city} className="text-gray-600">
-              {city}
+              {t(`common.location.${city}`)}
             </option>
           ))}
         </select>
