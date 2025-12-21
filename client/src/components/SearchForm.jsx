@@ -82,7 +82,6 @@ const SearchForm = () => {
           value={returnDate}
           className={`${gs.glassInput} text-gray-200`}
           onMouseDown={(e) => e.preventDefault()}
-          onClick={(e) => e.target.showPicker?.()}
         />
       </div>
 
