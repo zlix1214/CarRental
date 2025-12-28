@@ -33,6 +33,7 @@ const CarDetails = () => {
   const navigate = useNavigate();
   const [car, setCar] = useState(null);
   const [totalPrice, setToatalPrice] = useState("");
+  const today = new Date().toISOString().split("T")[0];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,12 +66,19 @@ const CarDetails = () => {
 
     const start = new Date(pickupDate);
     const end = new Date(returnDate);
-    const diff = end - start;
-    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-    const price = days * car.pricePerDay;
 
-    setToatalPrice(price);
+    const diffInMs = end - start;
+    const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
+    const days = Math.max(1, diffInDays);
+
+    setToatalPrice(days * car.pricePerDay);
   }, [pickupDate, returnDate, car]);
+
+  useEffect(() => {
+    if (returnDate && pickupDate && returnDate < pickupDate) {
+      setReturnDate(pickupDate);
+    }
+  }, [pickupDate, returnDate, setReturnDate]);
 
   if (!car) {
     return (
@@ -283,7 +291,7 @@ const CarDetails = () => {
                     onChange={(e) => setReturnDate(e.target.value)}
                     className="w-full px-4 py-3 bg-white/10 shadow-lg shadow-black/40 rounded-xl outline-none text-slate-200"
                     required
-                    min={new Date().toISOString().split("T")[0]}
+                    min={pickupDate || today}
                   />
                 </div>
               </div>

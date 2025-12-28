@@ -4,12 +4,14 @@ import { useState } from "react";
 import { cityList } from "../assets/assets";
 import { useAppContext } from "../context/AppContext";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 const SearchForm = () => {
   const { t } = useTranslation();
   const [pickupLocation, setPickupLocation] = useState("");
   const { pickupDate, setPickupDate, returnDate, setReturnDate, navigate } =
     useAppContext();
+  const today = new Date().toISOString().split("T")[0];
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -22,6 +24,12 @@ const SearchForm = () => {
         returnDate
     );
   };
+
+  useEffect(() => {
+    if (returnDate && pickupDate && returnDate < pickupDate) {
+      setReturnDate(pickupDate);
+    }
+  }, [pickupDate, returnDate, setReturnDate]);
 
   return (
     <form
@@ -75,7 +83,7 @@ const SearchForm = () => {
           type="date"
           required
           value={returnDate}
-          min={new Date().toISOString().split("T")[0]}
+          min={pickupDate || today}
           onChange={(e) => setReturnDate(e.target.value)}
           className={`${gs.glassInput} text-gray-200`}
         />

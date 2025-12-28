@@ -43,10 +43,10 @@ export const createBooking = async (req, res) => {
     const returned = new Date(returnDate);
 
     // 檢查取車日期不能晚於還車日期
-    if (picked >= returned) {
+    if (picked > returned) {
       return res.json({
         success: false,
-        message: "Return date must be after pickup date",
+        message: "Return date cannot be before pickup date",
       });
     }
 
@@ -96,7 +96,9 @@ export const createBooking = async (req, res) => {
       return res.json({ success: false, message: "Car not found" });
     }
 
-    const noOfDays = Math.ceil((returned - picked) / (1000 * 60 * 60 * 24));
+    const diffInMs = returned - picked;
+    const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
+    const noOfDays = Math.max(1, diffInDays);
     const price = noOfDays * carData.pricePerDay;
 
     // 創建預約
