@@ -56,15 +56,12 @@ const SearchForm = () => {
         </label>
 
         <input
-          id="pickup-date"
           type="date"
           required
           onChange={(e) => setPickupDate(e.target.value)}
           value={pickupDate}
           min={new Date().toISOString().split("T")[0]}
           className={`${gs.glassInput} text-gray-200`}
-          onMouseDown={(e) => e.preventDefault()}
-          onClick={(e) => e.target.showPicker?.()}
         />
       </div>
 
@@ -75,13 +72,12 @@ const SearchForm = () => {
         </label>
 
         <input
-          id="return-date"
           type="date"
           required
-          onChange={(e) => setReturnDate(e.target.value)}
           value={returnDate}
+          min={new Date().toISOString().split("T")[0]}
+          onChange={(e) => setReturnDate(e.target.value)}
           className={`${gs.glassInput} text-gray-200`}
-          onMouseDown={(e) => e.preventDefault()}
         />
       </div>
 

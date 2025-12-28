@@ -262,9 +262,7 @@ const CarDetails = () => {
                     id="pickup-date"
                     value={pickupDate}
                     onChange={(e) => setPickupDate(e.target.value)}
-                    className="w-full px-4 py-3 shadow-lg shadow-black/40 bg-black/30 text-slate-200 rounded-xl outline-none cursor-pointer"
-                    onMouseDown={(e) => e.preventDefault()}
-                    onClick={(e) => e.target.showPicker?.()}
+                    className="w-full px-4 py-3 shadow-lg shadow-black/40 bg-white/10 text-slate-200 rounded-xl outline-none"
                     required
                     min={new Date().toISOString().split("T")[0]}
                   />
@@ -283,9 +281,7 @@ const CarDetails = () => {
                     id="return-date"
                     value={returnDate}
                     onChange={(e) => setReturnDate(e.target.value)}
-                    onClick={(e) => e.target.showPicker?.()}
-                    className="w-full px-4 py-3 bg-black/30 shadow-lg shadow-black/40 rounded-xl outline-none text-slate-200 cursor-pointer"
-                    onMouseDown={(e) => e.preventDefault()}
+                    className="w-full px-4 py-3 bg-white/10 shadow-lg shadow-black/40 rounded-xl outline-none text-slate-200"
                     required
                     min={new Date().toISOString().split("T")[0]}
                   />
