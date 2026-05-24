@@ -8,7 +8,7 @@ export const changeRoleToOwner = async (req, res) => {
   try {
     const { _id } = req.user;
     await User.findByIdAndUpdate(_id, { role: "owner" });
-    return res.json({ success: false, message: "Now you can list a car" });
+    return res.json({ success: true, message: "Now you can list a car" });
   } catch (error) {
     console.log(error);
     return res.json({ success: false, message: error.message });
@@ -105,11 +105,7 @@ export const deleteCar = async (req, res) => {
 
 export const getDashboardData = async (req, res) => {
   try {
-    const { _id, role } = req.user;
-
-    // if (role !== "owner") {
-    //   return res.json({ success: false, message: "unauthorized" });
-    // }
+    const { _id } = req.user;
 
     const cars = await Car.find({ owner: _id });
     const pendingBookings = await Booking.find({

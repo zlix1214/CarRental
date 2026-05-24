@@ -16,7 +16,7 @@ export const checkAvailabilityOfCar = async (req, res) => {
     const cars = await Car.find({ location, isAvaliable: true });
 
     const availableCarsPromises = cars.map(async (car) => {
-      const isAvailable = checkAvailability(car, pickupDate, returnDate);
+      const isAvailable = await checkAvailability(car, pickupDate, returnDate);
       return {
         ...car._doc,
         isAvailable: isAvailable,
@@ -155,6 +155,10 @@ export const changeBookingStatus = async (req, res) => {
     const { bookingId, status } = req.body;
 
     const booking = await Booking.findById(bookingId);
+    if (!booking) {
+      return res.json({ success: false, message: "Booking not found" });
+    }
+
     if (booking.owner.toString() !== _id.toString()) {
       return res.json({ success: false, message: "Unauthorized" });
     }
