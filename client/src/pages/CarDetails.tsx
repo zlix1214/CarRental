@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   ArrowLeft,
@@ -9,52 +9,60 @@ import {
   Check,
   Calendar,
   Shield,
-  Star,
 } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppContext } from "../context/appContext";
 import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { createBooking } from "../api/bookingApi";
+import { getErrorMessage } from "../api/getErrorMessage";
 import { queryKeys } from "../queries/queryKeys";
+import type { Car } from "../types/domain";
 
 const CarDetails = () => {
+  const context = useAppContext();
   const {
-    cars,
     pickupDate,
     setPickupDate,
     returnDate,
     setReturnDate,
     currency,
-  } = useAppContext();
+  } = context;
+  const cars = (context.cars ?? []) as Car[];
   const { t } = useTranslation();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [car, setCar] = useState(null);
-  const [totalPrice, setToatalPrice] = useState("");
+  const [car, setCar] = useState<Car | null>(null);
+  const [totalPrice, setToatalPrice] = useState(0);
   const today = new Date().toISOString().split("T")[0];
 
   const createBookingMutation = useMutation({
     mutationFn: createBooking,
     onSuccess: (data) => {
       if (data.success) {
-        toast.success(data.message);
+        toast.success(data.message || "Booking created successfully");
         queryClient.invalidateQueries({ queryKey: queryKeys.userBookings });
         queryClient.invalidateQueries({ queryKey: queryKeys.ownerBookings });
         queryClient.invalidateQueries({ queryKey: queryKeys.ownerDashboard });
         navigate("/my-bookings");
       } else {
-        toast.error(data.message);
+        toast.error(data.message || "Booking failed");
       }
     },
     onError: (error) => {
-      toast.error(error.response?.data?.message || error.message);
+      toast.error(getErrorMessage(error));
     },
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    if (!id) {
+      toast.error("Car not found");
+      return;
+    }
+
     createBookingMutation.mutate({
       car: id,
       pickupDate,
@@ -63,7 +71,7 @@ const CarDetails = () => {
   };
 
   useEffect(() => {
-    setCar(cars.find((car) => car._id === id));
+    setCar(cars.find((carItem) => carItem._id === id) ?? null);
   }, [cars, id]);
 
   useEffect(() => {
@@ -72,8 +80,8 @@ const CarDetails = () => {
       return;
     }
 
-    const start = new Date(pickupDate);
-    const end = new Date(returnDate);
+    const start = new Date(pickupDate).getTime();
+    const end = new Date(returnDate).getTime();
 
     const diffInMs = end - start;
     const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
@@ -129,7 +137,6 @@ const CarDetails = () => {
   return (
     <div className="min-h-screen">
       <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-10 max-w-7xl mx-auto">
-        {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 mb-4 text-slate-200 cursor-pointer"
@@ -139,9 +146,7 @@ const CarDetails = () => {
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left: Car Details (2/3 width) */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Hero Image */}
             <div className="relative overflow-hidden rounded-3xl shadow-2xl">
               <img
                 src={car.image}
@@ -150,7 +155,6 @@ const CarDetails = () => {
               />
             </div>
 
-            {/* Car Name & Category */}
             <div className="rounded-2xl p-6 bg-white/5 shadow shadow-white/40">
               <div className="flex items-start justify-between">
                 <div>
@@ -169,7 +173,6 @@ const CarDetails = () => {
                 </div>
               </div>
 
-              {/* Specs Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6">
                 {specs.map(({ icon, text }, idx) => (
                   <div
@@ -185,7 +188,6 @@ const CarDetails = () => {
               </div>
             </div>
 
-            {/* Description */}
             <div className="rounded-2xl p-6 bg-white/5 shadow shadow-white/40">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-2">
                 {t("carDetail.aboutThisCar")}
@@ -195,7 +197,6 @@ const CarDetails = () => {
               </p>
             </div>
 
-            {/* Features */}
             <div className="rounded-2xl p-6 bg-white/5 shadow shadow-white/40">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-100 mb-4">
                 {t("carDetail.featuresAmenities")}
@@ -217,7 +218,6 @@ const CarDetails = () => {
               </div>
             </div>
 
-            {/* Insurance Info */}
             <div className="bg-black/60 rounded-2xl p-6">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-emerald-300 rounded-xl">
@@ -235,10 +235,8 @@ const CarDetails = () => {
             </div>
           </div>
 
-          {/* Right: Booking Form (1/3 width - Sticky) */}
           <div className="lg:sticky lg:top-24 h-fit">
             <div className="rounded-2xl p-6 bg-white/5 shadow shadow-white/40">
-              {/* Price Header */}
               <div className="mb-6 pb-6 border-b border-slate-900">
                 <div className="flex items-baseline justify-between">
                   <div>
@@ -263,7 +261,6 @@ const CarDetails = () => {
                 </div>
               </div>
 
-              {/* Date Inputs */}
               <div className="space-y-4 mb-6">
                 <div>
                   <label
@@ -277,10 +274,10 @@ const CarDetails = () => {
                     type="date"
                     id="pickup-date"
                     value={pickupDate}
-                    onChange={(e) => setPickupDate(e.target.value)}
+                    onChange={(event) => setPickupDate(event.target.value)}
                     className="w-full px-4 py-3 shadow-lg shadow-black/40 bg-white/10 text-slate-200 rounded-xl outline-none"
                     required
-                    min={new Date().toISOString().split("T")[0]}
+                    min={today}
                   />
                 </div>
 
@@ -296,7 +293,7 @@ const CarDetails = () => {
                     type="date"
                     id="return-date"
                     value={returnDate}
-                    onChange={(e) => setReturnDate(e.target.value)}
+                    onChange={(event) => setReturnDate(event.target.value)}
                     className="w-full px-4 py-3 bg-white/10 shadow-lg shadow-black/40 rounded-xl outline-none text-slate-200"
                     required
                     min={pickupDate || today}
@@ -304,7 +301,6 @@ const CarDetails = () => {
                 </div>
               </div>
 
-              {/* Book Button */}
               <p className=" mb-5 text-center text-sm text-slate-200">
                 {t("carDetail.booking.noCreditCard")}
               </p>
@@ -316,7 +312,6 @@ const CarDetails = () => {
                 {t("carDetail.booking.bookNow")}
               </button>
 
-              {/* Benefits */}
               <div className="mt-6 pt-6 border-t border-slate-200 space-y-3">
                 <div className="flex items-center gap-3 text-sm text-slate-200">
                   <Check className="w-5 h-5 text-white shrink-0" />
